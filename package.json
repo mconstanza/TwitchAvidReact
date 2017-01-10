@@ -1,0 +1,36 @@
+{
+  "name": "twitch-avid-server",
+  "version": "0.0.1",
+  "private": true,
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0"
+    ]
+  },
+  "dependencies": {
+    "babel-cli": "6.14.0",
+    "babel-core": "6.14.0",
+    "babel-preset-es2015": "6.14.0",
+    "babel-preset-stage-0": "6.5.0",
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.15.2",
+    "connect-mongo": "^1.3.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "fs": "0.0.2",
+    "mongoose": "^4.7.6",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "sql.js": "^0.3.2"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "babel-node server.js",
+    "client": "babel-node start-client.js",
+    "dev": "echo \"This command has been deprecated. Use 'npm start'\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.1.0"
+  }
+}

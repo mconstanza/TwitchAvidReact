@@ -7,7 +7,8 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {test: 'failure'};
+    this.state = {test: 'failure',
+    testAgain: 'failure'};
   }
 
 // SAMPLE FRONT-END REQUEST TO ACCESS API
@@ -21,10 +22,21 @@ class App extends Component {
       })
     })
   }
+  testAgain = () => {
+    fetch('/')
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      this.setState({
+        testAgain: json.success
+      })
+    })
+  }
 
 // TODO: Remove this.test() 
   componentDidMount = () => {
     this.test();
+    this.testAgain();
   }
 
   render() {
@@ -39,7 +51,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div>
-          <Practice />
+          <Practice testAgain={this.state.testAgain} />
         </div>
       </div>
     );
@@ -47,3 +59,4 @@ class App extends Component {
 }
 
 export default App;
+

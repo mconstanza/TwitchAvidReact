@@ -80,7 +80,12 @@ app.get('/test', (req, res) => {
   };
   res.json(test);
 });
-
+app.get('/', (req, res) => {
+	var testAgain = {
+		sucess: 'Success!'
+	};
+	res.json(testAgain);
+});
 // app.get('*', (req, res) => {
 //     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 // });

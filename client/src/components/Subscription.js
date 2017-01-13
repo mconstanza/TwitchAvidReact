@@ -13,7 +13,7 @@ class Subscription extends Component {
 
     getSubscriptions()) {
       var id = this.props.userId;
-      fetch('https://api.twitch.tv/kraken/users/' + id + '/follows/channels/limit', {
+      fetch('https://api.twitch.tv/kraken/users/' + id + '/follows/channels&limit=10', {
         method: 'GET',
         headers: {
           'Accept': 'application/vnd.twitchtv.v5+json',

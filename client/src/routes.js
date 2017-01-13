@@ -1,14 +1,16 @@
 // src/routes.js
 import React from 'react';
-import {Router, Route} from 'react-router';
+import {Router, Route, browserHistory} from 'react-router';
 
 import App from './App';
-import Login from './Login';
+import Login from './components/Login';
+import StreamsList from './components/StreamsList';
 
 const Routes = (props) => (
-    <Router {...props}>
+    <Router history={browserHistory}>
         <Route path="/" component={App}>
-          <Route path="/login" component={Login}/>
+          <Route path="/streams/:query" component={StreamsList}/>
+          {/* <Route path="/login" component={Login}/> */}
         </Route>
     </Router>
 );

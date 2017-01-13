@@ -10,14 +10,15 @@ class Game extends Component {
     };
   }
 
-  clickGame() {
+  clickGame = (gameParam) => {
 
+    window.location = '/streams/' + gameParam.game.name + '/';
   }
 
   render() {
 
     return (
-      <div key = {this.props.key} className="game" onClick={this.clickGame}>
+      <div key = {this.props.key} className="game" onClick={() => this.clickGame(this.props.game)}>
         <img src={this.props.game.game.box.medium}/>
         <p>{this.props.game.game.name}</p>
       </div>

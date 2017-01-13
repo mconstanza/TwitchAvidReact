@@ -37,8 +37,8 @@ class App extends Component {
           <h2>Test: {this.state.test} </h2>
         </div> */}
         <p className="App-intro">Games List Test</p>
-        {this.props.children}
         <GameList/>
+        {this.props.children}
       </div>
     );
   }

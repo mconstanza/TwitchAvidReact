@@ -3,7 +3,7 @@ import React from 'react';
 import {Router, Route} from 'react-router';
 
 import App from './App';
-import Login from './Login';
+import Login from './components/Login';
 
 const Routes = (props) => (
     <Router {...props}>

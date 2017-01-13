@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import GameList from './components/GameList';
+import User from './components/User';
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <User/>
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>

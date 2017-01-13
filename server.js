@@ -80,7 +80,15 @@ app.get('/test', (req, res) => {
   };
   res.json(test);
 });
-// app.get('/', (req, res) => {
+app.get('/second-test', (req, res) => {
+  var test = {
+    success: 'Yes',
+    originalmessage: 'Tuna fish'
+
+  };
+  res.json(test);
+});
+// app.get('/t', (req, res) => {
 // 	var testAgain = {
 // 		sucess: 'Success!'
 // 	};

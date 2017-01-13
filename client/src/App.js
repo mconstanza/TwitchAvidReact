@@ -22,36 +22,56 @@ class App extends Component {
       })
     })
   }
-  testAgain = () => {
-    fetch('/')
+    SecondTest = () => {
+    fetch('/second-test')
     .then(response => response.json())
     .then(json => {
       console.log(json);
       this.setState({
-        testAgain: json.success
+        testAgain: json.success, test: json.originalmessage
       })
     })
   }
+  // testAgain(){
+  //   fetch('/')
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     console.log(json);
+  //     this.setState({
+  //       testAgain: json.success
+  //     })
+  //   })
+  // }
+//   testAgain(){
+// fetch('/t')
+// .then(function(response) {
+//  console.log(response);
+// }).then(function(err) {
+//   console.log(err);
+// })
+// }
 
 // TODO: Remove this.test() 
   componentDidMount = () => {
     this.test();
-    this.testAgain();
+    this.SecondTest();
   }
-
+  componentDidUpdate(){
+    console.log(this.state.testAgain)
+  }
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
-          <h2>Test: {this.state.test} </h2>
+          <h2>Test: {this.state.testAgain} </h2>
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div>
-          <Practice testAgain={this.state.testAgain} />
+          <Practice testAgain={this.state.test} />
         </div>
       </div>
     );

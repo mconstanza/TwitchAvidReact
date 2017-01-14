@@ -13,11 +13,12 @@ class StreamCanvas extends Component {
 
     displayStreams = () => {
         const streams = this.props.streams.map((stream) =>
-        <li>
+        // <li className="streamLi">
           <Stream key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id}/>
-        </li>
+        // {/* </li> */}
     )
-    return <ul>{streams}</ul>
+    // return <ul>{streams}</ul>
+    return streams
   }
 
   render() {

@@ -1,7 +1,7 @@
 module.exports = {
 
   clientID: 'q0ojsiq3xgiqjopism2gu3z35py99jg',
-  secret: 'siz6y50ij7pkqfsjaosk451kj090bp',
+  secret: 'u53m567w17e8mjlebvuzgb4tjpqd9x',
 
   getTopGames() {
     fetch('https://api.twitch.tv/kraken/games/top', {

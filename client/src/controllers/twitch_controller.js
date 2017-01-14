@@ -2,6 +2,16 @@ import express from 'express';
 import Twitch from '../config/Twitch';
 const router = express.Router();
 
+function urlencoded(params) {
+	let header = [];
+
+    for(let key in params) {
+      header.push(key + '=' + params[key]); 
+    }
+
+    return header.join('&');
+}
+
 router.post('/authorize', function(req, res) {
 	var headers = {
 		response_type: "code",
@@ -11,15 +21,7 @@ router.post('/authorize', function(req, res) {
 		force_verify: "true"
 	};
 
-	var params = function() {
-		let header = [];
-
-		for(let key in headers) {
-			header.push(key + '=' + headers[key]); 
-		}
-
-		return header.join('&');
-	}();
+	var params = urlencoded(headers);
 
 	console.log(params);
 	res.redirect("https://api.twitch.tv/kraken/oauth2/authorize?" + params);

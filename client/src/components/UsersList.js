@@ -12,8 +12,8 @@ class UsersList extends Component {
     }
 
     getUserInfo() {
-      var userIdNum = (not sure how to get userid number from twitch);
-      fetch('https://api.twitch.tv/kraken/users/' + userIdNum, {
+      var userName = (user name from form?);
+      fetch('https://api.twitch.tv/kraken/users/' + userName, {
         method: 'GET',
         headers: {
           'Accept': 'application/vnd.twitchtv.v5+json',

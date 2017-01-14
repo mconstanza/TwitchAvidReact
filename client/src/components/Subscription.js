@@ -43,7 +43,7 @@ class Subscription extends Component {
 
     render() {
         return (
-            <div className="gameList">
+            <div className="subscription">
               {this.followsList()}
 
             </div>

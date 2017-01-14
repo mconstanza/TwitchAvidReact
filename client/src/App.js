@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 
+
+import Twitch from './config/Twitch';
+
 import StreamCanvas from './components/StreamCanvas';
+
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 
@@ -28,6 +32,38 @@ class App extends Component {
 
 // TODO: Remove this.test()
   componentDidMount = () => {
+
+    let query = this.props.location.query;
+    console.log(query.code);
+    if(query.code) {
+      var headers = {
+        client_id: Twitch.clientID,
+        client_secret: Twitch.secret,
+        redirect_uri: "http://localhost:3000",
+        grant_type: "authorization_code",
+        code: query.code
+      };
+
+      var params = function() {
+        let header = [];
+
+        for(let key in headers) {
+          header.push(key + '=' + headers[key]); 
+        }
+
+        return header.join('&');
+      }();
+
+      console.log(params);
+      fetch("https://api.twitch.tv/kraken/oauth2/token?" + params, {
+        method: "POST"
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+    }
+
   }
 
   render() {

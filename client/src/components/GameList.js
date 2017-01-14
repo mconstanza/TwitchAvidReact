@@ -36,13 +36,16 @@ class GameList extends Component {
 
     }
 
+
     componentWillMount() {
-      this.getTopGames();
+      this.getTopGames();     
+
     }
 
     render() {
         return (
             <div className="gameList">
+              <form method="POST" action="/authorize"><button type="submit">Test</button></form>
               {this.gamesList()}
 
             </div>

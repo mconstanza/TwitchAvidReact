@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import GameList from './components/GameList';
+import StreamCanvas from './components/StreamCanvas';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {test: 'failure'};
+    this.state = {
+      test: 'failure',
+      currentStreams: []
+    };
   }
 
-// SAMPLE FRONT-END REQUEST TO ACCESS API
-  test = () => {
-    fetch('/test')
-    .then(response => response.json())
-    .then(json => {
-      console.log(json);
-      this.setState({
-        test: json.success
-      })
-    })
+  addStreamToCanvas = (stream) => {
+    var streams = this.state.currentStreams;
+    streams.push(stream);
+    this.setState({currentStreams: streams})
   }
 
 // TODO: Remove this.test()
   componentDidMount = () => {
-    this.test();
   }
 
   render() {
@@ -36,9 +31,9 @@ class App extends Component {
           <h2>Welcome to React</h2>
           <h2>Test: {this.state.test} </h2>
         </div> */}
-        <p className="App-intro">Games List Test</p>
-        <GameList/>
-        {this.props.children}
+        <p className="App-intro"></p>
+        {React.cloneElement(this.props.children, { addStreamToCanvas: this.addStreamToCanvas })}
+        <StreamCanvas streams={this.state.currentStreams}/>
       </div>
     );
   }

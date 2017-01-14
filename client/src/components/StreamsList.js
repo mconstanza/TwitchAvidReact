@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-
 import Twitch from '../config/Twitch';
-import Stream from './Stream';
+import StreamLink from './StreamLink';
 
 class StreamsList extends Component {
 
@@ -34,7 +33,7 @@ class StreamsList extends Component {
   streamsList = () => {
       if (this.state.streams) {
           const streams = this.state.streams.map((stream) =>
-            <li><Stream key={stream.channel._id} stream={stream}/></li>
+            <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} key={stream.channel._id} stream={stream}/></li>
         );
         return (<ul>{streams}</ul>)
       }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import Twitch from '../config/Twitch';
+import {Link} from 'react-router';
 
 class Game extends Component {
 
@@ -10,17 +9,19 @@ class Game extends Component {
     };
   }
 
-  clickGame() {
+  clickGame = (gameParam) => {
 
+    window.location = '/streams/' + gameParam.game.name + '/';
   }
-
+  // onClick={() => this.clickGame(this.props.game)} cut from div below
   render() {
-
+    var link = "/streams/" + this.props.game.game.name;
     return (
-      <div key = {this.props.key} className="game" onClick={this.clickGame}>
+      <Link to={link} ><div key = {this.props.key} className="game" >
         <img src={this.props.game.game.box.medium}/>
         <p>{this.props.game.game.name}</p>
       </div>
+    </Link>
     )
 
   }

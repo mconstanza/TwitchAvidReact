@@ -25,7 +25,7 @@ class App extends Component {
 
 // TODO: Remove this.test()
   componentDidMount = () => {
-    this.test();
+    //this.test();
   }
 
   render() {

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Twitch from '../config/Twitch';
-
 class Game extends Component {
 
   constructor(props) {

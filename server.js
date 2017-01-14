@@ -9,6 +9,7 @@ var passport = require('passport');
 var Promise = require("bluebird");
 mongoose.Promise = Promise;
 const path = require('path');
+var twitch_controller = require("./client/src/controllers/twitch_controller");
 
 // PRODUCTION SETTINGS
 // if (process.env.NODE_ENV === 'production') {
@@ -71,15 +72,15 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 //====================================================================
 // ROUTES
 // ===================================================================
-
+app.use('/', twitch_controller);
 
 // TEST route to ensure API calls are functioning correctly
-app.get('/test', (req, res) => {
-  var test = {
-    success: 'YES!'
-  };
-  res.json(test);
-});
+// app.get('/test', (req, res) => {
+//   var test = {
+//     success: 'YES!'
+//   };
+//   res.json(test);
+// });
 
 // app.get('*', (req, res) => {
 //     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));

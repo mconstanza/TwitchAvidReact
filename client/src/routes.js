@@ -15,6 +15,7 @@ const Routes = (props) => (
           <Route path="/streams/:query" component={StreamsList}/>
           {/* <Route path="/login" component={Login}/> */}
         </Route>
+
     </Router>
 );
 

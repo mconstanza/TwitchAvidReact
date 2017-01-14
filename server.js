@@ -12,16 +12,10 @@ var Promise = require("bluebird");
 mongoose.Promise = Promise;
 const path = require('path');
 
-// var child = require('child-process');
-// var spawn = require('cross-spawn');
-var exec = require('child-process').execFile
-
-
-var streamAPI = "/streamlink/api.py";
 
 // PRODUCTION SETTINGS
 // if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+app.use(express.static('client/build'));
 // }
 
 // Middleware
@@ -81,17 +75,8 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 // ROUTES
 // ===================================================================
 
-
-// TEST route to ensure API calls are functioning correctly
-// app.get('/test', (req, res) => {
-//   var test = {
-//     success: 'YES!'
-//   };
-//   res.json(test);
-// });
-
 app.get('/:channel/streams', function(req, res) {
-  var url = 'https://www.twitch.tv/' + req.params.channel;
+  // var url = 'https://www.twitch.tv/' + req.params.channel;
   //
   // request
   // .get(streamAPI, {url: url})
@@ -99,14 +84,14 @@ app.get('/:channel/streams', function(req, res) {
   //   console.log(response);
   //   res.send(response.text);
   // })
-  var args = [url]
-  var python = exec(streamAPI, args, (error, stdout, stderr) => {
-    if(error) {
-      throw error;
-    }
-    console.log(stdout);
-    res.send(stdout);
-  });
+  // var args = [url]
+  // var python = exec(streamAPI, args, (error, stdout, stderr) => {
+  //   if(error) {
+  //     throw error;
+  //   }
+  //   console.log(stdout);
+  //   res.send(stdout);
+  // });
   // var streams = '';
   // python.stdout.on('data', function(data){
   //     streams += data;

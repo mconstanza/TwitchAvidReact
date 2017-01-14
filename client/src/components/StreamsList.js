@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Twitch from '../config/Twitch';
 import StreamLink from './StreamLink';
 
+
 class StreamsList extends Component {
 
   constructor(props) {

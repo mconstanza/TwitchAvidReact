@@ -1,10 +1,4 @@
 import React, {Component} from 'react';
-// import Script from 'react-load-script'
-// import Twitch from '../config/Twitch';
-
-// import TwitchStreams from '../config/TwitchStreams';
-
-// var twitchStreams = require('twitch-get-stream')(Twitch.clientID)
 
 class Stream extends Component {
 
@@ -14,34 +8,20 @@ class Stream extends Component {
         };
     }
 
-    componentWillMount() {
-      this.getVideoLinks();
-    }
-
-    getVideoLinks = () => {
-    //   TwitchStreams.get(this.props.channel, Twitch.clientID)
-    //   .then(function(streams){
-    //     console.log(streams)
-    //     this.setState({videoURL: streams[0].url})
-    //   })
-    fetch('/'+ this.props.channel+ '/streams')
-    .then(response => response.json())
-    .then(json => {
-      console.log(json);
-      this.setState({videoURL: json.best})
-    })
-
-    }
-
     render() {
-      // if (this.state.videoURL){
+      var url = "http://player.twitch.tv/?channel=" + this.props.channel
         return (
           <div id={this.props.stream._id}>
-            <video src={this.state.videoURL} ></video>
+            <iframe
+              src={url}
+              height="300px"
+              width='100%'
+              frameborder="0"
+              scrolling="no"
+              allowfullscreen="true">
+            </iframe>
           </div>
       )
-    // }
-
     }
   }
 module.exports = Stream;

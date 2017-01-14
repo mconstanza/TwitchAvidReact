@@ -14,7 +14,7 @@ class Follow extends Component {
 
     return (
       <div key = {this.props.key} className="follow">
-        <p>{this.props.follow.channel.display_name}</p>
+        <a href={this.props.follow.channel.url}>{this.props.follow.channel.display_name}</a>
         <img src={this.props.follow.channel.logo}/>
       </div>
     )

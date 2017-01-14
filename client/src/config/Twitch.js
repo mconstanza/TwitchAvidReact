@@ -17,29 +17,4 @@ module.exports = {
       return json.top
     })
   }
-
-  // init(callback) {
-  //   Twitch.init({clientId: this.clientID}, function(error, status) {
-  //       if (error) {
-  //         console.log(error);
-  //       }
-  //       if (status.authenticated) {
-  //         callback();
-  //       }
-  //   })
-  // },
-
-  // login() {
-  //   var headers = {
-  //     response_type: "token",
-  //     client_id: this.clientID,
-  //     redirect_uri: "http://localhost:8080",
-  //     scope: "user_read channel_read user_subscriptions",
-  //     force_verify: "true"
-  //   }
-
-  //   var url = "https://api.twitch.tv/kraken/oauth2/authorize?";// + decodeURIComponent($.param(headers));
-  //   window.location.href = url;
-
-  // }
 }

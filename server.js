@@ -2,6 +2,8 @@ var express = require('express')
 var app = express()
 var PORT = 3001;
 
+import request from 'request';
+
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
@@ -11,9 +13,10 @@ mongoose.Promise = Promise;
 const path = require('path');
 var twitch_controller = require("./client/src/controllers/twitch_controller");
 
+
 // PRODUCTION SETTINGS
 // if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+app.use(express.static('client/build'));
 // }
 
 // Middleware
@@ -72,6 +75,7 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 //====================================================================
 // ROUTES
 // ===================================================================
+
 app.use('/', twitch_controller);
 
 // TEST route to ensure API calls are functioning correctly
@@ -85,6 +89,36 @@ app.use('/', twitch_controller);
 // app.get('*', (req, res) => {
 //     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 // });
+
+
+app.get('/:channel/streams', function(req, res) {
+  // var url = 'https://www.twitch.tv/' + req.params.channel;
+  //
+  // request
+  // .get(streamAPI, {url: url})
+  // .on('response', function(response){
+  //   console.log(response);
+  //   res.send(response.text);
+  // })
+  // var args = [url]
+  // var python = exec(streamAPI, args, (error, stdout, stderr) => {
+  //   if(error) {
+  //     throw error;
+  //   }
+  //   console.log(stdout);
+  //   res.send(stdout);
+  // });
+  // var streams = '';
+  // python.stdout.on('data', function(data){
+  //     streams += data;
+  // } );
+  // python.stdout.on('close', function( ){
+  //     console.log(streams);
+  //     res.json(streams);
+  // } );
+  // var streams = streamAPI.streams('https://www.twitch.tv/' + req.params.channel);
+  // res.send(streams);
+})
 
 app.listen(PORT, function() {
     console.log('Example app listening on port 3001!')

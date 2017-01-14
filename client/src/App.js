@@ -4,6 +4,7 @@ import './App.css';
 
 import GameList from './components/GameList';
 import User from './components/User';
+import OtherUsers from './OtherUsers';
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
     return (
       <div className="App">
         <User/>
+        <UsersList />
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>

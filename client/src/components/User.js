@@ -32,14 +32,22 @@ class User extends Component {
       this.getUserInfo();
     }
 
+    userLogged() {
+      if(this.state.user) {
+        return (
+          <p>Username: {this.state.user.display_name}</p>
+          <img src={this.state.user.logo}/>
+          <p>Bio: {this.state.user.bio}</p>)
+      } else {
+        return(<p>Not Logged In</p>)
+      }
+    }
+
     render() {
         return (
             <div className="user">
-              <p>Username: {this.state.user.display_name}</p>
-              <p>{this.state.user.logo}</p>
-              <p>Bio: {this.state.user.bio}</p>
+              <div>{this.userLogged()}</div>
               <Subscription userId={this.state.user._id} />
-
             </div>
         )
 

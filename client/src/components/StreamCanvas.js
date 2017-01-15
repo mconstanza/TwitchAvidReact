@@ -14,7 +14,7 @@ class StreamCanvas extends Component {
     displayStreams = () => {
         const streams = this.props.streams.map((stream) =>
         // <li className="streamLi">
-          <Stream key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id}/>
+          <Stream key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id} removeStream={this.props.removeStream}/>
         // {/* </li> */}
     )
     // return <ul>{streams}</ul>

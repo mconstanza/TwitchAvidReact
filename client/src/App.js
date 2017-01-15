@@ -8,6 +8,7 @@ import StreamCanvas from './components/StreamCanvas';
 
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
+import Navbar from './components/Navbar';
 
 // CSS Foundation
 import Foundation from 'react-foundation';
@@ -20,7 +21,8 @@ class App extends Component {
     super(props);
     this.state = {
       test: 'failure',
-      currentStreams: []
+      currentStreams: [],
+      activePage: 'home'
     };
   }
 
@@ -28,6 +30,10 @@ class App extends Component {
     var streams = this.state.currentStreams;
     streams.push(stream);
     this.setState({currentStreams: streams})
+  }
+
+  setActivePage = (page) => {
+    this.setState({activePage: page});
   }
 
 // TODO: Remove this.test()
@@ -70,7 +76,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <p className="App-intro"></p>
+        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage}/>
         {/* {this.props.children} */}
         <Row id='primaryRow'>
           <Column large={12}>

@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-import {FlexVideo} from 'react-foundation';
-
 class Stream extends Component {
 
     constructor(props) {

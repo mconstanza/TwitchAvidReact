@@ -32,6 +32,17 @@ class App extends Component {
     this.setState({currentStreams: streams})
   }
 
+  removeStreamFromCanvas = (streamId) => {
+    var streams = this.state.currentStreams;
+    for (let i=0; i<streams.length; i++){
+      if (streams[i]._id == streamId){
+        let index = streams.indexOf(streamId);
+        streams.splice(index, 1);
+      }
+    }
+    this.setState({currentStreams: streams});
+  }
+
   setActivePage = (page) => {
     this.setState({activePage: page});
   }
@@ -87,7 +98,7 @@ class App extends Component {
             </Row>
           <Row id="streamCanvasRow">
             <Column large={12}>
-              <StreamCanvas streams={this.state.currentStreams}/>
+              <StreamCanvas streams={this.state.currentStreams} removeStream = {this.removeStreamFromCanvas}/>
             </Column>
           </Row>
         </Column>

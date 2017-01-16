@@ -13,7 +13,7 @@ class Stream extends Component {
         return (
           <div className="streamContainer">
           <Overlay streamId={this.props.stream._id} removeStream={this.props.removeStream}/>
-            <div className="playingStream" key={this.props.stream._id} id={this.props.stream._id} isWidescreen>
+            <div className="playingStream" key={this.props.stream._id} id={this.props.stream._id}>
               <iframe
                 src={url}
                 frameBorder="0"

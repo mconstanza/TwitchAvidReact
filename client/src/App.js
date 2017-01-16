@@ -33,11 +33,11 @@ class App extends Component {
   }
 
   removeStreamFromCanvas = (streamId) => {
+    console.log("Stream ID: ", streamId)
     var streams = this.state.currentStreams;
     for (let i=0; i<streams.length; i++){
       if (streams[i]._id == streamId){
-        let index = streams.indexOf(streamId);
-        streams.splice(index, 1);
+        streams.splice(i, 1);
       }
     }
     this.setState({currentStreams: streams});
@@ -65,7 +65,7 @@ class App extends Component {
         let header = [];
 
         for(let key in headers) {
-          header.push(key + '=' + headers[key]); 
+          header.push(key + '=' + headers[key]);
         }
 
         return header.join('&');

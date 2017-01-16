@@ -31,7 +31,7 @@ class GameList extends Component {
             const games = this.state.games.map((game) =>
               <li><Game key={game.game._id} game={game}/></li>
           );
-          return (<ul>{games}</ul>)
+          return (<ul className="gamesList">{games}</ul>)
         }
 
     }
@@ -44,8 +44,7 @@ class GameList extends Component {
 
     render() {
         return (
-            <div className="gameList">
-              <form method="POST" action="/authorize"><button type="submit">Test</button></form>
+            <div>
               {this.gamesList()}
 
             </div>

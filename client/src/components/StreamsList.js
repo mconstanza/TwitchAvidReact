@@ -34,7 +34,8 @@ class StreamsList extends Component {
   streamsList = () => {
       if (this.state.streams) {
           const streams = this.state.streams.map((stream) =>
-            <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} key={stream.channel._id} stream={stream}/></li>
+
+            <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>
         );
         return (<ul>{streams}</ul>)
       }

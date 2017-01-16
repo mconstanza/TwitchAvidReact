@@ -37,6 +37,11 @@
   list-style-type: none;
   margin: 5px 10px 5px 10px
 }
+.gamesList li{
+  display: inline-block;
+  list-style-type: none;
+  margin: 5px 10px 5px 10px
+}
 
 .streamContainer {
   margin-top: 15px;

@@ -16,7 +16,7 @@ class Navbar extends Component {
     activeNavTab = () => {
       if (this.props.isActive == "games"){
         return (
-             <Menu>
+             <Menu className="mainNav">
               <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
               <MenuItem onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
               <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
@@ -24,7 +24,7 @@ class Navbar extends Component {
         )
       } else if (this.props.isActive == "home"){
         return (
-          <Menu>
+          <Menu className="mainNav">
             <MenuItem onClick={()=>this.activeNavTabHandler("home")} isActive><Link to="/">Home</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
@@ -32,7 +32,7 @@ class Navbar extends Component {
         )
       } else if (this.props.isActive == "favorites"){
         return (
-          <Menu>
+          <Menu className="mainNav">
             <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} isActive><a>Favorites</a></MenuItem>

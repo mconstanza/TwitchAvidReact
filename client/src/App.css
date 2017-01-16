@@ -29,7 +29,7 @@
 }
 
 #navigation{
-  max-height: 220px;
+  max-height: 240px;
   text-align: center;
 }
 .streamList li{
@@ -97,6 +97,10 @@ iframe{
 #streamCanvas {
   width: 100%;
   text-align: left;
+}
+
+.hidden{
+  display: none;
 }
 
 @keyframes App-logo-spin {

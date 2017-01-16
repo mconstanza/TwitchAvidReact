@@ -7,10 +7,32 @@ class StreamsList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
-  }
+        this.state = {
+          shouldHide: false,
+          isToggleOn: true
+        };
+        this.onClick = this.onClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
+  onClick() {
+      console.log("onclick");
+        if(!this.state.shouldHide){
+          this.setState({
+            shouldHide: true 
+          })
+        }else{
+          this.setState({
+            shouldHide: false 
+          })
+        }
+      this.handleClick();
+  }
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+      }));
+    }
   getGameStreams() {
     var game = this.props.params.query;
     fetch('https://api.twitch.tv/kraken/streams/?game=' + game, {
@@ -34,8 +56,7 @@ class StreamsList extends Component {
   streamsList = () => {
       if (this.state.streams) {
           const streams = this.state.streams.map((stream) =>
-
-            <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>
+            <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} key={stream.channel._id} stream={stream}/></li>
         );
         return (<ul>{streams}</ul>)
       }
@@ -45,8 +66,14 @@ class StreamsList extends Component {
   render() {
 
     return (
-      <div className="streamList">
-        {this.streamsList()}
+      
+      <div>
+        <button onClick={this.onClick} >{this.state.isToggleOn ? <i className="fa">&#xf102;</i> : <i className="fa">&#xf103;</i>}</button>
+        <div className={this.state.shouldHide ? 'hidden' : ''}>
+          <div className="streamList">
+            {this.streamsList()}
+          </div>
+        </div>
 
       </div>
     )

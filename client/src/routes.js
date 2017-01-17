@@ -11,11 +11,9 @@ import StreamCanvas from './components/StreamCanvas';
 const Routes = (props) => (
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-          <Route path="/games" component = {GameList}/>
+          <Route path="/games/" component = {GameList}/>
           <Route path="/streams/:query" component={StreamsList}/>
-          {/* <Route path="/login" component={Login}/> */}
         </Route>
-
     </Router>
 );
 

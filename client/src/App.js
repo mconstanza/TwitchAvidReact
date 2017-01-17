@@ -9,6 +9,7 @@ import StreamCanvas from './components/StreamCanvas';
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
+import SearchContainer from './components/SearchContainer';
 
 // CSS Foundation
 import Foundation from 'react-foundation';
@@ -45,6 +46,10 @@ class App extends Component {
 
   setActivePage = (page) => {
     this.setState({activePage: page});
+  }
+
+  setSearchQuery = (query) => {
+    this.setState({searchQuery: query});
   }
 
 // TODO: Remove this.test()
@@ -87,7 +92,8 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage}/>
+        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage} setSearchQuery={this.setSearchQuery}/>
+        <SearchContainer query={this.state.searchQuery}/>
         {/* {this.props.children} */}
         <Row id='primaryRow'>
           <Column large={12}>

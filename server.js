@@ -120,6 +120,8 @@ app.get('/:channel/streams', function(req, res) {
   // res.send(streams);
 })
 
+require('./client/src/config/connection');
+
 app.listen(PORT, function() {
     console.log('Example app listening on port 3001!')
 })

@@ -8,7 +8,7 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #111;
   height: 150px;
   padding: 20px;
   color: white;
@@ -31,11 +31,15 @@
 #navigation{
   max-height: 240px;
   text-align: center;
+
 }
 .streamList li{
   display: inline-block;
   list-style-type: none;
   margin: 5px 10px 5px 10px
+}
+#searchform{
+  position: right;
 }
 .gamesList li{
   display: inline-block;

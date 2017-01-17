@@ -1,84 +1,104 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Twitch from '../config/Twitch';
 import StreamLink from './StreamLink';
 
-
 class StreamsList extends Component {
 
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
         this.state = {
-          shouldHide: false,
-          isToggleOn: true
+            shouldHide: false,
+            isToggleOn: true
         };
         this.onClick = this.onClick.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
-  onClick() {
-      console.log("onclick");
-        if(!this.state.shouldHide){
-          this.setState({
-            shouldHide: true 
-          })
-        }else{
-          this.setState({
-            shouldHide: false 
+    onClick() {
+        console.log("onclick");
+        if (!this.state.shouldHide) {
+            this.setState({shouldHide: true})
+        } else {
+            this.setState({shouldHide: false})
+        }
+        this.handleClick();
+    }
+    handleClick() {
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn
+        }));
+    }
+    getGameStreams() {
+        if (this.props.params) {
+
+            var game = this.props.params.query;
+            fetch('https://api.twitch.tv/kraken/streams/?game=' + game, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.twitchtv.v5+json',
+                    'Client-ID': Twitch.clientID
+                }
+            }).then(response => response.json()).then(json => {
+                console.log(json.streams);
+                this.setState({streams: json.streams})
+            })
+        }
+        else if(this.props.query) {
+          var game = this.props.query;
+          console.log(this.props.query)
+          fetch('https://api.twitch.tv/kraken/search/streams?query=' + game, {
+              method: 'GET',
+              headers: {
+                  'Accept': 'application/vnd.twitchtv.v5+json',
+                  'Client-ID': Twitch.clientID
+              }
+          }).then(response => response.json()).then(json => {
+              console.log(json.streams);
+              this.setState({streams: json.streams})
           })
         }
-      this.handleClick();
-  }
-  handleClick() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-      }));
     }
-  getGameStreams() {
-    var game = this.props.params.query;
-    fetch('https://api.twitch.tv/kraken/streams/?game=' + game, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/vnd.twitchtv.v5+json',
-        'Client-ID': Twitch.clientID
-      }
-    })
-    .then(response => response.json())
-    .then(json => {
-      console.log(json.streams);
-      this.setState({streams: json.streams })
-    })
-  }
 
-  componentWillMount() {
-    this.getGameStreams();
-  }
+    componentWillMount() {
+        this.getGameStreams();
+    }
 
-  streamsList = () => {
-      if (this.state.streams) {
-          const streams = this.state.streams.map((stream) =>
-            <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>
-        );
-        return (<ul>{streams}</ul>)
-      }
+    componentDidUpdate() {
+        this.getGameStreams();
+    }
 
-  }
 
-  render() {
 
-    return (
-      
-      <div>
-        <button onClick={this.onClick} >{this.state.isToggleOn ? <i className="fa">&#xf102;</i> : <i className="fa">&#xf103;</i>}</button>
-        <div className={this.state.shouldHide ? 'hidden' : ''}>
-          <div className="streamList">
-            {this.streamsList()}
-          </div>
-        </div>
+    streamsList = () => {
+        if (this.state.streams) {
+            const streams = this.state.streams.map((stream) => <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>);
+            return (
+                <ul>{streams}</ul>
+            )
+        }
 
-      </div>
-    )
+    }
 
-  }
+    render() {
+
+        return (
+
+            <div>
+                <button onClick={this.onClick}>{this.state.isToggleOn
+                        ? <i className="fa">&#xf102;</i>
+                        : <i className="fa">&#xf103;</i>}</button>
+                <div className={this.state.shouldHide
+                    ? 'hidden'
+                    : ''}>
+                    <div className="streamList">
+                        {this.streamsList()}
+                    </div>
+                </div>
+
+            </div>
+        )
+
+    }
 }
 
 module.exports = StreamsList;

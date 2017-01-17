@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {Menu, MenuItem, MenuText} from 'react-foundation';
+import Search from './Search';
 
 
 class Navbar extends Component {
@@ -50,6 +51,7 @@ class Navbar extends Component {
         return (
           <div className="Navbar">
              {this.activeNavTab()}
+             <Search setSearchQuery={this.props.setSearchQuery}/>
         </div>
       )
     }

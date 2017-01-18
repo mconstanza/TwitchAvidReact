@@ -13,15 +13,13 @@ var helpers = {
   },
 
   getToken: function(params, callback) {
-    return function() {
       fetch("https://api.twitch.tv/kraken/oauth2/token?" + params, {
         method: "POST"
       })
       .then((response) => response.json())
       .then((data) => {
-        callback(data);
+        callback(data)
       })
-    }
   },
 
   getUserTwitchAPI: function(accessToken, callback) {
@@ -30,7 +28,7 @@ var helpers = {
 	    method: "GET",
 	    headers: {
 	      "Client-ID": Twitch.clientID,
-	      "Authorization": "OAuth " + data.access_token
+	      "Authorization": "OAuth " + accessToken
 	    }
 	  })
 	  .then(response => response.json())
@@ -54,6 +52,7 @@ var helpers = {
   	  	callback(user);
   	  })
  	}
-}
+  }
+}  
 
 module.exports = helpers;

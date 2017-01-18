@@ -77,7 +77,7 @@ class App extends Component {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // Access Token and Account Permission
+        console.log(data); // Access Token and Account Permission
         fetch("https://api.twitch.tv/kraken/user", {
           method: "GET",
           headers: {

@@ -1,6 +1,7 @@
 import Twitch from '../config/Twitch';
 
 var helpers = {
+
   buildQuery: function(headers) {
     let header = [];
 
@@ -21,14 +22,38 @@ var helpers = {
         callback(data);
       })
     }
-  }
+  },
 
-  getTwitchUser: function(accessToken, callback) {
+  getUserTwitchAPI: function(accessToken, callback) {
     return function() {
-      
-    }
-  }
+      fetch("https://api.twitch.tv/kraken/user", {
+	    method: "GET",
+	    headers: {
+	      "Client-ID": Twitch.clientID,
+	      "Authorization": "OAuth " + data.access_token
+	    }
+	  })
+	  .then(response => response.json())
+	  .then((user) => {
+      	callback(user);
+      })
+  	}
+  },
 
+  getLocalUser: function(user, callback) {
+  	return function() {
+  	  var params = new URLSearchParams();
+      params.append('username', user.name);
+      params.append('email', user.email);
+      fetch('/user', {
+        method: "POST",
+        body: params
+      })
+      .then((response) => response.json())
+      .then((user) => {	
+  	  	callback(user);
+  	  })
+ 	}
 }
 
 module.exports = helpers;

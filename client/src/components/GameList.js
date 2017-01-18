@@ -19,11 +19,11 @@ class GameList extends Component {
       console.log("onclick");
         if(!this.state.shouldHide){
           this.setState({
-            shouldHide: true 
+            shouldHide: true
           })
         }else{
           this.setState({
-            shouldHide: false 
+            shouldHide: false
           })
         }
       this.handleClick();
@@ -60,8 +60,7 @@ class GameList extends Component {
 
 
     componentWillMount() {
-      this.getTopGames();     
-
+      this.getTopGames();
     }
 
     render() {

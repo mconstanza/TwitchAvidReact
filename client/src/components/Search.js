@@ -19,10 +19,10 @@ class Search extends Component {
     render() {
         return (
             <div>
-              <form ref="form">
+              <form class="searchform" ref="form">
                 <input onChange={this.searchHandler} name="search" placeholder="Find me streams!" value={this.state.searchTerm}/>
               </form>
-              <Button id="searchButton">Search</Button>
+              <Button class="searchform" id="searchButton">Search</Button>
 
             </div>
         )

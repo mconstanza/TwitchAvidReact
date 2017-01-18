@@ -1,6 +1,6 @@
 var express = require('express')
 var app = express()
-var PORT = 3001;
+var PORT = process.env.PORT || 3001;
 
 import request from 'request';
 
@@ -77,7 +77,7 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 // ===================================================================
 
 app.get('/*', function(req, res) {
-	res.sendFile(path.join(__dirname,'./build', 'index.html'));
+	res.sendFile('index.html');
 });
 
 app.use('/', twitch_controller);

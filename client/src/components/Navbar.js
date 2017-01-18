@@ -22,7 +22,7 @@ class Navbar extends Component {
             <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
-            <form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>
+            <form method="POST" action="/authorize"><button type="submit">Connect with <span style="color=#6441a4;"> Twitch</span></button></form>
           </Menu>
         )
       } else if (this.props.isActive == "home"){

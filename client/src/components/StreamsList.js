@@ -65,6 +65,7 @@ class StreamsList extends Component {
 
     componentDidUpdate() {
         this.getGameStreams();
+        //TODO: this causes too many updates -- find a better way to handle.
     }
 
 

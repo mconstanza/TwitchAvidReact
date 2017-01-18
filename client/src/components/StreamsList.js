@@ -64,10 +64,8 @@ class StreamsList extends Component {
     }
 
     componentDidUpdate() {
-        this.getGameStreams();
+        // this.getGameStreams();
     }
-
-
 
     streamsList = () => {
         if (this.state.streams) {

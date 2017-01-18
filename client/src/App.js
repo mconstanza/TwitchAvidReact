@@ -82,7 +82,29 @@ class App extends Component {
       })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log(data); // Access Token and Account Permission
+        fetch("https://api.twitch.tv/kraken/user", {
+          method: "GET",
+          headers: {
+            "Client-ID": Twitch.clientID,
+            "Authorization": "OAuth " + data.access_token
+          }
+        })
+        .then(response => response.json())
+        .then((user) => {
+          console.log(user); // Twitch User Data
+          var params = new URLSearchParams();
+          params.append('username', user.name);
+          params.append('email', user.email);
+          fetch('/user', {
+            method: "POST",
+            body: params
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data); // Local DB User Data
+          })
+        })
       })
     }
 

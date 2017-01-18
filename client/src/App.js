@@ -9,6 +9,7 @@ import StreamCanvas from './components/StreamCanvas';
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
+import SearchContainer from './components/SearchContainer';
 
 // CSS Foundation
 import Foundation from 'react-foundation';
@@ -33,11 +34,11 @@ class App extends Component {
   }
 
   removeStreamFromCanvas = (streamId) => {
+    console.log("Stream ID: ", streamId)
     var streams = this.state.currentStreams;
     for (let i=0; i<streams.length; i++){
       if (streams[i]._id == streamId){
-        let index = streams.indexOf(streamId);
-        streams.splice(index, 1);
+        streams.splice(i, 1);
       }
     }
     this.setState({currentStreams: streams});
@@ -45,6 +46,10 @@ class App extends Component {
 
   setActivePage = (page) => {
     this.setState({activePage: page});
+  }
+
+  setSearchQuery = (query) => {
+    this.setState({searchQuery: query});
   }
 
 // TODO: Remove this.test()
@@ -65,7 +70,7 @@ class App extends Component {
         let header = [];
 
         for(let key in headers) {
-          header.push(key + '=' + headers[key]); 
+          header.push(key + '=' + headers[key]);
         }
 
         return header.join('&');
@@ -109,7 +114,8 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage}/>
+        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage} setSearchQuery={this.setSearchQuery}/>
+        <SearchContainer query={this.state.searchQuery}/>
         {/* {this.props.children} */}
         <Row id='primaryRow'>
           <Column large={12}>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import {Menu, MenuItem} from 'react-foundation';
+import {Menu, MenuItem, MenuText} from 'react-foundation';
+import Search from './Search';
 
 
 class Navbar extends Component {
@@ -16,26 +17,32 @@ class Navbar extends Component {
     activeNavTab = () => {
       if (this.props.isActive == "games"){
         return (
-             <Menu>
-              <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
-              <MenuItem onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
-              <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
-            </Menu>
+          <Menu className="mainNav">
+            <MenuText>Twitch Avid</MenuText>
+            <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
+            <MenuItem onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
+            <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
+            <form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>
+          </Menu>
         )
       } else if (this.props.isActive == "home"){
         return (
-          <Menu>
+          <Menu className="mainNav">
+            <MenuText>Twitch Avid</MenuText>
             <MenuItem onClick={()=>this.activeNavTabHandler("home")} isActive><Link to="/">Home</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
+            <form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>
           </Menu>
         )
       } else if (this.props.isActive == "favorites"){
         return (
-          <Menu>
+          <Menu className="mainNav">
+            <MenuText>Twitch Avid</MenuText>
             <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} isActive><a>Favorites</a></MenuItem>
+            <form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>
           </Menu>
         )
       }
@@ -44,6 +51,7 @@ class Navbar extends Component {
         return (
           <div className="Navbar">
              {this.activeNavTab()}
+             <Search setSearchQuery={this.props.setSearchQuery}/>
         </div>
       )
     }

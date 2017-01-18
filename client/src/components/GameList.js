@@ -8,9 +8,31 @@ class GameList extends Component {
     constructor(props) {
         super(props);
         this.state = {
+          shouldHide: false,
+          isToggleOn: true
         };
+        this.onClick = this.onClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
+    onClick() {
+      console.log("onclick");
+        if(!this.state.shouldHide){
+          this.setState({
+            shouldHide: true 
+          })
+        }else{
+          this.setState({
+            shouldHide: false 
+          })
+        }
+      this.handleClick();
+    }
+    handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+      }));
+    }
     getTopGames() {
       fetch('https://api.twitch.tv/kraken/games/top', {
         method: 'GET',
@@ -31,7 +53,7 @@ class GameList extends Component {
             const games = this.state.games.map((game) =>
               <li><Game key={game.game._id} game={game}/></li>
           );
-          return (<ul>{games}</ul>)
+          return (<ul className="gamesList">{games}</ul>)
         }
 
     }
@@ -44,9 +66,12 @@ class GameList extends Component {
 
     render() {
         return (
-            <div className="gameList">
-              <form method="POST" action="/authorize"><button type="submit">Test</button></form>
-              {this.gamesList()}
+            <div>
+
+              <button onClick={this.onClick} >{this.state.isToggleOn ? <i className="fa">&#xf102;</i> : <i className="fa">&#xf103;</i>}</button>
+              <div className={this.state.shouldHide ? 'hidden' : ''}>
+                {this.gamesList()}
+              </div>
 
             </div>
         )

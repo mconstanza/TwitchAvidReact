@@ -29,10 +29,15 @@
 }
 
 #navigation{
-  max-height: 220px;
+  max-height: 240px;
   text-align: center;
 }
 .streamList li{
+  display: inline-block;
+  list-style-type: none;
+  margin: 5px 10px 5px 10px
+}
+.gamesList li{
   display: inline-block;
   list-style-type: none;
   margin: 5px 10px 5px 10px
@@ -43,6 +48,12 @@
   padding-right: 10px;
   width: 50%;
   display: inline-block;
+  position: relative;
+  flex: 0 1 auto;
+  -webkit-flex: 0 1 auto;
+  -moz-flex: 0 1 auto;
+  background-color: #1c1e22;
+  z-index: 1;
 }
 
 .playingStream {
@@ -55,6 +66,28 @@
   padding-bottom: 56.25%;
 }
 
+.Overlay{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0, auto;
+  z-index: 2;
+  position: absolute;
+  text-align: center;
+}
+.streamDelete {
+  height: 100%;
+  width: 100%;
+}
+
 iframe{
   position: absolute;
   width: 100%;
@@ -64,6 +97,10 @@ iframe{
 #streamCanvas {
   width: 100%;
   text-align: left;
+}
+
+.hidden{
+  display: none;
 }
 
 @keyframes App-logo-spin {

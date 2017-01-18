@@ -76,6 +76,10 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 // ROUTES
 // ===================================================================
 
+app.get('/', function(req, res) {
+	res.sendFile(path.join(__dirname, '/client/build/static/index.html'));
+});
+
 app.use('/', twitch_controller);
 
 // TEST route to ensure API calls are functioning correctly

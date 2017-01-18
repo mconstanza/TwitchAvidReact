@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Twitch from '../config/Twitch';
+import HorizontalScroll from 'react-horizontal-scroll'
 
 import Game from './Game';
 
@@ -51,7 +52,7 @@ class GameList extends Component {
     gamesList = () => {
         if (this.state.games) {
             const games = this.state.games.map((game) =>
-              <li><Game key={game.game._id} game={game}/></li>
+              <li className="game"><Game key={game.game._id} game={game}/></li>
           );
           return (<ul className="gamesList">{games}</ul>)
         }
@@ -67,7 +68,6 @@ class GameList extends Component {
     render() {
         return (
             <div>
-
               <button onClick={this.onClick} >{this.state.isToggleOn ? <i className="fa">&#xf102;</i> : <i className="fa">&#xf103;</i>}</button>
               <div className={this.state.shouldHide ? 'hidden' : ''}>
                 {this.gamesList()}

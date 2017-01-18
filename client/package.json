@@ -10,8 +10,10 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-foundation": "^0.7.0",
+    "react-horizontal-scroll": "^5.0.4",
     "react-load-script": "0.0.2",
     "react-router": "^3.0.0",
+    "react-scroll-horizontal": "0.0.7",
     "request": "^2.79.0"
   },
   "scripts": {

@@ -76,7 +76,7 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 // ROUTES
 // ===================================================================
 
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
 	res.sendFile(path.join(__dirname,'./build', 'index.html'));
 });
 

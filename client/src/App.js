@@ -64,9 +64,9 @@ class App extends Component {
     //   console.log(data);
     // })
 
-    // helpers.postHistory('yuuterus', {}, function(data) {
-    //   console.log(data);
-    // })
+    helpers.postHistory('yuuterus', {}, function(data) {
+      console.log(data);
+    })
 
     let token = localStorage.getItem("accessToken");
     console.log(token);

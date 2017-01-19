@@ -6,7 +6,8 @@ var helpers = {
     let header = [];
 
     for(let key in headers) {
-       header.push(key + '=' + headers[key]); 
+      if(headers[key] !== null || header[key] !== undefined)
+        header.push(key + '=' + headers[key]); 
     }
 
     return encodeURI(header.join('&'));
@@ -47,9 +48,7 @@ var helpers = {
   },
 
   getLocalUser: function(user, callback) {
-	  var params = "";
-    params += 'username=' + user.name;
-    params += '&email=' + user.email;
+	  var params = this.buildQuery(user);
     console.log(params);
     fetch('/user', {
       method: "POST",

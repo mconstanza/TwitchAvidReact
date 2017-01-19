@@ -31,14 +31,25 @@ router.get('/all', function(req, res) {
 
 // Return user and adds new user if does not exist
 router.post('/user', function(req, res) {
-	Users.findOneAndUpdate(
-		{username: req.body.username}, 
-		{$setOnInsert: {username: req.body.username, email: req.body.email}}, 
-		{setDefaultsOnInsert: true, upsert: true, new: true}, 
-		function(err, user) {
-			if(err) throw err;
-			res.send(user);
+	Users.findOne({name: req.body.name}, function(err, foundUser) {
+		if(!err) res.sendStatus(404);
+		console.log(foundUser);
+		if(!foundUser) {
+			Users.create(req.body, function(err, createdUser) {
+				if(err) res.sendStatus(404);
+				res.send(createdUser);
+			})
+		}
 	})
+
+	// Users.findOneAndUpdate(
+	// 	{name: req.body.name}, 
+	// 	{$setOnInsert: req.body}, 
+	// 	{setDefaultsOnInsert: true, upsert: true, new: true, runValidators: true}, 
+	// 	function(err, user) {
+	// 		if(err) throw err;
+	// 		res.send(user);
+	// })
 });
 
 // Return user's favorites
@@ -77,8 +88,8 @@ router.post('/:username/history', function(req, res) {
 	console.log(recentHistory);
 	Users.findOneAndUpdate(
 		{username: req.params.username}, 
-		{$push: {viewHistory: recentHistory}}, 
-		{new: true}, 
+		{$push: {viewHistory: {}}}, 
+		{new: true, runValidators: true}, 
 		function(err, user) {
 			if(err) throw err;
 			res.send(user);

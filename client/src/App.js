@@ -25,7 +25,8 @@ class App extends Component {
       test: 'failure',
       currentStreams: [],
       activePage: 'home',
-      token: ""
+      token: "",
+      user: null
     };
   }
 
@@ -83,6 +84,7 @@ class App extends Component {
       helpers.getToken(params, function(data) {
         this.setState({token: data});
         console.log(this.state.token);
+        this.getUserInfo();
       }.bind(this));
 
      
@@ -119,12 +121,29 @@ class App extends Component {
     }
 
   }
+  getUserInfo() {
+      var token = this.state.token.access_token;
+      console.log(this.state.token.access_token);
+      fetch('https://api.twitch.tv/kraken/user', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.twitchtv.v5+json',
+          'Client-ID': Twitch.clientID,
+          'Authorization': "OAuth " + token
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        this.setState({user: json})
+      })
+    }
 
   render() {
     return (
       <div className="App">
 
-        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage} setSearchQuery={this.setSearchQuery}/>
+        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage} setSearchQuery={this.setSearchQuery} user={this.state.user} token={this.state.token}/>
         <SearchContainer query={this.state.searchQuery}/>
         {/* {this.props.children} */}
         <Row id='primaryRow'>

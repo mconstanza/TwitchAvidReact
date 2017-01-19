@@ -32,6 +32,16 @@ body {
   margin: 5px 10px 5px 10px
 }
 
+/*IC*/
+.fa {
+  color: red;
+}
+.user {
+  color: white;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+/*IC*/
 
 .hidden{
   display: none;

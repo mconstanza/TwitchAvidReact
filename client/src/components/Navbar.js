@@ -2,17 +2,26 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {Menu, MenuItem, MenuText} from 'react-foundation';
 import Search from './Search';
-
+import User from './User';
 
 class Navbar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+          user: null,
+          isToggleOn: false
         };
     }
     activeNavTabHandler = (page) => {
       this.props.setActivePage(page);
+    }
+    toggleConnect(){
+      if(this.props.token){
+        this.setState({isToggleOn: true});
+      } else {
+        this.setState({isToggleOn: false});
+      }
     }
     activeNavTab = () => {
       if (this.props.isActive == "games"){
@@ -22,7 +31,10 @@ class Navbar extends Component {
             <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
-            <form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>
+            {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
+            {/*IC*/}
+            <form method="POST" action="/authorize"><button onClick={this.toggleConnect} type="submit">{this.state.isToggleOn ? 'Sign Out' : 'Connect with Twitch'}</button></form>
+            <User user={this.props.user}/>
           </Menu>
         )
       } else if (this.props.isActive == "home"){
@@ -32,7 +44,10 @@ class Navbar extends Component {
             <MenuItem onClick={()=>this.activeNavTabHandler("home")} isActive><Link to="/">Home</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
-            <form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>
+            {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
+            {/*IC*/}
+            <form method="POST" action="/authorize"><button onClick={this.toggleConnect} type="submit">{this.state.isToggleOn ? 'Sign Out' : 'Connect with Twitch'}</button></form>
+            <User user={this.props.user}/>
           </Menu>
         )
       } else if (this.props.isActive == "favorites"){
@@ -42,7 +57,10 @@ class Navbar extends Component {
             <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} isActive><a>Favorites</a></MenuItem>
-            <form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>
+            {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
+            {/*IC*/}
+            <form method="POST" action="/authorize"><button onClick={this.toggleConnect} type="submit">{this.state.isToggleOn ? 'Sign Out' : 'Connect with Twitch'}</button></form>
+            <User user={this.props.user}/>
           </Menu>
         )
       }

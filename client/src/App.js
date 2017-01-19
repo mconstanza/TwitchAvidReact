@@ -4,6 +4,7 @@ import './App.css';
 
 import Twitch from './config/Twitch';
 import helpers from './utils/helpers';
+import searchHelpers from './utils/searchHelpers';
 
 import StreamCanvas from './components/StreamCanvas';
 
@@ -55,7 +56,6 @@ class App extends Component {
     this.setState({searchQuery: query});
   }
 
-// TODO: Remove this.test()
   componentDidMount = () => {
 
     let query = this.props.location.query;
@@ -87,8 +87,8 @@ class App extends Component {
         this.getUserInfo();
       }.bind(this));
 
-     
- 
+
+
       // fetch("https://api.twitch.tv/kraken/oauth2/token?" + params, {
       //   method: "POST"
       // })
@@ -139,6 +139,12 @@ class App extends Component {
       })
     }
 
+    getStreams = (search) => {
+      searchHelpers.getStreams(search, function(streams){
+        this.setState({streams: streams})
+      }.bind(this))
+    }
+
   render() {
     return (
       <div className="App">
@@ -150,7 +156,12 @@ class App extends Component {
           <Column large={12}>
             <Row id='navigation'>
               <Column large={12}>
-                {this.props.children && React.cloneElement(this.props.children, { currentStreams: this.state.currentStreams, addStreamToCanvas: this.addStreamToCanvas })}
+                {this.props.children &&
+                  React.cloneElement(this.props.children,
+                    { currentStreams: this.state.currentStreams,
+                      addStreamToCanvas: this.addStreamToCanvas,
+                      getStreams: this.getStreams,
+                      streams: this.state.streams})}
               </Column>
             </Row>
           <Row id="streamCanvasRow">

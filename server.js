@@ -76,56 +76,13 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 // ROUTES
 // ===================================================================
 
-app.get('/*', function(req, res) {
-	res.sendFile('index.html');
-});
+// app.get('/*', function(req, res) {
+// 	res.sendFile('index.html');
+// });
 
 app.use('/', twitch_controller);
 
-// TEST route to ensure API calls are functioning correctly
-// app.get('/test', (req, res) => {
-//   var test = {
-//     success: 'YES!'
-//   };
-//   res.json(test);
-// });
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-// });
-
-
-app.get('/:channel/streams', function(req, res) {
-  // var url = 'https://www.twitch.tv/' + req.params.channel;
-  //
-  // request
-  // .get(streamAPI, {url: url})
-  // .on('response', function(response){
-  //   console.log(response);
-  //   res.send(response.text);
-  // })
-  // var args = [url]
-  // var python = exec(streamAPI, args, (error, stdout, stderr) => {
-  //   if(error) {
-  //     throw error;
-  //   }
-  //   console.log(stdout);
-  //   res.send(stdout);
-  // });
-  // var streams = '';
-  // python.stdout.on('data', function(data){
-  //     streams += data;
-  // } );
-  // python.stdout.on('close', function( ){
-  //     console.log(streams);
-  //     res.json(streams);
-  // } );
-  // var streams = streamAPI.streams('https://www.twitch.tv/' + req.params.channel);
-  // res.send(streams);
-})
-
 require('./client/src/config/connection');
-
 
 app.listen(PORT, function() {
     console.log('Example app listening on port 3001!')

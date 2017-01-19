@@ -9,6 +9,7 @@ import StreamCanvas from './components/StreamCanvas';
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
+import User from './components/User';
 
 // CSS Foundation
 import Foundation from 'react-foundation';
@@ -22,7 +23,8 @@ class App extends Component {
     this.state = {
       test: 'failure',
       currentStreams: [],
-      activePage: 'home'
+      activePage: 'home',
+      userInfo: null
     };
   }
 
@@ -78,6 +80,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        this.setState({userInfo: data.access_token});
       })
     }
 
@@ -103,6 +106,7 @@ class App extends Component {
           </Row>
         </Column>
         </Row>
+        <User userInfo={this.state.userInfo}/>
       </div>
     );
   }

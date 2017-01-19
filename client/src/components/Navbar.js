@@ -10,19 +10,19 @@ class Navbar extends Component {
         super(props);
         this.state = {
           user: null,
-          isToggleOn: false
+          // isToggleOn: false
         };
     }
     activeNavTabHandler = (page) => {
       this.props.setActivePage(page);
     }
-    toggleConnect(){
-      if(this.props.token){
-        this.setState({isToggleOn: true});
-      } else {
-        this.setState({isToggleOn: false});
-      }
-    }
+    // toggleConnect(){
+    //   if(this.props.token){
+    //     this.setState({isToggleOn: true});
+    //   } else {
+    //     this.setState({isToggleOn: false});
+    //   }
+    // }
     activeNavTab = () => {
       if (this.props.isActive == "games"){
         return (
@@ -33,7 +33,7 @@ class Navbar extends Component {
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
-            <form method="POST" action="/authorize"><button onClick={this.toggleConnect} type="submit">{this.state.isToggleOn ? 'Sign Out' : 'Connect with Twitch'}</button></form>
+            <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
             <User user={this.props.user}/>
           </Menu>
         )
@@ -46,7 +46,7 @@ class Navbar extends Component {
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
-            <form method="POST" action="/authorize"><button onClick={this.toggleConnect} type="submit">{this.state.isToggleOn ? 'Sign Out' : 'Connect with Twitch'}</button></form>
+            <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
             <User user={this.props.user}/>
           </Menu>
         )
@@ -59,7 +59,7 @@ class Navbar extends Component {
             <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} isActive><a>Favorites</a></MenuItem>
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
-            <form method="POST" action="/authorize"><button onClick={this.toggleConnect} type="submit">{this.state.isToggleOn ? 'Sign Out' : 'Connect with Twitch'}</button></form>
+            <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
             <User user={this.props.user}/>
           </Menu>
         )

@@ -64,7 +64,7 @@ class App extends Component {
     //   console.log(data);
     // })
 
-    helpers.postHistory('yuuterus', {}, function(data) {
+    helpers.postHistory('yuuterus', {channel: "stuff", game: "League of Legends"}, function(data) {
       console.log(data);
     })
 

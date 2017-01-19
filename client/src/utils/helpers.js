@@ -3,14 +3,14 @@ import Twitch from '../config/Twitch';
 var helpers = {
 
   buildQuery: function(headers) {
-    let header = [];
-
+    let params = [];
+    console.log(headers);
     for(let key in headers) {
-      if(headers[key] !== null || header[key] !== undefined)
-        header.push(key + '=' + headers[key]); 
+      if(headers[key] !== null && headers[key] !== undefined)
+        params.push(key + '=' + headers[key]); 
     }
 
-    return encodeURI(header.join('&'));
+    return encodeURI(params.join('&'));
   },
 
   getToken: function(code, callback) {

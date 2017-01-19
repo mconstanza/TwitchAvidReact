@@ -54,7 +54,7 @@ router.post('/user', function(req, res) {
 
 // Return user's favorites
 router.get('/:username/favorites', function(req, res) {
-	Users.findOne({username: req.params.username}, 'favorites', function(err, user) {
+	Users.findOne({name: req.params.username}, 'favorites', function(err, user) {
 		if(err) throw err;
 		res.send(user.favorites);
 	})
@@ -64,7 +64,7 @@ router.get('/:username/favorites', function(req, res) {
 router.post('/:username/favorites', function(req, res) {
 	let recentFavorite = req.body;
 	Users.findOneAndUpdate(
-		{username: req.params.username}, // condition
+		{name: req.params.username}, // condition
 		{$push: {favorites: recentFavorite}}, // update
 		{sort: {dateViewed: 'desc'}, new: true}, // options
 		function(err, user) { // callback
@@ -86,14 +86,27 @@ router.get('/:username/history', function(req, res) {
 router.post('/:username/history', function(req, res) {
 	let recentHistory = req.body;
 	console.log(recentHistory);
-	Users.findOneAndUpdate(
-		{username: req.params.username}, 
-		{$push: {viewHistory: {}}}, 
-		{new: true, runValidators: true}, 
-		function(err, user) {
-			if(err) throw err;
-			res.send(user);
+	Users.findOne({name: req.params.username}, function(err, user) {
+		if(err) res.send(err);
+		if(!user) res.status(400).send("User not found");
+		else {
+			user.viewHistory.push(recentHistory);
+			user.save(function(err, doc) {
+				if(err) res.send(err);
+				console.log(doc);
+			})
+		}
 	})
+
+	// Users.findOneAndUpdate(
+	// 	{name: req.params.username}, 
+	// 	{$push: {viewHistory: {channel: recentHistory.channel, game: recentHistory.game, dateViewed: recentHistory.dateViewed}}}, 
+	// 	{new: true, runValidators: true}, 
+	// 	function(err, user) {
+	// 		if(err) throw err;
+	// 		console.log(user);
+	// 		res.send(user);
+	// })
 });
 
 module.exports = router;

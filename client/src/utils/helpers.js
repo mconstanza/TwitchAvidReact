@@ -9,7 +9,7 @@ var helpers = {
        header.push(key + '=' + headers[key]); 
     }
 
-    return header.join('&');
+    return encodeURI(header.join('&'));
   },
 
   getToken: function(code, callback) {
@@ -47,11 +47,15 @@ var helpers = {
   },
 
   getLocalUser: function(user, callback) {
-	  var params = new URLSearchParams();
-    params.append('username', user.name);
-    params.append('email', user.email);
+	  var params = "";
+    params += 'username=' + user.name;
+    params += '&email=' + user.email;
+    console.log(params);
     fetch('/user', {
       method: "POST",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+      },
       body: params
     })
     .then((response) => response.json())
@@ -72,8 +76,12 @@ var helpers = {
 
   postHistory: function(username, content, callback) {
     var params = this.buildQuery(content);
+    console.log(params);
     fetch('/' + username + '/history', {
       method: "POST",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+      },      
       body: params
     })
     .then((response) => response.json())
@@ -90,12 +98,15 @@ var helpers = {
     .then((data) => {
       callback(data)
     })
-  }
+  },
 
-  postHistory: function(username, content, callback) {
+  postFavorites: function(username, content, callback) {
     var params = this.buildQuery(content);
     fetch('/' + username + '/favorites', {
       method: "POST",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+      },
       body: params
     })
     .then((response) => response.json())

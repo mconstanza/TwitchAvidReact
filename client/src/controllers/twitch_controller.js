@@ -51,7 +51,7 @@ router.get('/:username/favorites', function(req, res) {
 
 // Add new favorite
 router.post('/:username/favorites', function(req, res) {
-	let recentFavorite = req.body.favorite;
+	let recentFavorite = req.body;
 	Users.findOneAndUpdate(
 		{username: req.params.username}, // condition
 		{$push: {favorites: recentFavorite}}, // update
@@ -73,7 +73,8 @@ router.get('/:username/history', function(req, res) {
 
 // Add recently viewed content
 router.post('/:username/history', function(req, res) {
-	let recentHistory = req.body.history;
+	let recentHistory = req.body;
+	console.log(recentHistory);
 	Users.findOneAndUpdate(
 		{username: req.params.username}, 
 		{$push: {viewHistory: recentHistory}}, 

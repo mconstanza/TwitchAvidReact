@@ -60,7 +60,13 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    helpers.postHistory('yuuterus', {channel: 'imaqtpie', game: 'League of Legends', dateViewed: })
+    // helpers.getLocalUser({name: 'yuuterus', email: 'ysumio120@yahoo.com'}, function(data) {
+    //   console.log(data);
+    // })
+
+    // helpers.postHistory('yuuterus', {}, function(data) {
+    //   console.log(data);
+    // })
 
     let token = localStorage.getItem("accessToken");
     console.log(token);

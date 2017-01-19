@@ -9,7 +9,7 @@ var userSchema = new mongoose.Schema({
 		{
 			channel: {type: String, required: true},
       game: {type: String, required: true},
-			dateViewed: {type: Date, required: true}		
+			dateViewed: {type: Number, required: true}		
 		}
 	]
 });

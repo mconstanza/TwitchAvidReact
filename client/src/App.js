@@ -25,7 +25,8 @@ class App extends Component {
       test: 'failure',
       currentStreams: [],
       activePage: 'home',
-      token: ""
+      token: "",
+      currentUser: ""
     };
   }
 
@@ -54,68 +55,37 @@ class App extends Component {
     this.setState({searchQuery: query});
   }
 
-// TODO: Remove this.test()
+  getCurrentUser = (username) => {
+    this.setState({currentUser: username});
+  }
+
   componentDidMount = () => {
+    helpers.postHistory('yuuterus', {channel: 'imaqtpie', game: 'League of Legends', dateViewed: })
+
+    let token = localStorage.getItem("accessToken");
+    console.log(token);
 
     let query = this.props.location.query;
     console.log(query.code);
-    if(query.code) {
-      var headers = {
-        client_id: Twitch.clientID,
-        client_secret: Twitch.secret,
-        redirect_uri: "http://localhost:3000",
-        grant_type: "authorization_code",
-        code: query.code
-      };
+    
+    if(token && token !== "null") {
+      console.log("token");
+      this.setState({token: token});
+    }
 
-      var params = function() {
-        let header = [];
-
-        for(let key in headers) {
-          header.push(key + '=' + headers[key]);
-        }
-
-        return header.join('&');
-      }();
-
-      console.log(params);
-
-      helpers.getToken(params, function(data) {
-        this.setState({token: data});
-        console.log(this.state.token);
+    else if(query.code) {
+      console.log("code");
+      helpers.getToken(query.code, function(data) {
+        console.log(data);
+        this.setState({token: data.access_token});
       }.bind(this));
 
-     
- 
-      // fetch("https://api.twitch.tv/kraken/oauth2/token?" + params, {
-      //   method: "POST"
-      // })
-      // .then((response) => response.json())
-      // .then((data) => {
-      //   console.log(data); // Access Token and Account Permission
-      //   fetch("https://api.twitch.tv/kraken/user", {
-      //     method: "GET",
-      //     headers: {
-      //       "Client-ID": Twitch.clientID,
-      //       "Authorization": "OAuth " + data.access_token
-      //     }
-      //   })
-      //   .then(response => response.json())
-      //   .then((user) => {
-      //     console.log(user); // Twitch User Data
-      //     var params = new URLSearchParams();
-      //     params.append('username', user.name);
-      //     params.append('email', user.email);
-      //     fetch('/user', {
-      //       method: "POST",
-      //       body: params
-      //     })
-      //     .then((response) => response.json())
-      //     .then((data) => {
-      //       console.log(data); // Local DB User Data
-      //     })
-      //   })
-      //})
+    }
+
+    else if(query.error == "access_denied") { // User logged out or revoked permissions
+      console.log("error");
+      localStorage.setItem("accessToken", "null");
+      this.setState({token: ""});
     }
 
   }
@@ -141,9 +111,9 @@ class App extends Component {
           </Row>
         </Column>
         </Row>
-      </div>
-    );
+        </div>
+      );
+    }
   }
-}
 
-export default App;
+  export default App;

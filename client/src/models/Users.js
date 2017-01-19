@@ -7,8 +7,9 @@ var userSchema = new mongoose.Schema({
 	favorites: [ String ],
 	viewHistory: [
 		{
-			streamer: {type: String, required: true},
-			date: {type: Date, required: true}		
+			channel: {type: String, required: true},
+      game: {type: String, required: true},
+			dateViewed: {type: Date, required: true}		
 		}
 	]
 });

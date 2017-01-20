@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Twitch from '../config/Twitch';
+import helpers from '../utils/helpers'
 
 class User extends Component {
 
@@ -28,8 +29,12 @@ class User extends Component {
       })
       .then(response => response.json())
       .then(json => {
-        if(this.props.token)
+        if(this.props.token) {
+          helpers.getLocalUser({name: json.name}, function(user) {
+            console.log(user);
+          })
           this.setState({user: json});
+        }
       });
     }
 

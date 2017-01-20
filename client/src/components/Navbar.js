@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {Menu, MenuItem, MenuText} from 'react-foundation';
-import Search from './Search';
+import Search from './search/Search';
 import User from './User';
 
 class Navbar extends Component {
@@ -35,6 +35,11 @@ class Navbar extends Component {
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
             <User user={this.props.user}/>
+            <Search setSearchStreams={this.props.setSearchStreams}
+            setSearchChannels={this.props.setSearchChannels}
+            setSearchGames={this.props.setSearchGames}
+            setSearchQuery={this.props.setSearchQuery}
+          query={this.props.query}/>
           </Menu>
         )
       } else if (this.props.isActive == "home"){
@@ -48,6 +53,11 @@ class Navbar extends Component {
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
             <User user={this.props.user}/>
+            <Search setSearchStreams={this.props.setSearchStreams}
+            setSearchChannels={this.props.setSearchChannels}
+            setSearchGames={this.props.setSearchGames}
+            setSearchQuery={this.props.setSearchQuery}
+          query={this.props.query}/>
           </Menu>
         )
       } else if (this.props.isActive == "favorites"){
@@ -61,6 +71,11 @@ class Navbar extends Component {
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
             <User user={this.props.user}/>
+            <Search setSearchStreams={this.props.setSearchStreams}
+            setSearchChannels={this.props.setSearchChannels}
+            setSearchGames={this.props.setSearchGames}
+            setSearchQuery={this.props.setSearchQuery}
+          query={this.props.query}/>
           </Menu>
         )
       }
@@ -69,7 +84,7 @@ class Navbar extends Component {
         return (
           <div className="Navbar">
              {this.activeNavTab()}
-             <Search setSearchQuery={this.props.setSearchQuery}/>
+
         </div>
       )
     }

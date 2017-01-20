@@ -11,7 +11,7 @@ import StreamCanvas from './components/StreamCanvas';
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
-import SearchContainer from './components/SearchContainer';
+import SearchContainer from './components/search/SearchContainer';
 
 // CSS Foundation
 import Foundation from 'react-foundation';
@@ -23,11 +23,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: 'failure',
       currentStreams: [],
       activePage: 'home',
       token: "",
-      user: null
+      user: null,
     };
   }
 
@@ -54,6 +53,18 @@ class App extends Component {
 
   setSearchQuery = (query) => {
     this.setState({searchQuery: query});
+  }
+
+  setSearchStreams = (streams) => {
+    this.setState({searchStreams: streams});
+  }
+
+  setSearchChannels = (channels) => {
+    this.setState({searchChannels: channels});
+  }
+
+  setSearchGames = (games) => {
+    this.setState({searchGames: games});
   }
 
   componentDidMount = () => {
@@ -149,9 +160,21 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage} setSearchQuery={this.setSearchQuery} user={this.state.user} token={this.state.token}/>
-        <SearchContainer query={this.state.searchQuery}/>
-        {/* {this.props.children} */}
+        <Navbar isActive={this.state.activePage}
+          setSearchStreams={this.setSearchStreams}
+          setSearchChannels={this.setSearchChannels}
+          setSearchGames={this.setSearchGames}
+          setActivePage={this.setActivePage}
+          setSearchQuery={this.setSearchQuery}
+          user={this.state.user}
+          token={this.state.token}
+          query={this.state.searchQuery}
+        />
+        <SearchContainer streams={this.state.searchStreams}
+          games={this.state.searchGames}
+          channels={this.state.searchChannels}
+          addStreamToCanvas= {this.addStreamToCanvas}
+         />
         <Row id='primaryRow'>
           <Column large={12}>
             <Row id='navigation'>
@@ -169,7 +192,7 @@ class App extends Component {
               <StreamCanvas streams={this.state.currentStreams} removeStream = {this.removeStreamFromCanvas}/>
             </Column>
           </Row>
-        </Column>
+          </Column>
         </Row>
       </div>
     );

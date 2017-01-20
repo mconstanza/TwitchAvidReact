@@ -28,25 +28,50 @@ var searchHelpers = {
           console.log(json.streams);
           callback(json.streams)
       })
-  }
+  },
+// search and list streams by game
 
-  //     else if(this.props.query) {
-  //
-  //       var game = this.props.query;
-  //       console.log(this.props.query)
-  //       fetch('https://api.twitch.tv/kraken/search/streams?query=' + game, {
-  //           method: 'GET',
-  //           headers: {
-  //               'Accept': 'application/vnd.twitchtv.v5+json',
-  //               'Client-ID': Twitch.clientID
-  //           }
-  //       }).then(response => response.json()).then(json => {
-  //           console.log(json.streams);
-  //           this.setState({streams: json.streams})
-  //       })
-  //     }
-  // }
+    searchGames(game, callback){
 
+      console.log("Searching for: ", game)
+
+      fetch('https://api.twitch.tv/kraken/search/games?query=' + game, {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/vnd.twitchtv.v5+json',
+              'Client-ID': Twitch.clientID
+          }
+      }).then(response => response.json()).then(json => {
+          console.log(json.games);
+          callback(json.games)
+      })
+    },
+// search and list channels
+    searchChannels(channel, callback){
+      fetch('https://api.twitch.tv/kraken/search/channels?query=' + channel, {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/vnd.twitchtv.v5+json',
+              'Client-ID': Twitch.clientID
+          }
+      }).then(response => response.json()).then(json => {
+          console.log(json.channels);
+          callback(json.channels)
+      })
+    },
+// search and list streams
+    searchStreams(stream, callback) {
+      fetch('https://api.twitch.tv/kraken/search/streams?query=' + stream, {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/vnd.twitchtv.v5+json',
+              'Client-ID': Twitch.clientID
+          }
+      }).then(response => response.json()).then(json => {
+          console.log(json.streams);
+          callback(json.streams)
+      })
+    }
 
 }
 

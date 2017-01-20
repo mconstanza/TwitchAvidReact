@@ -53,7 +53,6 @@ class GameList extends Component {
                 {this.gamesList()}
               </ReactCSSTransitionGroup>
             </div>
-          
         )
     }
 }

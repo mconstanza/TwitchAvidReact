@@ -36,7 +36,6 @@ class StreamsList extends Component {
 
     render() {
         return (
-
             <div id="streamListDiv">
                 
                     <div className="streamList">

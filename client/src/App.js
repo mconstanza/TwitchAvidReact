@@ -47,6 +47,17 @@ class App extends Component {
     this.setState({currentStreams: streams});
   }
 
+  selectedStream = (streamPosition) => {
+    var stream = this.state.currentStreams;
+    var mainStream = stream[0];
+    var selectedStream = stream[streamPosition];
+
+    stream[0] = selectedStream;
+    stream[streamPosition] = mainStream;
+
+    this.setState({currentStreams: stream});
+  }
+
   setActivePage = (page) => {
     this.setState({activePage: page});
   }
@@ -139,7 +150,8 @@ class App extends Component {
               component={this.props.children}>
             </SearchContainer>
             <StreamCanvas streams={this.state.currentStreams}
-              removeStream = {this.removeStreamFromCanvas}/>
+              removeStream = {this.removeStreamFromCanvas}
+              selected={this.selectedStream}/>
           </Column>
 
             <Column large={2}>

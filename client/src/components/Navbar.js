@@ -53,7 +53,10 @@ class Navbar extends Component {
         return (
           <div className="side-nav">
             <ul style={this.style}>
-              <MenuText id="navLogo">Twitch Avid</MenuText>
+              <div id="navLogo">
+              <MenuText>Twitch Avid</MenuText>
+              <Button id="connectTwitchBtn" size={Sizes.SMALL} onClick={Helpers.authorize}>{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</Button>
+              </div>
 
               <Search setSearchStreams={this.props.setSearchStreams}
                 setSearchChannels={this.props.setSearchChannels}
@@ -63,7 +66,6 @@ class Navbar extends Component {
 
               {this.activeNavTab()}
 
-              <Button id="connectTwitchBtn" size={Sizes.SMALL} onClick={Helpers.authorize}>{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</Button>
               <User user={this.props.user} token= {this.props.token}/>
           </ul>
            </div>

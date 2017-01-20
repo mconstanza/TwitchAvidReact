@@ -50,7 +50,14 @@ class GameList extends Component {
     }
 
     gamesList = () => {
-        if (this.props.games) {
+        if (this.props.games && this.props.limit){
+          const gamesArr = this.props.games.slice(0, this.props.limit - 1);
+          const games = gamesArr.map((game) =>
+            <li><Game key={game._id} game={game}/></li>
+        );
+          return (<ul className="gamesList">{games}</ul>)
+        }
+        else if (this.props.games) {
             const games = this.props.games.map((game) =>
               <li><Game key={game._id} game={game}/></li>
           );

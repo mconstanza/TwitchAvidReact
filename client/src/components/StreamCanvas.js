@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group' 
 
 import Stream from './Stream';
 
@@ -25,9 +26,14 @@ class StreamCanvas extends Component {
 
     return (
       <div className="streamCanvas">
+       <ReactCSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
         {this.props.streams &&
           this.displayStreams()
         }
+        </ReactCSSTransitionGroup>
       </div>)
 
         }

@@ -24,7 +24,7 @@ router.post('/authorize', function(req, res) {
 // Return all users in DB
 router.get('/all', function(req, res) {
 	Users.find({}, function(err, docs) {
-		if(err) throw err;
+		if(err) res.send(err);
 		res.send(docs);
 	})
 });
@@ -32,44 +32,40 @@ router.get('/all', function(req, res) {
 // Return user and adds new user if does not exist
 router.post('/user', function(req, res) {
 	Users.findOne({name: req.body.name}, function(err, foundUser) {
-		if(!err) res.sendStatus(404);
-		console.log(foundUser);
+		if(err) res.send(err)
 		if(!foundUser) {
 			Users.create(req.body, function(err, createdUser) {
-				if(err) res.sendStatus(404);
+				if(err) res.send(err);
 				res.send(createdUser);
 			})
 		}
 	})
-
-	// Users.findOneAndUpdate(
-	// 	{name: req.body.name}, 
-	// 	{$setOnInsert: req.body}, 
-	// 	{setDefaultsOnInsert: true, upsert: true, new: true, runValidators: true}, 
-	// 	function(err, user) {
-	// 		if(err) throw err;
-	// 		res.send(user);
-	// })
 });
 
 // Return user's favorites
 router.get('/:username/favorites', function(req, res) {
 	Users.findOne({name: req.params.username}, 'favorites', function(err, user) {
-		if(err) throw err;
-		res.send(user.favorites);
+		if(err) 
+			res.send(err);
+		else 
+			res.send(user);
 	})
 });
 
 // Add new favorite
 router.post('/:username/favorites', function(req, res) {
-	let recentFavorite = req.body;
-	Users.findOneAndUpdate(
-		{name: req.params.username}, // condition
-		{$push: {favorites: recentFavorite}}, // update
-		{sort: {dateViewed: 'desc'}, new: true}, // options
-		function(err, user) { // callback
-			if(err) throw err;
-			res.send(user);
+	let recentHistory = req.body;
+	console.log(recentHistory);
+	Users.findOne({name: req.params.username}, function(err, user) {
+		if(err) res.send(err);
+		else if(!user) res.send(user);
+		else {
+			user.favorites.push(recentFavorite);
+			user.save(function(err, doc) {
+				if(err) res.send(err);
+				res.send(doc);
+			})
+		}
 	})
 });
 
@@ -77,8 +73,10 @@ router.post('/:username/favorites', function(req, res) {
 // Returns view history 
 router.get('/:username/history', function(req, res) {
 	Users.findOne({username: req.params.username}, 'viewHistory', function(err, user) {
-		if(err) throw err;
-		res.send(user.viewHistory);
+		if(err) 
+			res.send(err);
+		else 
+			res.send(user);
 	})
 });
 
@@ -88,25 +86,15 @@ router.post('/:username/history', function(req, res) {
 	console.log(recentHistory);
 	Users.findOne({name: req.params.username}, function(err, user) {
 		if(err) res.send(err);
-		if(!user) res.status(400).send("User not found");
+		else if(!user) res.send(user)
 		else {
 			user.viewHistory.push(recentHistory);
 			user.save(function(err, doc) {
 				if(err) res.send(err);
-				console.log(doc);
+				res.send(doc);
 			})
 		}
 	})
-
-	// Users.findOneAndUpdate(
-	// 	{name: req.params.username}, 
-	// 	{$push: {viewHistory: {channel: recentHistory.channel, game: recentHistory.game, dateViewed: recentHistory.dateViewed}}}, 
-	// 	{new: true, runValidators: true}, 
-	// 	function(err, user) {
-	// 		if(err) throw err;
-	// 		console.log(user);
-	// 		res.send(user);
-	// })
 });
 
 module.exports = router;

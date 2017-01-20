@@ -13,6 +13,12 @@ var helpers = {
     return encodeURI(params.join('&'));
   },
 
+  errorHandler: function(response) {
+  	if(!response.ok) throw Error(response.statusText);
+
+  	return response.json();
+  },
+
   getToken: function(code, callback) {
     var headers = {
       client_id: Twitch.clientID,
@@ -83,10 +89,11 @@ var helpers = {
       },      
       body: params
     })
-    .then((response) => response.json())
+    .then(response => response.json())
     .then((data) => {
       callback(data)
     })
+    //.catch(error => {console.log(error)})
   },
 
   getFavorites: function(username, callback) {

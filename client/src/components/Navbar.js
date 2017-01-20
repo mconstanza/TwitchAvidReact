@@ -34,7 +34,7 @@ class Navbar extends Component {
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
-            <User user={this.props.user}/>
+            <User user={this.props.user} token= {this.props.token}/>
             <Search setSearchStreams={this.props.setSearchStreams}
             setSearchChannels={this.props.setSearchChannels}
             setSearchGames={this.props.setSearchGames}
@@ -52,7 +52,7 @@ class Navbar extends Component {
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
-            <User user={this.props.user}/>
+            <User user={this.props.user} token= {this.props.token}/>
             <Search setSearchStreams={this.props.setSearchStreams}
             setSearchChannels={this.props.setSearchChannels}
             setSearchGames={this.props.setSearchGames}
@@ -70,7 +70,7 @@ class Navbar extends Component {
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
-            <User user={this.props.user}/>
+            <User user={this.props.user} token= {this.props.token}/>
             <Search setSearchStreams={this.props.setSearchStreams}
             setSearchChannels={this.props.setSearchChannels}
             setSearchGames={this.props.setSearchGames}

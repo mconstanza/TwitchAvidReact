@@ -78,8 +78,14 @@ class App extends Component {
 
     let query = this.props.location.query;
     console.log(query.code);
+    
+    if(query.error == "access_denied") { // User logged out or revoked permissions
+      console.log("error");
+      localStorage.setItem("accessToken", "null");
+      this.setState({token: ""});
+    }
 
-    if(token && token !== "null") {
+    else if(token && token !== "null") {
       console.log("token");
       this.setState({token: token});
     }
@@ -88,37 +94,13 @@ class App extends Component {
       console.log("code");
       helpers.getToken(query.code, function(data) {
         console.log(data);
+        localStorage.setItem("accessToken", data.access_token);
         this.setState({token: data.access_token});
       }.bind(this));
 
     }
 
-    else if(query.error == "access_denied") { // User logged out or revoked permissions
-      console.log("error");
-      localStorage.setItem("accessToken", "null");
-      this.setState({token: ""});
-
-    }
-
   }
-
-  getUserInfo() {
-      var token = this.state.token.access_token;
-      console.log(this.state.token.access_token);
-      fetch('https://api.twitch.tv/kraken/user', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/vnd.twitchtv.v5+json',
-          'Client-ID': Twitch.clientID,
-          'Authorization': "OAuth " + token
-        }
-      })
-      .then(response => response.json())
-      .then(json => {
-        console.log(json);
-        this.setState({user: json})
-      })
-    }
 
     getStreams = (search) => {
       searchHelpers.getStreams(search, function(streams){

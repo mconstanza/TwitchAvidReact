@@ -49,9 +49,10 @@ class GameList extends Component {
     }
 
     gamesList = () => {
-        if (this.state.games) {
-            const games = this.state.games.map((game) =>
-              <li><Game key={game.game._id} game={game}/></li>
+        if (this.props.games) {
+          console.log(this.props.games)
+            const games = this.props.games.map((game) =>
+              <li><Game key={game._id} game={game}/></li>
           );
           return (<ul className="gamesList">{games}</ul>)
         }
@@ -60,7 +61,7 @@ class GameList extends Component {
 
 
     componentWillMount() {
-      this.getTopGames();
+      // this.getTopGames();
     }
 
     render() {

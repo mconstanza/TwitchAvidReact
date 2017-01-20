@@ -4,13 +4,14 @@ import './App.css';
 
 import Twitch from './config/Twitch';
 import helpers from './utils/helpers';
+import searchHelpers from './utils/searchHelpers';
 
 import StreamCanvas from './components/StreamCanvas';
 
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
-import SearchContainer from './components/SearchContainer';
+import SearchContainer from './components/search/SearchContainer';
 
 // CSS Foundation
 import Foundation from 'react-foundation';
@@ -22,11 +23,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: 'failure',
       currentStreams: [],
       activePage: 'home',
       token: "",
-      currentUser: ""
+      user: null,
     };
   }
 
@@ -56,7 +56,19 @@ class App extends Component {
   }
 
   getCurrentUser = (username) => {
-    this.setState({currentUser: username});
+    this.setState({user: username});
+
+  setSearchStreams = (streams) => {
+    this.setState({searchStreams: streams});
+  }
+
+  setSearchChannels = (channels) => {
+    this.setState({searchChannels: channels});
+  }
+
+  setSearchGames = (games) => {
+    this.setState({searchGames: games});
+
   }
 
   componentDidMount = () => {
@@ -84,22 +96,63 @@ class App extends Component {
       console.log("error");
       localStorage.setItem("accessToken", "null");
       this.setState({token: ""});
+
     }
 
   }
+  getUserInfo() {
+      var token = this.state.token.access_token;
+      console.log(this.state.token.access_token);
+      fetch('https://api.twitch.tv/kraken/user', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.twitchtv.v5+json',
+          'Client-ID': Twitch.clientID,
+          'Authorization': "OAuth " + token
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        this.setState({user: json})
+      })
+    }
+
+    getStreams = (search) => {
+      searchHelpers.getStreams(search, function(streams){
+        this.setState({streams: streams})
+      }.bind(this))
+    }
 
   render() {
     return (
       <div className="App">
 
-        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage} setSearchQuery={this.setSearchQuery}/>
-        <SearchContainer query={this.state.searchQuery}/>
-        {/* {this.props.children} */}
+        <Navbar isActive={this.state.activePage}
+          setSearchStreams={this.setSearchStreams}
+          setSearchChannels={this.setSearchChannels}
+          setSearchGames={this.setSearchGames}
+          setActivePage={this.setActivePage}
+          setSearchQuery={this.setSearchQuery}
+          user={this.state.user}
+          token={this.state.token}
+          query={this.state.searchQuery}
+        />
+        <SearchContainer streams={this.state.searchStreams}
+          games={this.state.searchGames}
+          channels={this.state.searchChannels}
+          addStreamToCanvas= {this.addStreamToCanvas}
+         />
         <Row id='primaryRow'>
           <Column large={12}>
             <Row id='navigation'>
               <Column large={12}>
-                {this.props.children && React.cloneElement(this.props.children, { currentStreams: this.state.currentStreams, addStreamToCanvas: this.addStreamToCanvas })}
+                {this.props.children &&
+                  React.cloneElement(this.props.children,
+                    { currentStreams: this.state.currentStreams,
+                      addStreamToCanvas: this.addStreamToCanvas,
+                      getStreams: this.getStreams,
+                      streams: this.state.streams})}
               </Column>
             </Row>
           <Row id="streamCanvasRow">
@@ -107,7 +160,7 @@ class App extends Component {
               <StreamCanvas streams={this.state.currentStreams} removeStream = {this.removeStreamFromCanvas}/>
             </Column>
           </Row>
-        </Column>
+          </Column>
         </Row>
         </div>
       );

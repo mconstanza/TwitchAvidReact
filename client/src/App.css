@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #111;
+  /*background-color: #111;*/
   height: 150px;
   padding: 20px;
   color: white;
@@ -32,6 +32,16 @@ body {
   margin: 5px 10px 5px 10px
 }
 
+/*IC*/
+.fa {
+  color: red;
+}
+.user {
+  color: white;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+/*IC*/
 
 .hidden{
   display: none;
@@ -114,7 +124,7 @@ input {
   flex: 0 1 auto;
   -webkit-flex: 0 1 auto;
   -moz-flex: 0 1 auto;
-  background-color: #1c1e22;
+  /*background-color: #1c1e22;*/
   z-index: 1;
 }
 
@@ -132,4 +142,3 @@ input {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-

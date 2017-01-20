@@ -55,7 +55,7 @@ class StreamsList extends Component {
 
         return (
 
-            <div>
+            <div id="streamListDiv">
                 <button onClick={this.onClick}>{this.state.isToggleOn
                         ? <i className="fa">&#xf102;</i>
                         : <i className="fa">&#xf103;</i>}</button>

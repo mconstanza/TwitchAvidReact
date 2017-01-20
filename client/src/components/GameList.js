@@ -9,7 +9,8 @@ class GameList extends Component {
         super(props);
         this.state = {
           shouldHide: false,
-          isToggleOn: true
+          isToggleOn: true,
+          games: []
         };
         this.onClick = this.onClick.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -33,6 +34,7 @@ class GameList extends Component {
       isToggleOn: !prevState.isToggleOn
       }));
     }
+
     getTopGames() {
       fetch('https://api.twitch.tv/kraken/games/top', {
         method: 'GET',
@@ -43,25 +45,28 @@ class GameList extends Component {
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json.top);
         this.setState({games: json.top})
       })
     }
 
     gamesList = () => {
         if (this.props.games) {
-          console.log(this.props.games)
             const games = this.props.games.map((game) =>
               <li><Game key={game._id} game={game}/></li>
           );
           return (<ul className="gamesList">{games}</ul>)
         }
 
+        else {
+          const games = this.state.games.map((game) =>
+            <li><Game key={game.game._id} game={game.game}/></li>
+        );
+        return (<ul className="gamesList">{games}</ul>)
+      }
     }
 
-
-    componentWillMount() {
-      // this.getTopGames();
+    componentWillMount(){
+      this.getTopGames();
     }
 
     render() {
@@ -75,7 +80,6 @@ class GameList extends Component {
 
             </div>
         )
-
     }
 }
 

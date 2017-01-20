@@ -4,13 +4,14 @@ import './App.css';
 
 import Twitch from './config/Twitch';
 import helpers from './utils/helpers';
+import searchHelpers from './utils/searchHelpers';
 
 import StreamCanvas from './components/StreamCanvas';
 
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
-import SearchContainer from './components/SearchContainer';
+import SearchContainer from './components/search/SearchContainer';
 
 // CSS Foundation
 import Foundation from 'react-foundation';
@@ -22,11 +23,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: 'failure',
       currentStreams: [],
       activePage: 'home',
       token: "",
-      user: null
+      user: null,
     };
   }
 
@@ -55,7 +55,18 @@ class App extends Component {
     this.setState({searchQuery: query});
   }
 
-// TODO: Remove this.test()
+  setSearchStreams = (streams) => {
+    this.setState({searchStreams: streams});
+  }
+
+  setSearchChannels = (channels) => {
+    this.setState({searchChannels: channels});
+  }
+
+  setSearchGames = (games) => {
+    this.setState({searchGames: games});
+  }
+
   componentDidMount = () => {
 
     let query = this.props.location.query;
@@ -87,8 +98,8 @@ class App extends Component {
         this.getUserInfo();
       }.bind(this));
 
-     
- 
+
+
       // fetch("https://api.twitch.tv/kraken/oauth2/token?" + params, {
       //   method: "POST"
       // })
@@ -139,18 +150,41 @@ class App extends Component {
       })
     }
 
+    getStreams = (search) => {
+      searchHelpers.getStreams(search, function(streams){
+        this.setState({streams: streams})
+      }.bind(this))
+    }
+
   render() {
     return (
       <div className="App">
 
-        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage} setSearchQuery={this.setSearchQuery} user={this.state.user} token={this.state.token}/>
-        <SearchContainer query={this.state.searchQuery}/>
-        {/* {this.props.children} */}
+        <Navbar isActive={this.state.activePage}
+          setSearchStreams={this.setSearchStreams}
+          setSearchChannels={this.setSearchChannels}
+          setSearchGames={this.setSearchGames}
+          setActivePage={this.setActivePage}
+          setSearchQuery={this.setSearchQuery}
+          user={this.state.user}
+          token={this.state.token}
+          query={this.state.searchQuery}
+        />
+        <SearchContainer streams={this.state.searchStreams}
+          games={this.state.searchGames}
+          channels={this.state.searchChannels}
+          addStreamToCanvas= {this.addStreamToCanvas}
+         />
         <Row id='primaryRow'>
           <Column large={12}>
             <Row id='navigation'>
               <Column large={12}>
-                {this.props.children && React.cloneElement(this.props.children, { currentStreams: this.state.currentStreams, addStreamToCanvas: this.addStreamToCanvas })}
+                {this.props.children &&
+                  React.cloneElement(this.props.children,
+                    { currentStreams: this.state.currentStreams,
+                      addStreamToCanvas: this.addStreamToCanvas,
+                      getStreams: this.getStreams,
+                      streams: this.state.streams})}
               </Column>
             </Row>
           <Row id="streamCanvasRow">
@@ -158,7 +192,7 @@ class App extends Component {
               <StreamCanvas streams={this.state.currentStreams} removeStream = {this.removeStreamFromCanvas}/>
             </Column>
           </Row>
-        </Column>
+          </Column>
         </Row>
       </div>
     );

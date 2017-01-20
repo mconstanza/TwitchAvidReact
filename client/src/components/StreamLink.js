@@ -11,9 +11,11 @@ class StreamLink extends Component {
   render() {
 
     return (
-      <div key = {this.props.stream._id} className="streamLink" onClick={() => this.props.addStreamToCanvas(this.props.stream)}>
-        <img src={this.props.stream.preview.medium}/>
-        <p>{this.props.stream.channel.name}</p>
+      <div key = {this.props.stream._id} className="streamLink">
+        <img className="streamLinkImg" src={this.props.stream.preview.medium} onClick={() => this.props.addStreamToCanvas(this.props.stream)}/>
+        <p className="channelStatus">{this.props.stream.channel.status}</p>
+        <p className="channelName">{this.props.stream.viewers} viewers on {this.props.stream.channel.name}</p>
+        {/* <p className="streamViewers"></p> */}
       </div>
     )
 

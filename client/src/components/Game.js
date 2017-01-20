@@ -16,13 +16,14 @@ class Game extends Component {
 
     window.location = '/streams/' + gameParam.game.name + '/';
   }
+
   // onClick={() => this.clickGame(this.props.game)} cut from div below
   render() {
     var link = "/streams/" + this.props.game.name;
     return (
       <Link to={link} ><div key = {this.props.key} className="game" >
         <img src={this.props.game.box.medium}/>
-        <p>{this.props.game.name}</p>
+        <p className="gameTitle">{this.props.game.name}</p>
       </div>
     </Link>
     )

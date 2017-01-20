@@ -10,19 +10,11 @@ class Navbar extends Component {
         super(props);
         this.state = {
           user: null,
-          // isToggleOn: false
         };
     }
     activeNavTabHandler = (page) => {
       this.props.setActivePage(page);
     }
-    // toggleConnect(){
-    //   if(this.props.token){
-    //     this.setState({isToggleOn: true});
-    //   } else {
-    //     this.setState({isToggleOn: false});
-    //   }
-    // }
 
     style = {
       maxWidth: '20%'

@@ -28,50 +28,22 @@ class StreamsList extends Component {
             isToggleOn: !prevState.isToggleOn
         }));
     }
-    getGameStreams() {
-        if (this.props.params) {
-
-            var game = this.props.params.query;
-            fetch('https://api.twitch.tv/kraken/streams/?game=' + game, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/vnd.twitchtv.v5+json',
-                    'Client-ID': Twitch.clientID
-                }
-            }).then(response => response.json()).then(json => {
-                console.log(json.streams);
-                this.setState({streams: json.streams})
-            })
-        }
-        else if(this.props.query) {
-          var game = this.props.query;
-          console.log(this.props.query)
-          fetch('https://api.twitch.tv/kraken/search/streams?query=' + game, {
-              method: 'GET',
-              headers: {
-                  'Accept': 'application/vnd.twitchtv.v5+json',
-                  'Client-ID': Twitch.clientID
-              }
-          }).then(response => response.json()).then(json => {
-              console.log(json.streams);
-              this.setState({streams: json.streams})
-          })
-        }
-    }
 
     componentWillMount() {
-        this.getGameStreams();
+      if (this.props.params){
+        this.props.getStreams({type: 'game', query: this.props.params.query});
+      }
+
     }
 
     componentDidUpdate() {
-        this.getGameStreams();
+
     }
 
-
-
     streamsList = () => {
-        if (this.state.streams) {
-            const streams = this.state.streams.map((stream) => <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>);
+        if (this.props.streams) {
+            const streams = this.props.streams.map((stream) =>
+            <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>);
             return (
                 <ul>{streams}</ul>
             )

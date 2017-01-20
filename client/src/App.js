@@ -3,13 +3,15 @@ import './App.css';
 
 
 import Twitch from './config/Twitch';
+import helpers from './utils/helpers';
+import searchHelpers from './utils/searchHelpers';
 
 import StreamCanvas from './components/StreamCanvas';
 
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
-import SearchContainer from './components/SearchContainer';
+import SearchContainer from './components/search/SearchContainer';
 
 // CSS Foundation
 import Foundation from 'react-foundation';
@@ -21,10 +23,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: 'failure',
       currentStreams: [],
-      activePage: 'home'
-    };
+      activePage: 'home',
+      token: "",
+      user: null
+    }
   }
 
   addStreamToCanvas = (stream) => {
@@ -52,88 +55,101 @@ class App extends Component {
     this.setState({searchQuery: query});
   }
 
-// TODO: Remove this.test()
+  getCurrentUser = (username) => {
+    this.setState({user: username});
+  }
+
+  setSearchStreams = (streams) => {
+    this.setState({searchStreams: streams});
+  }
+
+  setSearchChannels = (channels) => {
+    this.setState({searchChannels: channels});
+  }
+
+  setSearchGames = (games) => {
+    this.setState({searchGames: games});
+
+  }
+
   componentDidMount = () => {
+    let token = localStorage.getItem("accessToken");
+    console.log(token);
 
     let query = this.props.location.query;
     console.log(query.code);
-    if(query.code) {
-      var headers = {
-        client_id: Twitch.clientID,
-        client_secret: Twitch.secret,
-        redirect_uri: "http://localhost:3000",
-        grant_type: "authorization_code",
-        code: query.code
-      };
+    
+    if(query.error == "access_denied") { // User logged out or revoked permissions
+      console.log("error");
+      localStorage.setItem("accessToken", "null");
+      this.setState({token: ""});
+    }
 
-      var params = function() {
-        let header = [];
+    else if(token && token !== "null") {
+      console.log("token");
+      this.setState({token: token});
+    }
 
-        for(let key in headers) {
-          header.push(key + '=' + headers[key]);
-        }
+    else if(query.code) {
+      console.log("code");
+      helpers.getToken(query.code, function(data) {
+        console.log(data);
+        localStorage.setItem("accessToken", data.access_token);
+        this.setState({token: data.access_token});
+      }.bind(this));
 
-        return header.join('&');
-      }();
-
-      console.log(params);
-      fetch("https://api.twitch.tv/kraken/oauth2/token?" + params, {
-        method: "POST"
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Access Token and Account Permission
-        fetch("https://api.twitch.tv/kraken/user", {
-          method: "GET",
-          headers: {
-            "Client-ID": Twitch.clientID,
-            "Authorization": "OAuth " + data.access_token
-          }
-        })
-        .then(response => response.json())
-        .then((user) => {
-          console.log(user); // Twitch User Data
-          var params = new URLSearchParams();
-          params.append('username', user.name);
-          params.append('email', user.email);
-          fetch('/user', {
-            method: "POST",
-            body: params
-          })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data); // Local DB User Data
-          })
-        })
-      })
     }
 
   }
 
+    getStreams = (search) => {
+      searchHelpers.getStreams(search, function(streams){
+        this.setState({streams: streams})
+      }.bind(this))
+    }
+
   render() {
     return (
       <div className="App">
+        <Row>
+          <Column large={2}>
+            <Navbar isActive={this.state.activePage}
+              setSearchStreams={this.setSearchStreams}
+              setSearchChannels={this.setSearchChannels}
+              setSearchGames={this.setSearchGames}
+              setActivePage={this.setActivePage}
+              setSearchQuery={this.setSearchQuery}
+              user={this.state.user}
+              token={this.state.token}
+              query={this.state.searchQuery}
+            />
+          </Column>
+          
+          <Column large={8}>
+            {this.props.children &&
+            React.cloneElement(this.props.children,
+              { currentStreams: this.state.currentStreams,
+                addStreamToCanvas: this.addStreamToCanvas,
+                getStreams: this.getStreams,
+                streams: this.state.streams})}
+            <SearchContainer streams={this.state.searchStreams}
+              games={this.state.searchGames}
+              channels={this.state.searchChannels}
+              addStreamToCanvas= {this.addStreamToCanvas}
+              component={this.props.children}>
+            </SearchContainer>
+            <StreamCanvas streams={this.state.currentStreams}
+              removeStream = {this.removeStreamFromCanvas}/>
+          </Column>
 
-        <Navbar isActive={this.state.activePage} setActivePage={this.setActivePage} setSearchQuery={this.setSearchQuery}/>
-        <SearchContainer query={this.state.searchQuery}/>
-        {/* {this.props.children} */}
-        <Row id='primaryRow'>
-          <Column large={12}>
-            <Row id='navigation'>
-              <Column large={12}>
-                {this.props.children && React.cloneElement(this.props.children, { currentStreams: this.state.currentStreams, addStreamToCanvas: this.addStreamToCanvas })}
-              </Column>
-            </Row>
-          <Row id="streamCanvasRow">
-            <Column large={12}>
-              <StreamCanvas streams={this.state.currentStreams} removeStream = {this.removeStreamFromCanvas}/>
+            <Column large={2}>
+
             </Column>
-          </Row>
-        </Column>
-        </Row>
-      </div>
-    );
-  }
-}
 
-export default App;
+        </Row>
+        </div>
+      );
+    }
+  }
+
+  export default App;

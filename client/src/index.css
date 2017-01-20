@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #111;
+  /*background-color: #111;*/
 }
 .App {
   text-align: left;
@@ -10,8 +10,8 @@ body {
 
 .button{
   background: #6441a4;
-  
-    
+
+
 }
 
 .button > .hover{
@@ -47,6 +47,13 @@ body {
     color: #fefefe;
 }
 
+<<<<<<< HEAD
+=======
+#navigation{
+  max-height: 20%;
+
+}
+>>>>>>> master
 #primaryRow {
   margin-left: 0;
   margin-right: 0;

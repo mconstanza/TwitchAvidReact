@@ -58,8 +58,6 @@ class App extends Component {
   getCurrentUser = (username) => {
     this.setState({user: username});
   }
-<<<<<<< HEAD
-=======
 
   setSearchStreams = (streams) => {
     this.setState({searchStreams: streams});

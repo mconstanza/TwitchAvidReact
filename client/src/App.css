@@ -1,35 +1,43 @@
 .App {
-
+ height: 100%;
 }
 
-.App-header {
-  /*background-color: #111;*/
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+html{
+  height: 100vh;
 }
 
 body {
  font-family: 'Cabin', sans-serif;
+ height:100%
+}
+
+#root {
+  height: 100%;
 }
 
 .button {
  font-family: 'Cabin', sans-serif;
 }
 
+#connectTwitchBtn{
+  font-size: 10px;
+}
+
 .gamesList li{
+  max-width: 80px;
+  font-size: 10px;
   display: inline-block;
   list-style-type: none;
-  margin: 5px 10px 5px 10px
+  margin: 5px 10px 5px 10px;
+
+}
+
+.gameTitle {
+  line-height: 1.8em;
+  max-height: 1.8em;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 /*IC*/
@@ -37,9 +45,7 @@ body {
   color: red;
 }
 .user {
-  color: white;
-  padding-left: 15px;
-  padding-top: 15px;
+
 }
 /*IC*/
 
@@ -65,7 +71,12 @@ input {
 #navigation{
   max-height: 240px;
   text-align: center;
+}
 
+#navLogo {
+  padding-left: 0;
+  color: white;
+  font-size: 28px;
 }
 
 .Overlay{
@@ -97,6 +108,7 @@ input {
 }
 
 #primaryRow {
+  height: 100%;
   margin-left: 0;
   margin-right: 0;
 }
@@ -133,11 +145,39 @@ input {
   width: 100%;
 }
 
+.streamLink {
+  max-width: 200px;
+}
+
 .streamList{
   max-height: 200px;
   text-align: center;
   max-width: 100%;
+  /*overflow-y: scroll;*/
+}
+
+#theBar{
+  max-height: 160px;
+  text-align: center;
+  max-width: 100%;
   overflow-y: scroll;
+}
+
+.side-nav ul {
+  list-style: none;
+  background-color: #11001c;
+
+}
+
+#navCol {
+  border-right: solid 2px #000;
+  height: 100%;
+  background-color: #11001c;
+
+}
+
+.streamLinkImg {
+  cursor: pointer;
 }
 
 .streamListDiv{
@@ -150,8 +190,34 @@ input {
 .streamList li{
   display: inline-block;
   list-style-type: none;
-  margin: 5px 10px 5px 10px
+  margin: 5px 10px 5px 10px;
+  text-align: left;
 }
+
+.channelName {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 12px;
+}
+
+.channelStatus {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 12px;
+  line-height: 1.8em;
+  max-height: 1.8em;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.streamViewers {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 10px;
+
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

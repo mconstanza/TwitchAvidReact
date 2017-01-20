@@ -7,7 +7,7 @@ var helpers = {
     console.log(headers);
     for(let key in headers) {
       if(headers[key] !== null && headers[key] !== undefined)
-        params.push(key + '=' + headers[key]); 
+        params.push(key + '=' + headers[key]);
     }
 
     return encodeURI(params.join('&'));
@@ -19,6 +19,22 @@ var helpers = {
   	return response.json();
   },
 
+  authorize: function(){
+    var headers = {
+		response_type: "code",
+		client_id: Twitch.clientID,
+    // change redirect uri to deployment app
+		redirect_uri: "http://localhost:3000",
+		scope: "user_read channel_read",
+		force_verify: "true"
+	 }
+
+  	var params = helpers.buildQuery(headers);
+
+  	console.log(params);
+  	window.location = "https://api.twitch.tv/kraken/oauth2/authorize?" + params;
+  },
+
   getToken: function(code, callback) {
     var headers = {
       client_id: Twitch.clientID,
@@ -28,7 +44,7 @@ var helpers = {
       code: code
     };
 
-    var params = helpers.buildQuery(headers);  
+    var params = helpers.buildQuery(headers);
 
     fetch("https://api.twitch.tv/kraken/oauth2/token?" + params, {
       method: "POST"
@@ -59,12 +75,12 @@ var helpers = {
     fetch('/user', {
       method: "POST",
       headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
       },
       body: params
     })
     .then((response) => response.json())
-    .then((user) => {	
+    .then((user) => {
 	  	callback(user);
 	  })
   },
@@ -85,8 +101,8 @@ var helpers = {
     fetch('/' + username + '/history', {
       method: "POST",
       headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
-      },      
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
       body: params
     })
     .then(response => response.json())
@@ -111,7 +127,7 @@ var helpers = {
     fetch('/' + username + '/favorites', {
       method: "POST",
       headers: {
-        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8" 
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
       },
       body: params
     })
@@ -119,7 +135,7 @@ var helpers = {
     .then((data) => {
       callback(data)
     })
-  }    
+  }
 }
 
 

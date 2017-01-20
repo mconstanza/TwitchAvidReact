@@ -78,7 +78,7 @@ class App extends Component {
 
     let query = this.props.location.query;
     console.log(query.code);
-    
+
     if(query.error == "access_denied") { // User logged out or revoked permissions
       console.log("error");
       localStorage.setItem("accessToken", "null");
@@ -111,8 +111,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Row>
-          <Column large={2}>
+        <Row id="primaryRow">
+          <Column id="navCol" large={2}>
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
               setSearchChannels={this.setSearchChannels}
@@ -124,14 +124,16 @@ class App extends Component {
               query={this.state.searchQuery}
             />
           </Column>
-          
-          <Column large={8}>
+
+          <Column large={10}>
+            <div id="theBar">
             {this.props.children &&
             React.cloneElement(this.props.children,
               { currentStreams: this.state.currentStreams,
                 addStreamToCanvas: this.addStreamToCanvas,
                 getStreams: this.getStreams,
                 streams: this.state.streams})}
+              </div>
             <SearchContainer streams={this.state.searchStreams}
               games={this.state.searchGames}
               channels={this.state.searchChannels}
@@ -142,7 +144,8 @@ class App extends Component {
               removeStream = {this.removeStreamFromCanvas}/>
           </Column>
 
-            <Column large={2}>
+          {/* chat goes here */}
+            <Column large={0}>
 
             </Column>
 

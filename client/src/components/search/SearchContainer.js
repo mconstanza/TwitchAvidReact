@@ -17,15 +17,16 @@ class SearchContainer extends Component {
     style = {
       width: '90%',
       position: 'absolute',
-      left: '100px',
-      backgroundColor: '#adb6c6',
+      top: '0px',
+      left: '210px',
+      backgroundColor: 'white',
       zIndex: '1001'
     }
 
     render() {
       if(this.props.games || this.props.streams || this.props.channels){
         return (
-          <div style={this.style}>
+          <div id="searchContainer" style={this.style}>
             <StreamsList addStreamToCanvas= {this.props.addStreamToCanvas} streams={this.props.streams}/>
             <GameList games={this.props.games}/>
           </div>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import Twitch from '../../config/Twitch';
-import {Button} from 'react-foundation';
+import {Button, Sizes } from 'react-foundation';
 
 import SearchHelpers from '../../utils/searchHelpers';
 
@@ -36,10 +35,8 @@ class Search extends Component {
     render() {
         return (
             <div className="searchBar">
-              <form className="searchform" ref="form">
-                <input onChange={this.searchHandler} name="search" placeholder="Find me streams!" value={this.state.searchTerm}/>
-              </form>
-              <Button className="searchform" id="searchButton">Search</Button>
+                <input onChange={this.searchHandler} placeholder="Find me streams!" value={this.state.searchTerm}/>
+              <Button size={Sizes.TINY} className="searchform" id="searchButton">Search</Button>
             </div>
         )
 

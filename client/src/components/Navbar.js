@@ -33,6 +33,7 @@ class Navbar extends Component {
         return (
           <ul style={this.style} className="side-nav">
             <MenuText>Twitch Avid</MenuText>
+        
             <Search setSearchStreams={this.props.setSearchStreams}
             setSearchChannels={this.props.setSearchChannels}
             setSearchGames={this.props.setSearchGames}
@@ -44,7 +45,7 @@ class Navbar extends Component {
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
-            <User user={this.props.user}/>
+            <User user={this.props.user} token= {this.props.token}/>
         </ul>
         )
       } else if (this.props.isActive == "home"){
@@ -62,7 +63,7 @@ class Navbar extends Component {
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
-            <User user={this.props.user}/>
+            <User user={this.props.user} token= {this.props.token}/>
 
         </ul>
         )
@@ -81,7 +82,7 @@ class Navbar extends Component {
             {/*<form method="POST" action="/authorize"><button type="submit">Connect with Twitch</button></form>*/}
             {/*IC*/}
             <form method="POST" action="/authorize"><button type="submit">{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</button></form>
-            <User user={this.props.user}/>
+            <User user={this.props.user} token= {this.props.token}/>
 
         </ul>
         )

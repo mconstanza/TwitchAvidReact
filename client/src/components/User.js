@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Twitch from '../config/Twitch';
+import helpers from '../utils/helpers'
 
 class User extends Component {
 
@@ -11,12 +12,38 @@ class User extends Component {
         };
     }
 
-    
+    componentWillUpdate() {
+      if(!this.state.user)
+        this.getUserInfo();
+    }
+
+    getUserInfo() {
+      var token = this.props.token;
+      fetch('https://api.twitch.tv/kraken/user', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/vnd.twitchtv.v5+json',
+          'Client-ID': Twitch.clientID,
+          'Authorization': "OAuth " + token
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        if(this.props.token) {
+          helpers.getLocalUser({name: json.name}, function(user) {
+            console.log(user);
+          })
+          this.setState({user: json});
+        }
+      });
+    }
+
     userLogged() {
-      if(this.props.user) {
+      console.log(this.state.user);
+      if(this.state.user) {
         return (
         <div>
-          <p >Welcome back, {this.props.user.display_name}!</p>
+          <p >Welcome back, {this.state.user.display_name}!</p>
           {/*<img src={this.state.user.logo}/>
                     <p>Bio: {this.state.user.bio}</p>*/}
         </div>)

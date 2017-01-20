@@ -26,8 +26,8 @@ class App extends Component {
       currentStreams: [],
       activePage: 'home',
       token: "",
-      user: null,
-    };
+      user: null
+    }
   }
 
   addStreamToCanvas = (stream) => {
@@ -57,6 +57,7 @@ class App extends Component {
 
   getCurrentUser = (username) => {
     this.setState({user: username});
+  }
 
   setSearchStreams = (streams) => {
     this.setState({searchStreams: streams});
@@ -77,7 +78,7 @@ class App extends Component {
 
     let query = this.props.location.query;
     console.log(query.code);
-    
+
     if(token && token !== "null") {
       console.log("token");
       this.setState({token: token});
@@ -100,6 +101,7 @@ class App extends Component {
     }
 
   }
+
   getUserInfo() {
       var token = this.state.token.access_token;
       console.log(this.state.token.access_token);
@@ -127,40 +129,41 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-        <Navbar isActive={this.state.activePage}
-          setSearchStreams={this.setSearchStreams}
-          setSearchChannels={this.setSearchChannels}
-          setSearchGames={this.setSearchGames}
-          setActivePage={this.setActivePage}
-          setSearchQuery={this.setSearchQuery}
-          user={this.state.user}
-          token={this.state.token}
-          query={this.state.searchQuery}
-        />
-        <SearchContainer streams={this.state.searchStreams}
-          games={this.state.searchGames}
-          channels={this.state.searchChannels}
-          addStreamToCanvas= {this.addStreamToCanvas}
-         />
-        <Row id='primaryRow'>
-          <Column large={12}>
-            <Row id='navigation'>
-              <Column large={12}>
-                {this.props.children &&
-                  React.cloneElement(this.props.children,
-                    { currentStreams: this.state.currentStreams,
-                      addStreamToCanvas: this.addStreamToCanvas,
-                      getStreams: this.getStreams,
-                      streams: this.state.streams})}
-              </Column>
-            </Row>
-          <Row id="streamCanvasRow">
-            <Column large={12}>
-              <StreamCanvas streams={this.state.currentStreams} removeStream = {this.removeStreamFromCanvas}/>
-            </Column>
-          </Row>
+        <Row>
+          <Column large={2}>
+            <Navbar isActive={this.state.activePage}
+              setSearchStreams={this.setSearchStreams}
+              setSearchChannels={this.setSearchChannels}
+              setSearchGames={this.setSearchGames}
+              setActivePage={this.setActivePage}
+              setSearchQuery={this.setSearchQuery}
+              user={this.state.user}
+              token={this.state.token}
+              query={this.state.searchQuery}
+            />
           </Column>
+          
+          <Column large={8}>
+            {this.props.children &&
+            React.cloneElement(this.props.children,
+              { currentStreams: this.state.currentStreams,
+                addStreamToCanvas: this.addStreamToCanvas,
+                getStreams: this.getStreams,
+                streams: this.state.streams})}
+            <SearchContainer streams={this.state.searchStreams}
+              games={this.state.searchGames}
+              channels={this.state.searchChannels}
+              addStreamToCanvas= {this.addStreamToCanvas}
+              component={this.props.children}>
+            </SearchContainer>
+            <StreamCanvas streams={this.state.currentStreams}
+              removeStream = {this.removeStreamFromCanvas}/>
+          </Column>
+
+            <Column large={2}>
+
+            </Column>
+
         </Row>
         </div>
       );

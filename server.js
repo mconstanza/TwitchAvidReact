@@ -76,6 +76,13 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 // ROUTES
 // ===================================================================
 
+
+app.get('/', function(req, res) {
+	res.sendFile('index.html');
+});
+
+app.use('/', twitch_controller);
+
 // app.get('/*', function(req, res) {
 // 	res.sendFile('index.html');
 // });

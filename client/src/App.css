@@ -200,15 +200,6 @@ p:hover{
   position: right;
 }
 
-/*#searchContainer{
-
-      width: 90%;
-      position: absolute;
-      top: 0px;
-      left: 240px;
-      background-color: white;
-      z-index: 1001;
-}*/
 
 #streamCanvas {
   width: 100%;
@@ -325,6 +316,12 @@ color: #fff;
   font-size: 10px;
 
 }
+
+#searchContainer .streamListDiv ul {
+  max-height: 10%;
+  overflow: hidden;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

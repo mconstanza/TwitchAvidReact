@@ -25,7 +25,7 @@ class Search extends Component {
         this.props.setSearchChannels(channels)
       }.bind(this));
 
-      SearchHelpers.searchStreams(this.state.searchTerm, function(streams){
+      SearchHelpers.searchStreams(this.state.searchTerm, 5, function(streams){
         console.log('Streams: ', streams)
         this.props.setSearchStreams(streams)
       }.bind(this));

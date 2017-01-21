@@ -75,13 +75,57 @@ body {
   color: red;
 }
 .user {
-
+  color: white;
+  /*padding-left: 15px;*/
+  /*padding-top: 5px;*/
 }
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 700ms ease-in;
+}
+
+.slide {
+  animation: slide 0.5s ease-in forwards;
+}
+@keyframes slide {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.slide-back {
+  animation: slide-back 0.5s ease-out forwards;
+}
+@keyframes slide-back {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 /*IC*/
 
-.hidden{
+/*.hidden{
   display: none;
-}
+}*/
 
 iframe{
   position: absolute;

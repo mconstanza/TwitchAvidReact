@@ -12,7 +12,7 @@ import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
 import SearchContainer from './components/search/SearchContainer';
-import Chat from './components/Chat';
+import ChatContainer from './components/ChatContainer';
 // CSS Foundation
 import Foundation from 'react-foundation';
 import {Row, Column} from 'react-foundation';
@@ -211,7 +211,7 @@ class App extends Component {
           </Column>
 
             <Column large={2}>
-              <Chat currentChatChannel={this.state.currentChatChannel}/>
+              <ChatContainer currentChatChannel={this.state.currentChatChannel}/>
             </Column>
 
         </Row>

@@ -8,7 +8,7 @@ html{
 
 body {
  font-family: 'Cabin', sans-serif;
- height:100%
+ height:100% 
 }
 
 #root {
@@ -20,24 +20,54 @@ body {
 }
 
 #connectTwitchBtn{
+  margin-top: 15px;
   font-size: 10px;
 }
 
-.gamesList li{
+/*.gamesList li{
   max-width: 80px;
   font-size: 10px;
   display: inline-block;
   list-style-type: none;
   margin: 5px 10px 5px 10px;
 
+}*/
+
+.gamesList {
+  max-width: auto;
+    height: 125px;
+    background-color: #ff0000;
+    left: 2px;
+    
+    overflow-x: scroll;
+    white-space:nowrap;
+    background: transparent;
+}
+.gamesList li{
+  
+  display: inline-block;
+  list-style-type: none;
+  /*margin: 2px 0px 2px 0px;*/
+  margin-top: 4px; 
+   
 }
 
 .gameTitle {
   line-height: 1.8em;
   max-height: 1.8em;
+  font-size: 8px;
+  text-align: center;
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
+}
+
+
+
+.game{
+  max-height: 55%;
+  max-width: 55%;
+  background-color: transparent;
 }
 
 /*IC*/
@@ -45,13 +75,57 @@ body {
   color: red;
 }
 .user {
-
+  color: white;
+  /*padding-left: 15px;*/
+  /*padding-top: 5px;*/
 }
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 700ms ease-in;
+}
+
+.slide {
+  animation: slide 0.5s ease-in forwards;
+}
+@keyframes slide {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.slide-back {
+  animation: slide-back 0.5s ease-out forwards;
+}
+@keyframes slide-back {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 /*IC*/
 
-.hidden{
+/*.hidden{
   display: none;
-}
+}*/
 
 iframe{
   position: absolute;
@@ -97,6 +171,10 @@ input {
   text-align: center;
 }
 
+p:hover{
+  color: green;
+
+}
 .playingStream {
   left, top: 0;
   margin-right: 10px;
@@ -121,6 +199,16 @@ input {
 #searchform{
   position: right;
 }
+
+/*#searchContainer{
+
+      width: 90%;
+      position: absolute;
+      top: 0px;
+      left: 240px;
+      background-color: white;
+      z-index: 1001;
+}*/
 
 #streamCanvas {
   width: 100%;
@@ -167,10 +255,10 @@ input {
 }
 
 #theBar{
-  max-height: 160px;
+  max-height: auto;
   text-align: center;
-  max-width: 100%;
-  overflow-y: scroll;
+  max-width: 80%;
+  overflow-y: none;
 }
 
 .side-nav ul {
@@ -178,6 +266,16 @@ input {
   background-color: #11001c;
 
 }
+
+/*.side-nav li > .hover{
+background-color: #7b61aa;
+color: #fff;
+}*/
+
+/*.side-nav a > .hover{
+background-color: #7b61aa;
+color: #fff;
+}*/
 
 #navCol {
   border-right: solid 2px #000;

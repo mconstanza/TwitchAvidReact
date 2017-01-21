@@ -33,7 +33,7 @@ class User extends Component {
       if(this.state.user) {
         return (
         <div>
-          <p >Welcome back, {this.state.user.display_name}!</p>
+          <p >Welcome, {this.state.user.display_name}!</p>
           {/*<img src={this.state.user.logo}/>
                     <p>Bio: {this.state.user.bio}</p>*/}
         </div>)

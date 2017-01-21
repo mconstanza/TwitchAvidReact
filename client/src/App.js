@@ -16,7 +16,8 @@ import SearchContainer from './components/search/SearchContainer';
 // CSS Foundation
 import Foundation from 'react-foundation';
 import {Row, Column} from 'react-foundation';
-
+//ReactCSSTransitionGroup
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class App extends Component {
 
@@ -26,8 +27,14 @@ class App extends Component {
       currentStreams: [],
       activePage: 'home',
       token: "",
-      user: null
-    }
+      user: null,
+      shouldHide: false,
+      isToggleOn: true,
+      slide: false
+    };
+    this.onClick = this.onClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.onSlide = this.onSlide.bind(this);
   }
 
   addStreamToCanvas = (stream) => {
@@ -108,6 +115,29 @@ class App extends Component {
       }.bind(this))
     }
 
+    onClick() {
+        console.log("onclick");
+        if (!this.state.shouldHide) {
+            this.setState({shouldHide: true})
+        } else {
+            this.setState({shouldHide: false})
+        }
+        this.handleClick();
+        this.onSlide();
+    }
+    handleClick() {
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn
+        }));
+    }
+    onSlide() {
+      if(!this.state.slide) {
+        this.setState({slide: true})
+      } else {
+        this.setState({slide: false})
+      }
+    }
+
   render() {
     return (
       <div className="App">
@@ -127,13 +157,31 @@ class App extends Component {
 
           <Column large={10}>
             <div id="theBar">
-            {this.props.children &&
-            React.cloneElement(this.props.children,
+            <Row>
+              <Column large={5}></Column>
+              <Column large={2}><button className="arrow" onClick={this.onClick}>
+                    {this.state.isToggleOn
+                      ? <i className="fa">&#xf102;</i>
+                      : <i className="fa">&#xf103;</i>}</button></Column>
+              <Column large={5}></Column>
+            </Row>
+            <Row>
+              <div className={
+                // (this.state.shouldHide
+                //     ? 'hidden'
+                //     : '') + 
+                this.state.slide ? 'slide' : 'slide-back'}>
+                <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+              {this.props.children &&
+              React.cloneElement(this.props.children,
               { currentStreams: this.state.currentStreams,
                 addStreamToCanvas: this.addStreamToCanvas,
                 getStreams: this.getStreams,
                 streams: this.state.streams})}
+              </ReactCSSTransitionGroup>
               </div>
+            </Row>
+            </div>
             <SearchContainer streams={this.state.searchStreams}
               games={this.state.searchGames}
               channels={this.state.searchChannels}

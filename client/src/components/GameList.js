@@ -74,12 +74,7 @@ class GameList extends Component {
     render() {
         return (
             <div>
-<<<<<<< HEAD
-              <button onClick={this.onClick} >{this.state.isToggleOn ? <i className="fa">&#xf102;</i> : <i className="fa">&#xf103;</i>}</button>
-=======
-
               {/* <button onClick={this.onClick} >{this.state.isToggleOn ? <i className="fa">&#xf102;</i> : <i className="fa">&#xf103;</i>}</button> */}
->>>>>>> master
               <div className={this.state.shouldHide ? 'hidden' : ''}>
                 {this.gamesList()}
               </div>

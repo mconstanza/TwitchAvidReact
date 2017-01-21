@@ -39,7 +39,6 @@ class App extends Component {
 
   addStreamToCanvas = (stream) => {
     var streams = this.state.currentStreams;
-    stream.position = streams.length;
     streams.push(stream);
     this.setState({currentStreams: streams})
   }
@@ -153,8 +152,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Row>
-          <Column large={2}>
+        <Row id="primaryRow">
+          <Column id="navCol" large={2}>
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
               setSearchChannels={this.setSearchChannels}
@@ -167,24 +166,16 @@ class App extends Component {
             />
           </Column>
 
-          
-          <Column large={8}>
-            {this.props.children &&
-            React.cloneElement(this.props.children,
-
 
           <Column large={10}>
             <div id="theBar">
-            <Row>
-              <Column large={5}></Column>
-              <Column large={1}></Column>
-              <Column large={1}><button className="arrow" onClick={this.onClick}>
+  
+            <button className="arrow" onClick={this.onClick}>
                     {this.state.isToggleOn
                       ? <i className="fa">&#xf102;</i>
-                      : <i className="fa">&#xf103;</i>}</button></Column>
-              <Column large={5}></Column>
-            </Row>
-            <Row>
+                      : <i className="fa">&#xf103;</i>}</button>
+    
+     
               <div className={
                 // (this.state.shouldHide
                 //     ? 'hidden'
@@ -201,7 +192,7 @@ class App extends Component {
 
               </ReactCSSTransitionGroup>
               </div>
-            </Row>
+
             </div>
 
             <SearchContainer streams={this.state.searchStreams}

@@ -39,6 +39,7 @@ router.post('/user', function(req, res) {
 				res.send(createdUser);
 			})
 		}
+		res.send(foundUser);
 	})
 });
 

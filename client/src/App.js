@@ -39,6 +39,7 @@ class App extends Component {
 
   addStreamToCanvas = (stream) => {
     var streams = this.state.currentStreams;
+    stream.position = streams.length;
     streams.push(stream);
     this.setState({currentStreams: streams})
   }
@@ -52,6 +53,17 @@ class App extends Component {
       }
     }
     this.setState({currentStreams: streams});
+  }
+
+  selectedStream = (streamPosition) => {
+
+    var stream = this.state.currentStreams;
+    var mainStream = stream[0];
+
+    stream[0] = stream[streamPosition];
+    stream[streamPosition] = mainStream;
+
+    this.setState({currentStreams: stream});
   }
 
   setActivePage = (page) => {
@@ -85,8 +97,8 @@ class App extends Component {
 
     let query = this.props.location.query;
     console.log(query.code);
-
-    if(query.error == "access_denied") { // User logged out or revoked permissions
+    
+    if(query.error == "access_denied") {
       console.log("error");
       localStorage.setItem("accessToken", "null");
       this.setState({token: ""});
@@ -109,11 +121,11 @@ class App extends Component {
 
   }
 
-    getStreams = (search) => {
-      searchHelpers.getStreams(search, function(streams){
-        this.setState({streams: streams})
-      }.bind(this))
-    }
+  getStreams = (search) => {
+    searchHelpers.getStreams(search, function(streams){
+      this.setState({streams: streams})
+    }.bind(this))
+  }
 
     onClick() {
         console.log("onclick");
@@ -141,8 +153,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Row id="primaryRow">
-          <Column id="navCol" large={2}>
+        <Row>
+          <Column large={2}>
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
               setSearchChannels={this.setSearchChannels}
@@ -154,6 +166,12 @@ class App extends Component {
               query={this.state.searchQuery}
             />
           </Column>
+
+          
+          <Column large={8}>
+            {this.props.children &&
+            React.cloneElement(this.props.children,
+
 
           <Column large={10}>
             <div id="theBar">
@@ -175,14 +193,17 @@ class App extends Component {
                 <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
               {this.props.children &&
               React.cloneElement(this.props.children,
+
               { currentStreams: this.state.currentStreams,
                 addStreamToCanvas: this.addStreamToCanvas,
                 getStreams: this.getStreams,
                 streams: this.state.streams})}
+
               </ReactCSSTransitionGroup>
               </div>
             </Row>
             </div>
+
             <SearchContainer streams={this.state.searchStreams}
               games={this.state.searchGames}
               channels={this.state.searchChannels}
@@ -190,11 +211,11 @@ class App extends Component {
               component={this.props.children}>
             </SearchContainer>
             <StreamCanvas streams={this.state.currentStreams}
-              removeStream = {this.removeStreamFromCanvas}/>
+              removeStream = {this.removeStreamFromCanvas}
+              selected={this.selectedStream}/>
           </Column>
 
-          {/* chat goes here */}
-            <Column large={0}>
+            <Column large={2}>
 
             </Column>
 

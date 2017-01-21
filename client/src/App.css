@@ -218,7 +218,7 @@ p:hover{
 .streamContainer {
   margin-top: 15px;
   padding-right: 10px;
-  width: 50%;
+  width: 100%;
   display: inline-block;
   position: relative;
   flex: 0 1 auto;
@@ -226,6 +226,16 @@ p:hover{
   -moz-flex: 0 1 auto;
   /*background-color: #1c1e22;*/
   z-index: 1;
+}
+
+.mainStream {
+  float: left;
+  width: 75%;
+}
+
+.otherStreams {
+  display: inline-table;
+  width: 25%;
 }
 
 .streamDelete {

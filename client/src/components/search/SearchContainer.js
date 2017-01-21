@@ -15,10 +15,11 @@ class SearchContainer extends Component {
       }
 
     style = {
-      width: '90%',
+      width: '80%',
       position: 'absolute',
       top: '0px',
-      left: '210px',
+      left: '215px',
+      marginRight:'40px',
       backgroundColor: 'white',
       zIndex: '1001'
     }

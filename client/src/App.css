@@ -24,14 +24,14 @@ body {
   font-size: 10px;
 }
 
-/*.gamesList li{
+.gamesList li{
   max-width: 80px;
   font-size: 10px;
   display: inline-block;
   list-style-type: none;
   margin: 5px 10px 5px 10px;
 
-}*/
+}
 
 .gamesList {
   max-width: auto;
@@ -43,14 +43,14 @@ body {
     white-space:nowrap;
     background: transparent;
 }
-.gamesList li{
+/* .gamesList li{
   
   display: inline-block;
   list-style-type: none;
-  /*margin: 2px 0px 2px 0px;*/
+  margin: 2px 0px 2px 0px;
   margin-top: 4px; 
    
-}
+} */
 
 .gameTitle {
   line-height: 1.8em;
@@ -64,11 +64,11 @@ body {
 
 
 
-.game{
+/* .game{
   max-height: 55%;
   max-width: 55%;
   background-color: transparent;
-}
+} */
 
 /*IC*/
 .fa {
@@ -170,11 +170,11 @@ input {
   position: absolute;
   text-align: center;
 }
-
+/* 
 p:hover{
   color: green;
 
-}
+} */
 .playingStream {
   left, top: 0;
   margin-right: 10px;
@@ -255,10 +255,10 @@ p:hover{
 }
 
 #theBar{
-  max-height: auto;
+  max-height: 200px;
   text-align: center;
-  max-width: 80%;
-  overflow-y: none;
+  max-width: 100%;
+  overflow-y: hidden;
 }
 
 .side-nav ul {

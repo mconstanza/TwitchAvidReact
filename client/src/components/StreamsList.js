@@ -1,32 +1,14 @@
 import React, {Component} from 'react';
 import Twitch from '../config/Twitch';
 import StreamLink from './StreamLink';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class StreamsList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            shouldHide: false,
-            isToggleOn: true
         };
-        this.onClick = this.onClick.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    onClick() {
-        console.log("onclick");
-        if (!this.state.shouldHide) {
-            this.setState({shouldHide: true})
-        } else {
-            this.setState({shouldHide: false})
-        }
-        this.handleClick();
-    }
-    handleClick() {
-        this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
-        }));
     }
 
     componentWillMount() {
@@ -55,8 +37,17 @@ class StreamsList extends Component {
 
         return (
 
-            <div className="streamList">
-                {this.streamsList()}
+
+            <div id="streamListDiv">
+
+                
+                    <div className="streamList">
+                        <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+                            {this.streamsList()}
+                        </ReactCSSTransitionGroup>
+                    </div>
+                
+
             </div>
 
         )

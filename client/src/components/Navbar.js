@@ -69,6 +69,7 @@ class Navbar extends Component {
 
           </ul>
            </div>
+
       )
     }
   }

@@ -12,25 +12,33 @@ class StreamCanvas extends Component {
     }
 
     displayStreams = () => {
-        const streams = this.props.streams.map((stream) =>
+        const streams = this.props.streams.map((stream, index) =>
         // <li className="streamLi">
-          <Stream key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id} removeStream={this.props.removeStream}/>
+          <Stream selected={this.props.selected} position={index} key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id} removeStream={this.props.removeStream}/>
         // {/* </li> */}
-    )
+        )
     // return <ul>{streams}</ul>
     return streams
   }
 
-  render() {
 
+
+  render() {
+    var streams = this.displayStreams();
+    var main = streams.shift();
+    var others = streams;
+
+        // {this.props.streams &&
+        //   this.displayStreams()
+        // }
     return (
       <div className="streamCanvas">
-        {this.props.streams &&
-          this.displayStreams()
-        }
-      </div>)
+        <div className="mainStream">{main}</div>
+        <div className="otherStreams">{others}</div> 
+      </div>
+      )
 
-        }
-    }
+  }
+}
 
-    module.exports = StreamCanvas;
+module.exports = StreamCanvas;

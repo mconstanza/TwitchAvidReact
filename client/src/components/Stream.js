@@ -13,7 +13,7 @@ class Stream extends Component {
       var url = "http://player.twitch.tv/?channel=" + this.props.channel
       return (
         <div className={"streamContainer"}>
-          <Overlay streamId={this.props.stream._id} removeStream={this.props.removeStream} selected={this.props.selected} position={this.props.position}/>
+          <Overlay streamId={this.props.stream._id} stream={this.props.stream} removeStream={this.props.removeStream} selected={this.props.selected} position={this.props.position} setChatChannel={this.props.setChatChannel}/>
             <div className="playingStream" key={this.props.stream._id} id={this.props.stream._id}>
               <iframe
                 src={url}

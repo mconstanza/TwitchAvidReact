@@ -74,6 +74,20 @@ iframe{
 
 }
 
+#primaryRow {
+  margin-left: 0;
+  margin-right: 0;
+}
+.streamList li{
+  display: inline-block;
+  list-style-type: none;
+}
+
+.streamContainer {
+  width: 40%;
+  display: inline-block;
+}
+
 .playingStream {
   left, top: 0;
   margin-right: 10px;

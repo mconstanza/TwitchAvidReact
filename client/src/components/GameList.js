@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Twitch from '../config/Twitch';
+import HorizontalScroll from 'react-horizontal-scroll'
 
 import Game from './Game';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -27,6 +28,7 @@ class GameList extends Component {
     }
 
     gamesList = () => {
+
         if (this.props.games && this.props.limit){
           const gamesArr = this.props.games.slice(0, this.props.limit - 1);
           const games = gamesArr.map((game) =>
@@ -56,7 +58,6 @@ class GameList extends Component {
     render() {
         return (
             <div>
-
               {/* <button onClick={this.onClick} >{this.state.isToggleOn ? <i className="fa">&#xf102;</i> : <i className="fa">&#xf103;</i>}</button> */}
               <div>
                 <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>

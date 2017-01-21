@@ -130,7 +130,7 @@ input {
 .streamContainer {
   margin-top: 15px;
   padding-right: 10px;
-  width: 50%;
+  width: 100%;
   display: inline-block;
   position: relative;
   flex: 0 1 auto;

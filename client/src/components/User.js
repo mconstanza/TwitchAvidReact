@@ -12,30 +12,38 @@ class User extends Component {
         };
     }
 
-    componentWillUpdate() {
-      if(!this.state.user)
+    componentDidUpdate() {
+      if(!this.state.user && this.props.token)
         this.getUserInfo();
     }
 
     getUserInfo() {
       var token = this.props.token;
-      fetch('https://api.twitch.tv/kraken/user', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/vnd.twitchtv.v5+json',
-          'Client-ID': Twitch.clientID,
-          'Authorization': "OAuth " + token
-        }
-      })
-      .then(response => response.json())
-      .then(json => {
-        if(this.props.token) {
-          helpers.getLocalUser({name: json.name}, function(user) {
-            console.log(user);
-          })
-          this.setState({user: json});
-        }
-      });
+
+      helpers.getUserTwitchAPI(token, function(user) {
+        helpers.getLocalUser({name: user.name}, function(user) {
+          console.log(user);
+        })
+        this.setState({user: user});
+      }.bind(this));
+
+      // fetch('https://api.twitch.tv/kraken/user', {
+      //   method: 'GET',
+      //   headers: {
+      //     'Accept': 'application/vnd.twitchtv.v5+json',
+      //     'Client-ID': Twitch.clientID,
+      //     'Authorization': "OAuth " + token
+      //   }
+      // })
+      // .then(response => response.json())
+      // .then(json => {
+      //   if(this.props.token) {
+      //     helpers.getLocalUser({name: json.name}, function(user) {
+      //       console.log(user);
+      //     })
+      //     this.setState({user: json});
+      //   }
+      // });
     }
 
     userLogged() {

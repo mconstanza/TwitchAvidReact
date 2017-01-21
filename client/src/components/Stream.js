@@ -15,7 +15,7 @@ class Stream extends Component {
 
 
     render() {
-      var selected = this.props.position ? "otherStreams" : "mainStream";
+      var selected = ""//this.props.position ? "otherStreams" : "mainStream";
 
       var url = "http://player.twitch.tv/?channel=" + this.props.channel
         return (

@@ -35,6 +35,12 @@ var helpers = {
   	window.location = "https://api.twitch.tv/kraken/oauth2/authorize?" + params;
   },
 
+  logout: function() {
+  	localStorage.setItem("accessToken", "null");
+  	//console.log(window.location.protocal + window.location.hostname + (window.location.port ? ":" + window.location.port : ""))
+  	window.location = "http://" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+  },
+
   getToken: function(code, callback) {
     var headers = {
       client_id: Twitch.clientID,

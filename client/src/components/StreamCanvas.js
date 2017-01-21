@@ -21,13 +21,21 @@ class StreamCanvas extends Component {
     return streams
   }
 
-  render() {
 
+
+  render() {
+    var streams = this.displayStreams();
+    var main = streams.shift();
+    var others = streams;
+
+        // {this.props.streams &&
+        //   this.displayStreams()
+        // }
     return (
       <div className="streamCanvas">
-        {this.props.streams &&
-          this.displayStreams()
-        }
+        <div className="mainStream">{main}</div>
+        <div className="otherStreams">{others}</div>
+        
       </div>)
 
         }

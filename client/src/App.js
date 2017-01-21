@@ -32,6 +32,7 @@ class App extends Component {
 
   addStreamToCanvas = (stream) => {
     var streams = this.state.currentStreams;
+    stream.position = streams.length;
     streams.push(stream);
     this.setState({currentStreams: streams})
   }
@@ -49,11 +50,23 @@ class App extends Component {
 
   selectedStream = (streamPosition) => {
     var stream = this.state.currentStreams;
-    var mainStream = stream[0];
-    var selectedStream = stream[streamPosition];
+    stream[0].position = streamPosition;
+    stream[streamPosition].position = 0;
 
-    stream[0] = selectedStream;
-    stream[streamPosition] = mainStream;
+    stream = stream.sort(function(a,b) {
+      if(a.position < b.position) return -1;
+
+      else if(a.position > b.position) return 1;
+
+      else return 0;
+      
+    })
+
+    // var stream = this.state.currentStreams;
+    // var mainStream = stream[0];
+
+    // stream[0] = stream[streamPosition];
+    // stream[streamPosition] = mainStream;
 
     this.setState({currentStreams: stream});
   }
@@ -89,7 +102,7 @@ class App extends Component {
 
     let query = this.props.location.query;
     console.log(query.code);
-
+    
     if(query.error == "access_denied") { // User logged out or revoked permissions
       console.log("error");
       localStorage.setItem("accessToken", "null");
@@ -122,8 +135,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Row id="primaryRow">
-          <Column id="navCol" large={2}>
+        <Row>
+          <Column large={2}>
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
               setSearchChannels={this.setSearchChannels}
@@ -135,16 +148,14 @@ class App extends Component {
               query={this.state.searchQuery}
             />
           </Column>
-
-          <Column large={10}>
-            <div id="theBar">
+          
+          <Column large={8}>
             {this.props.children &&
             React.cloneElement(this.props.children,
               { currentStreams: this.state.currentStreams,
                 addStreamToCanvas: this.addStreamToCanvas,
                 getStreams: this.getStreams,
                 streams: this.state.streams})}
-              </div>
             <SearchContainer streams={this.state.searchStreams}
               games={this.state.searchGames}
               channels={this.state.searchChannels}
@@ -156,8 +167,7 @@ class App extends Component {
               selected={this.selectedStream}/>
           </Column>
 
-          {/* chat goes here */}
-            <Column large={0}>
+            <Column large={2}>
 
             </Column>
 

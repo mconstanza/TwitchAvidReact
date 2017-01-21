@@ -168,9 +168,9 @@ class App extends Component {
           </Column>
 
           
-          <Column large={8}>
+          {/*<Column large={8}>
             {this.props.children &&
-            React.cloneElement(this.props.children,
+            React.cloneElement(this.props.children,*/}
 
 
           <Column large={10}>
@@ -216,8 +216,8 @@ class App extends Component {
           </Column>
 
             <Column large={2}>
-
-            </Column>
+                        
+                                    </Column>
 
         </Row>
         </div>

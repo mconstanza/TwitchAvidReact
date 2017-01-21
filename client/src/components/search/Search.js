@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Sizes } from 'react-foundation';
+import {Button, Sizes, ButtonGroup } from 'react-foundation';
+
 
 import SearchHelpers from '../../utils/searchHelpers';
 
@@ -31,12 +32,13 @@ class Search extends Component {
       }.bind(this));
 
     }
-
+ // <Button size={Sizes.TINY} className="searchform" id="searchButton">Search</Button>
     render() {
         return (
             <div className="searchBar">
-                <input onChange={this.searchHandler} placeholder="Find me streams!" value={this.state.searchTerm}/>
-              <Button size={Sizes.TINY} className="searchform" id="searchButton">Search</Button>
+            
+                <input onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.state.searchTerm}/>
+                
             </div>
         )
 

@@ -13,7 +13,12 @@ class StreamsList extends Component {
 
     componentWillMount() {
       if (this.props.params){
-        this.props.getStreams({type: 'game', query: this.props.params.query});
+
+        if(this.props.params.query == "following") {
+            this.props.getFollowed(this.props.token);
+        }
+        else
+            this.props.getStreams({type: 'game', query: this.props.params.query});
       }
 
     }
@@ -23,6 +28,7 @@ class StreamsList extends Component {
     }
 
     streamsList = () => {
+
         if (this.props.streams) {
             const streams = this.props.streams.map((stream) =>
             <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>);

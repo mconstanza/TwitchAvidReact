@@ -75,6 +75,21 @@ var helpers = {
     })
   },
 
+  getFollowed: function(accessToken, callback) {
+	console.log(accessToken);
+	fetch("https://api.twitch.tv/kraken/streams/followed?stream_type=live", {
+		method: "GET",
+		headers: {
+		  "Client-ID": Twitch.clientID,
+		  "Authorization": "OAuth " + accessToken
+		}
+	})
+	.then(response => response.json())
+	.then((following) => {
+	  callback(following.streams);
+	})
+  },
+
   getLocalUser: function(user, callback) {
 	  var params = this.buildQuery(user);
     console.log(params);

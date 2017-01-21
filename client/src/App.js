@@ -93,7 +93,7 @@ class App extends Component {
   setChatChannel = (channel) => {
     this.setState({currentChatChannel: channel})
   }
-  componentDidMount = () => {
+  componentWillMount = () => {
     let token = localStorage.getItem("accessToken");
     console.log(token);
 
@@ -121,6 +121,14 @@ class App extends Component {
 
     }
 
+  }
+
+  getFollowed = (token) => {
+    console.log(token);
+    helpers.getFollowed(token, function(following) {
+      console.log(following);
+      this.setState({streams: following});
+    }.bind(this));
   }
 
   getStreams = (search) => {
@@ -184,7 +192,9 @@ class App extends Component {
               { currentStreams: this.state.currentStreams,
                 addStreamToCanvas: this.addStreamToCanvas,
                 getStreams: this.getStreams,
-                streams: this.state.streams})}
+                streams: this.state.streams,
+                getFollowed: this.getFollowed,
+                token: this.state.token})}
 
               </ReactCSSTransitionGroup>
               </div>

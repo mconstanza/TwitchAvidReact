@@ -79,6 +79,10 @@ body {
 
 /*IC*/
 
+input{
+  /*max-width: 75%;*/
+}
+
 .fa {
   color: red;
 }
@@ -88,20 +92,20 @@ body {
   /*padding-left: 15px;*/
   /*padding-top: 5px;*/
 }
-.example-enter {
+.fade-enter {
   opacity: 0.01;
 }
 
-.example-enter.example-enter-active {
+.fade-enter.fade-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
 }
 
-.example-leave {
+.fade-leave {
   opacity: 1;
 }
 
-.example-leave.example-leave-active {
+.fade-leave.fade-leave-active {
   opacity: 0.01;
   transition: opacity 700ms ease-in;
 }
@@ -158,6 +162,7 @@ iframe{
 
 input {
   font-family: 'Cabin', sans-serif;
+
 }
 
 .menu button {
@@ -222,6 +227,12 @@ p:hover{
   position: right;
 }
 
+.searchBar{
+  max-width: 180px;
+
+}
+
+
 
 #streamCanvas {
   width: 100%;
@@ -277,13 +288,15 @@ p:hover{
 .side-nav ul {
   list-style: none;
   background-color: #11001c;
+  margin-left: 0 ; 
 
 }
 
-/*.side-nav li > .hover{
+.side-nav li :focus{
 background-color: #7b61aa;
 color: #fff;
-}*/
+/*display: block;*/
+}
 
 /*.side-nav a > .hover{
 background-color: #7b61aa;
@@ -296,6 +309,14 @@ color: #fff;
   background-color: #11001c;
 
 }
+
+#navCol li > .active{
+background-color: #7b61aa;
+color: #fff;
+display: block;
+}
+
+
 
 .streamLinkImg {
   cursor: pointer;
@@ -359,6 +380,10 @@ color: #fff;
   max-height: 10%;
   overflow: hidden;
 }
+
+/*#sInput{
+  max-height: 30px;
+}*/
 
 
 @keyframes App-logo-spin {

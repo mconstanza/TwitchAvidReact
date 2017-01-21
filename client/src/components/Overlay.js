@@ -46,6 +46,7 @@ class Overlay extends Component {
       <div className="Overlay" style={background} onMouseEnter={this.onMouseEnter.bind(this)} onMouseLeave={this.onMouseLeave.bind(this)}>
         <Button className="streamDelete" style={buttons} onClick={()=>this.props.removeStream(this.props.streamId)}>X</Button>
         <Button className="select" style={buttons} onClick={() => this.props.selected(this.props.position)}>O</Button>
+        <Button className="chatSelect" style={buttons} onClick={() => this.props.setChatChannel(this.props.stream.channel.name)}>Chat</Button>
       </div>
     )
   }

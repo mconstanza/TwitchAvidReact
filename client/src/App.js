@@ -12,7 +12,7 @@ import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import Navbar from './components/Navbar';
 import SearchContainer from './components/search/SearchContainer';
-
+import Chat from './components/Chat';
 // CSS Foundation
 import Foundation from 'react-foundation';
 import {Row, Column} from 'react-foundation';
@@ -30,7 +30,8 @@ class App extends Component {
       user: null,
       shouldHide: false,
       isToggleOn: true,
-      slide: false
+      slide: false,
+      currentChatChannel: ""
     };
     this.onClick = this.onClick.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -89,7 +90,9 @@ class App extends Component {
     this.setState({searchGames: games});
 
   }
-
+  setChatChannel = (channel) => {
+    this.setState({currentChatChannel: channel})
+  }
   componentDidMount = () => {
     let token = localStorage.getItem("accessToken");
     console.log(token);
@@ -167,7 +170,7 @@ class App extends Component {
           </Column>
 
 
-          <Column large={10}>
+          <Column large={8}>
             <div id="theBar">
   
             <button className="arrow" onClick={this.onClick}>
@@ -203,11 +206,12 @@ class App extends Component {
             </SearchContainer>
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}
-              selected={this.selectedStream}/>
+              selected={this.selectedStream}
+              setChatChannel={this.setChatChannel}/>
           </Column>
 
             <Column large={2}>
-
+              <Chat currentChatChannel={this.state.currentChatChannel}/>
             </Column>
 
         </Row>

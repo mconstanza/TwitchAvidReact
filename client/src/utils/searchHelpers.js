@@ -60,8 +60,8 @@ var searchHelpers = {
       })
     },
 // search and list streams
-    searchStreams(stream, callback) {
-      fetch('https://api.twitch.tv/kraken/search/streams?query=' + stream, {
+    searchStreams(stream, limit, callback) {
+      fetch('https://api.twitch.tv/kraken/search/streams?query=' + stream + '&limit=' + limit, {
           method: 'GET',
           headers: {
               'Accept': 'application/vnd.twitchtv.v5+json',

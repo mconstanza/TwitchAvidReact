@@ -1,3 +1,15 @@
+a{
+  color: #6441a4;
+  line-height: 2em;
+}
+
+a:hover{
+  background-color: #7b61aa;
+color: #fff;
+
+display:inline; 
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -13,11 +25,21 @@ body {
 
 
 }
+/*#theBar{
+  overflow: none;
+}*/
 
 .button > .hover{
   background: #fefefe;
   color: #6441a4;
 }
+
+iframe{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .row{
   max-width: 100%;
   overflow-y: scroll;
@@ -47,13 +69,11 @@ body {
     color: #fefefe;
 }
 
-<<<<<<< HEAD
-=======
 #navigation{
   max-height: 20%;
 
 }
->>>>>>> master
+
 #primaryRow {
   margin-left: 0;
   margin-right: 0;
@@ -77,14 +97,38 @@ body {
   position: relative;
   padding-bottom: 56.25%;
 }
-
-iframe{
-  position: absolute;
-  width: 100%;
-  height: 100%;
+#primaryRow {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #streamCanvas {
   width: 100%;
   text-align: left;
 }
+
+
+.streamList {
+  max-width: auto;
+    height: 250px;
+    background-color: #ff0000;
+    
+    overflow-x: scroll;
+    white-space:nowrap;
+    background: transparent;
+}
+.streamList li{
+  display: inline-block;
+  list-style-type: none;
+   
+}
+
+.streamContainer {
+  width: 40%;
+  display: inline-block;
+}
+
+
+
+
+

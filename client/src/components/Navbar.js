@@ -65,8 +65,8 @@ class Navbar extends Component {
 
               <Button id="connectTwitchBtn" size={Sizes.SMALL} onClick={this.props.token ? Helpers.logout : Helpers.authorize}>{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</Button>
               <User user={this.props.user} token= {this.props.token}/>
-          </ul>
-           </div>
+            </ul>
+          </div>
       )
     }
   }

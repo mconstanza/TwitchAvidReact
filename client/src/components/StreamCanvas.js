@@ -16,7 +16,7 @@ class StreamCanvas extends Component {
         // <li className="streamLi">
           <Stream selected={this.props.selected} position={index} key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id} removeStream={this.props.removeStream}/>
         // {/* </li> */}
-    )
+        )
     // return <ul>{streams}</ul>
     return streams
   }
@@ -34,11 +34,11 @@ class StreamCanvas extends Component {
     return (
       <div className="streamCanvas">
         <div className="mainStream">{main}</div>
-        <div className="otherStreams">{others}</div>
-        
-      </div>)
+        <div className="otherStreams">{others}</div> 
+      </div>
+      )
 
-        }
-    }
+  }
+}
 
-    module.exports = StreamCanvas;
+module.exports = StreamCanvas;

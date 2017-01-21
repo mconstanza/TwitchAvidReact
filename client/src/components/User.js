@@ -27,27 +27,9 @@ class User extends Component {
         this.setState({user: user});
       }.bind(this));
 
-      // fetch('https://api.twitch.tv/kraken/user', {
-      //   method: 'GET',
-      //   headers: {
-      //     'Accept': 'application/vnd.twitchtv.v5+json',
-      //     'Client-ID': Twitch.clientID,
-      //     'Authorization': "OAuth " + token
-      //   }
-      // })
-      // .then(response => response.json())
-      // .then(json => {
-      //   if(this.props.token) {
-      //     helpers.getLocalUser({name: json.name}, function(user) {
-      //       console.log(user);
-      //     })
-      //     this.setState({user: json});
-      //   }
-      // });
     }
 
     userLogged() {
-      console.log(this.state.user);
       if(this.state.user) {
         return (
         <div>

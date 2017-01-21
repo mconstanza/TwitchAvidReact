@@ -49,24 +49,12 @@ class App extends Component {
   }
 
   selectedStream = (streamPosition) => {
+
     var stream = this.state.currentStreams;
-    stream[0].position = streamPosition;
-    stream[streamPosition].position = 0;
+    var mainStream = stream[0];
 
-    stream = stream.sort(function(a,b) {
-      if(a.position < b.position) return -1;
-
-      else if(a.position > b.position) return 1;
-
-      else return 0;
-      
-    })
-
-    // var stream = this.state.currentStreams;
-    // var mainStream = stream[0];
-
-    // stream[0] = stream[streamPosition];
-    // stream[streamPosition] = mainStream;
+    stream[0] = stream[streamPosition];
+    stream[streamPosition] = mainStream;
 
     this.setState({currentStreams: stream});
   }
@@ -103,7 +91,7 @@ class App extends Component {
     let query = this.props.location.query;
     console.log(query.code);
     
-    if(query.error == "access_denied") { // User logged out or revoked permissions
+    if(query.error == "access_denied") {
       console.log("error");
       localStorage.setItem("accessToken", "null");
       this.setState({token: ""});
@@ -126,11 +114,11 @@ class App extends Component {
 
   }
 
-    getStreams = (search) => {
-      searchHelpers.getStreams(search, function(streams){
-        this.setState({streams: streams})
-      }.bind(this))
-    }
+  getStreams = (search) => {
+    searchHelpers.getStreams(search, function(streams){
+      this.setState({streams: streams})
+    }.bind(this))
+  }
 
   render() {
     return (

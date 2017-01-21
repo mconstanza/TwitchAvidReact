@@ -37,7 +37,7 @@ var helpers = {
 
   logout: function() {
   	localStorage.setItem("accessToken", "null");
-  	//console.log(window.location.protocal + window.location.hostname + (window.location.port ? ":" + window.location.port : ""))
+
   	window.location = "http://" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
   },
 

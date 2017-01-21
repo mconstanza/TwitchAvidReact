@@ -15,12 +15,14 @@ class SearchContainer extends Component {
       }
 
     style = {
-      width: '90%',
+      width: '75%',
+      maxHeight: '75%',
       position: 'absolute',
       top: '0px',
-      left: '210px',
+      left: '255px',
       backgroundColor: 'white',
-      zIndex: '1001'
+      zIndex: '1001',
+      overflow: 'hidden'
     }
 
     render() {
@@ -28,7 +30,7 @@ class SearchContainer extends Component {
         return (
           <div id="searchContainer" style={this.style}>
             <StreamsList addStreamToCanvas= {this.props.addStreamToCanvas} streams={this.props.streams}/>
-            <GameList games={this.props.games}/>
+            <GameList limit={8} games={this.props.games}/>
           </div>
         )
       }

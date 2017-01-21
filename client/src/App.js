@@ -169,13 +169,11 @@ class App extends Component {
 
           <Column large={10}>
             <div id="theBar">
-  
-            <button className="arrow" onClick={this.onClick}>
+                            <button className="arrow" onClick={this.onClick}>
                     {this.state.isToggleOn
                       ? <i className="fa">&#xf102;</i>
                       : <i className="fa">&#xf103;</i>}</button>
-    
-     
+
               <div className={
                 // (this.state.shouldHide
                 //     ? 'hidden'

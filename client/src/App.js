@@ -171,20 +171,13 @@ class App extends Component {
 
 
           <Column large={8}>
-            <div id="theBar">
-  
-            <button className="arrow" onClick={this.onClick}>
-                    {this.state.isToggleOn
-                      ? <i className="fa">&#xf102;</i>
-                      : <i className="fa">&#xf103;</i>}</button>
-    
-     
-              <div className={
+            <div id="theBar" className={
                 // (this.state.shouldHide
                 //     ? 'hidden'
                 //     : '') + 
                 this.state.slide ? 'slide' : 'slide-back'}>
-                <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+  
+                <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
               {this.props.children &&
               React.cloneElement(this.props.children,
 
@@ -196,7 +189,13 @@ class App extends Component {
               </ReactCSSTransitionGroup>
               </div>
 
-            </div>
+            
+
+            <button className="arrow" onClick={this.onClick}>
+                    {this.state.isToggleOn
+                      ? <i className="fa">&#xf102;</i>
+                      : <i className="fa">&#xf103;</i>}
+            </button>
 
             <SearchContainer streams={this.state.searchStreams}
               games={this.state.searchGames}

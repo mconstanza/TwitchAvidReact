@@ -42,7 +42,7 @@ class StreamsList extends Component {
 
                 
                     <div className="streamList">
-                        <ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+                        <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
                             {this.streamsList()}
                         </ReactCSSTransitionGroup>
                     </div>

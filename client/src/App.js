@@ -182,24 +182,23 @@ class App extends Component {
 
 
           <div className="contentContainer">
-            <div id="theBar" className={
-                this.state.slide ? 'slide' : 'slide-back'}>
-  
-                <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
-              {this.props.children &&
-              React.cloneElement(this.props.children,
+            <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
-              { currentStreams: this.state.currentStreams,
-                addStreamToCanvas: this.addStreamToCanvas,
-                getStreams: this.getStreams,
-                streams: this.state.streams,
-                getFollowed: this.getFollowed,
-                token: this.state.token})}
+                {this.state.theBarShow &&
+                  <div id="theBar">
 
-                  
+                  {this.props.children &&
+                  React.cloneElement(this.props.children,
 
+                  { currentStreams: this.state.currentStreams,
+                    addStreamToCanvas: this.addStreamToCanvas,
+                    getStreams: this.getStreams,
+                    streams: this.state.streams,
+                    getFollowed: this.getFollowed,
+                    token: this.state.token})}
+
+                  </div> }
               </ReactCSSTransitionGroup>
-              </div> 
               <div id="toggleBar" onClick={this.toggleTheBar}>
                 <span className="fi-list toggleButton"/>
               </div>

@@ -26,6 +26,8 @@ class StreamCanvas extends Component {
 
   render() {
     var streams = this.displayStreams();
+    var view = streams.length > 1 ? "mainStream": "oneStream";
+
     var main = streams.shift();
     var others = streams;
 
@@ -38,7 +40,7 @@ class StreamCanvas extends Component {
           transitionName="example"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}>
-        <div className="mainStream">{main}</div>
+        <div className={view}>{main}</div>
         <div className="otherStreams">{others}</div> 
       </ReactCSSTransitionGroup>
       </div>

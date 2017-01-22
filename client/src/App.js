@@ -31,7 +31,7 @@ class App extends Component {
       shouldHide: false,
       isToggleOn: true,
       slide: false,
-      currentChatChannel: "",
+      currentChatChannel: ""
     };
     this.onClick = this.onClick.bind(this);
     this.handleClick = this.handleClick.bind(this);

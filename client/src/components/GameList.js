@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import Twitch from '../config/Twitch';
-import HorizontalScroll from 'react-horizontal-scroll'
-
 import Game from './Game';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class GameList extends Component {

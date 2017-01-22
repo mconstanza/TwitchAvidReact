@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {Menu, MenuItem, MenuText, Button, Sizes} from 'react-foundation';
 import Search from './search/Search';
+import ToggleButton from './ToggleButton';
 import User from './User';
 
 import Helpers from '../utils/helpers';
@@ -58,9 +59,7 @@ class Navbar extends Component {
               <User user={this.props.user} token= {this.props.token}/>
               <Button id="connectTwitchBtn" size={Sizes.SMALL} onClick={!this.props.token ? Helpers.authorize : Helpers.logout}>{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</Button>
 
-
               <Search setSearchStreams={this.props.setSearchStreams}
-                setSearchChannels={this.props.setSearchChannels}
                 setSearchGames={this.props.setSearchGames}
                 setSearchQuery={this.props.setSearchQuery}
                 query={this.props.query}/>

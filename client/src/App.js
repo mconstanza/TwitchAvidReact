@@ -25,14 +25,13 @@ class App extends Component {
     super(props);
     this.state = {
       currentStreams: [],
+      theBarShow: true,
       activePage: 'home',
       token: "",
       user: null,
-      shouldHide: false,
-      isToggleOn: true,
-      slide: false,
       currentChatChannel: ""
     };
+
     this.onClick = this.onClick.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.onSlide = this.onSlide.bind(this);
@@ -82,10 +81,6 @@ class App extends Component {
     this.setState({searchStreams: streams});
   }
 
-  setSearchChannels = (channels) => {
-    this.setState({searchChannels: channels});
-  }
-
   setSearchGames = (games) => {
     this.setState({searchGames: games});
 
@@ -93,13 +88,15 @@ class App extends Component {
   setChatChannel = (channel) => {
     this.setState({currentChatChannel: channel})
   }
+
   componentWillMount = () => {
+
     let token = localStorage.getItem("accessToken");
     console.log(token);
 
     let query = this.props.location.query;
     console.log(query.code);
-    
+
     if(query.error == "access_denied") {
       console.log("error");
       localStorage.setItem("accessToken", "null");
@@ -137,27 +134,32 @@ class App extends Component {
     }.bind(this))
   }
 
-    onClick() {
-        console.log("onclick");
-        if (!this.state.shouldHide) {
-            this.setState({shouldHide: true})
+    onClick = () => {
+        if (!this.state.theBarShouldHide) {
+            this.setState({theBarShouldHide: true})
         } else {
-            this.setState({shouldHide: false})
+            this.setState({theBarShouldHide: false})
         }
         this.handleClick();
         this.onSlide();
     }
-    handleClick() {
+
+    handleClick = () => {
         this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
+            theBarIsToggleOn: !prevState.theBarIsToggleOn
         }));
     }
-    onSlide() {
-      if(!this.state.slide) {
-        this.setState({slide: true})
+
+    onSlide = () => {
+      if(!this.state.theBarSlide) {
+        this.setState({theBarSlide: true})
       } else {
-        this.setState({slide: false})
+        this.setState({theBarSlide: false})
       }
+    }
+
+    toggleTheBar = () => {
+      this.setState({theBarShow: !this.state.theBarShow})
     }
 
   render() {
@@ -167,7 +169,6 @@ class App extends Component {
           <div id="navCol">
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
-              setSearchChannels={this.setSearchChannels}
               setSearchGames={this.setSearchGames}
               setActivePage={this.setActivePage}
               setSearchQuery={this.setSearchQuery}
@@ -179,11 +180,9 @@ class App extends Component {
           </div>
 
 
+
           <div className="contentContainer">
             <div id="theBar" className={
-                // (this.state.shouldHide
-                //     ? 'hidden'
-                //     : '') + 
                 this.state.slide ? 'slide' : 'slide-back'}>
   
                 <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
@@ -197,28 +196,26 @@ class App extends Component {
                 getFollowed: this.getFollowed,
                 token: this.state.token})}
 
+                  
+
               </ReactCSSTransitionGroup>
+              </div> 
+              <div id="toggleBar" onClick={this.toggleTheBar}>
+                <span className="fi-list toggleButton"/>
               </div>
-
-            
-
-            <button className="arrow" onClick={this.onClick}>
-                    {this.state.isToggleOn
-                      ? <i className="fa">&#xf102;</i>
-                      : <i className="fa">&#xf103;</i>}
-            </button>
 
             <SearchContainer streams={this.state.searchStreams}
               games={this.state.searchGames}
-              channels={this.state.searchChannels}
               addStreamToCanvas= {this.addStreamToCanvas}
               component={this.props.children}>
             </SearchContainer>
+
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}
               selected={this.selectedStream}
               setChatChannel={this.setChatChannel}/>
           </div>
+
 
             <div className="chatContainer">
               <Chat currentChatChannel={this.state.currentChatChannel}/>

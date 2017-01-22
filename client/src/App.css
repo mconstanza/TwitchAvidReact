@@ -276,11 +276,18 @@ color: #fff;
 #toggleBar {
   background-color:#11001c;
   text-align: center;
+  height: 24px;
 }
 
 .toggleButton {
+  display: inline-block;
   cursor: pointer;
   color: white;
+  height: 18px;
+  min-height: 18px;
+  width: 10px;
+  min-width: 10px;
+  z-index: 100;
 }
 
 #navCol {

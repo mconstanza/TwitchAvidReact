@@ -31,7 +31,7 @@ class App extends Component {
       shouldHide: false,
       isToggleOn: true,
       slide: false,
-      currentChatChannel: ""
+      currentChatChannel: "",
     };
     this.onClick = this.onClick.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -74,8 +74,8 @@ class App extends Component {
     this.setState({searchQuery: query});
   }
 
-  getCurrentUser = (username) => {
-    this.setState({user: username});
+  setCurrentUser = (user) => {
+    this.setState({user: user});
   }
 
   setSearchStreams = (streams) => {
@@ -163,22 +163,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Row id="primaryRow">
-          <Column id="navCol" large={2}>
+        <div id="primaryRow">
+          <div id="navCol">
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
               setSearchChannels={this.setSearchChannels}
               setSearchGames={this.setSearchGames}
               setActivePage={this.setActivePage}
               setSearchQuery={this.setSearchQuery}
+              setCurrentUser={this.setCurrentUser}
               user={this.state.user}
               token={this.state.token}
               query={this.state.searchQuery}
             />
-          </Column>
+          </div>
 
 
-          <Column large={8}>
+          <div className="contentContainer">
             <div id="theBar" className={
                 // (this.state.shouldHide
                 //     ? 'hidden'
@@ -217,13 +218,13 @@ class App extends Component {
               removeStream = {this.removeStreamFromCanvas}
               selected={this.selectedStream}
               setChatChannel={this.setChatChannel}/>
-          </Column>
+          </div>
 
-            <Column large={2}>
+            <div className="chatContainer">
               <Chat currentChatChannel={this.state.currentChatChannel}/>
-            </Column>
+            </div>
 
-        </Row>
+        </div>
         </div>
       );
     }

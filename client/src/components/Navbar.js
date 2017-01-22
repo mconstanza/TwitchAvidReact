@@ -55,7 +55,7 @@ class Navbar extends Component {
             <ul style={this.style}>
 
               <MenuText id="navLogo">Twitch Avid</MenuText>
-              <User user={this.props.user} token= {this.props.token}/>
+              <User setCurrentUser={this.props.setCurrentUser} user={this.props.user} token= {this.props.token}/>
               <Button id="connectTwitchBtn" size={Sizes.SMALL} onClick={!this.props.token ? Helpers.authorize : Helpers.logout}>{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</Button>
 
 

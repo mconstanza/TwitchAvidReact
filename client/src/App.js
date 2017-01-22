@@ -200,7 +200,7 @@ class App extends Component {
                   </div> }
               </ReactCSSTransitionGroup>
               <div id="toggleBar" onClick={this.toggleTheBar}>
-                <span className="fi-list toggleButton"/>
+                <div className="fi-list toggleButton"/>
               </div>
 
             <SearchContainer streams={this.state.searchStreams}

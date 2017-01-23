@@ -4,7 +4,7 @@ import './App.css';
 
 import Twitch from './config/Twitch';
 import helpers from './utils/helpers';
-import searchHelpers from './utils/searchHelpers';
+import SearchHelpers from './utils/searchHelpers';
 
 import StreamCanvas from './components/StreamCanvas';
 
@@ -26,10 +26,13 @@ class App extends Component {
     this.state = {
       currentStreams: [],
       theBarShow: true,
+      searchStreams: [],
+      searchGames: [],
       activePage: 'home',
       token: "",
       user: null,
-      currentChatChannel: ""
+      currentChatChannel: "",
+      searching: false
     };
 
     this.onClick = this.onClick.bind(this);
@@ -68,9 +71,29 @@ class App extends Component {
   setActivePage = (page) => {
     this.setState({activePage: page});
   }
-
+// SEARCH /////////////////////////////////////////////////////////////
   setSearchQuery = (query) => {
+
+    if (query == ""){
+      this.setState({searching: false, searchStreams: [], searchGames: []})
+    }
+    else{
+
+      this.setState({searching: true})
+
+      SearchHelpers.searchGames(query, function(games){
+        this.setState({searchGames: games})
+      }.bind(this));
+
+      SearchHelpers.searchStreams(query, 5, function(streams){
+        this.setState({searchStreams: streams})
+      }.bind(this));
+    }
     this.setState({searchQuery: query});
+  }
+////////////////////////////////////////////////////////////////////////////
+  toggleSearching = (boolean) => {
+    this.setState({searching: boolean});
   }
 
   getCurrentUser = (username) => {
@@ -120,7 +143,7 @@ class App extends Component {
   }
 
   getStreams = (search) => {
-    searchHelpers.getStreams(search, function(streams){
+    SearchHelpers.getStreams(search, function(streams){
       this.setState({streams: streams})
     }.bind(this))
   }
@@ -153,6 +176,23 @@ class App extends Component {
       this.setState({theBarShow: !this.state.theBarShow})
     }
 
+    renderSearchContainer = () => {
+      if (this.state.searching) {
+        return (
+          <SearchContainer streams={this.state.searchStreams}
+            games={this.state.searchGames}
+            addStreamToCanvas= {this.addStreamToCanvas}
+            component={this.props.children}>
+          </SearchContainer>
+        )
+      }
+      else {
+        return (
+          <div/>
+        )
+      }
+    }
+
   render() {
     return (
       <div className="App">
@@ -163,6 +203,7 @@ class App extends Component {
               setSearchGames={this.setSearchGames}
               setActivePage={this.setActivePage}
               setSearchQuery={this.setSearchQuery}
+              toggleSearching={this.toggleSearching}
               user={this.state.user}
               token={this.state.token}
               query={this.state.searchQuery}
@@ -190,11 +231,10 @@ class App extends Component {
                 <div className="fi-list toggleButton"/>
               </div>
 
-            <SearchContainer streams={this.state.searchStreams}
-              games={this.state.searchGames}
-              addStreamToCanvas= {this.addStreamToCanvas}
-              component={this.props.children}>
-            </SearchContainer>
+          <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
+
+              {this.renderSearchContainer()}
+          </ReactCSSTransitionGroup>
 
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}

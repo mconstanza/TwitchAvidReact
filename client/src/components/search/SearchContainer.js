@@ -28,7 +28,7 @@ class SearchContainer extends Component {
     }
 
     render() {
-      if(this.props.games || this.props.streams || this.props.channels){
+      if(this.props.games || this.props.streams){
         return (
           <div id="searchContainer" style={this.style}>
             <StreamsList addStreamToCanvas= {this.props.addStreamToCanvas} streams={this.props.streams}/>

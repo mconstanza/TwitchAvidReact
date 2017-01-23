@@ -13,7 +13,8 @@ const Routes = (props) => (
     <Router history={browserHistory}>
         <Route path="/" component={App}>
           <Route path="/games" component = {GameList}/>>
-          <Route path="/streams/:query" component={StreamsList}/> 
+          <Route path="/streams/:query" component={StreamsList}/>
+ 
         </Route>
     </Router>
 );

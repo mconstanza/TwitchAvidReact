@@ -10,22 +10,24 @@ class StreamsList extends Component {
         this.state = {
         };
 
-        if(this.props.params){
+        this.initialMount();
+    }
 
-        if(this.props.params.query == "following") {
-            console.log("Goto Following")
-            this.props.getFollowed(this.props.token);
-        }
-        else {
-            console.log("Goto Stream")
-            this.props.getStreams({type: 'game', query: this.props.params.query});
-        }
+    initialMount() {
+        if(this.props.params && this.props.params.query) {
 
-      }
+            if(this.props.params.query == "following") {
+                this.props.getFollowed(this.props.token);
+            }
+            else {
+                this.props.getStreams({type: 'game', query: this.props.params.query});
+            }
+
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-      if(nextProps.params.query != this.props.params.query){
+      if(this.props.params && nextProps.params.query != this.props.params.query){
 
         if(nextProps.params.query == "following") {
             console.log("Goto Following")

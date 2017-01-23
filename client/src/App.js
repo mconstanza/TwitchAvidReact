@@ -120,6 +120,15 @@ class App extends Component {
 
   }
 
+  getHistory = () => {
+    if(this.state.user != null) {
+      helpers.getHistory(this.state.user.name, function(history) {
+        console.log(history);
+        this.setState({history: history});
+      }.bind(this));
+    }
+  }
+
   getFollowed = (token) => {
     console.log(token);
     helpers.getFollowed(token, function(following) {
@@ -194,7 +203,9 @@ class App extends Component {
                     addStreamToCanvas: this.addStreamToCanvas,
                     getStreams: this.getStreams,
                     streams: this.state.streams,
+                    history: this.state.history,
                     getFollowed: this.getFollowed,
+                    getHistory: this.getHistory,
                     token: this.state.token})}
 
                   </div> }

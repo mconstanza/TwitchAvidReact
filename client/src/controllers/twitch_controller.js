@@ -85,11 +85,23 @@ router.get('/:username/history', function(req, res) {
 router.post('/:username/history', function(req, res) {
 	let recentHistory = req.body;
 	console.log(recentHistory);
+
 	Users.findOne({name: req.params.username}, function(err, user) {
 		if(err) res.send(err);
 		else if(!user) res.send(user)
 		else {
-			user.viewHistory.push(recentHistory);
+			let historyArr = user.viewHistory;
+			let dupeChannel = false;
+			for(var i = 0; i < historyArr.length; i++) {
+				if(historyArr[i].channel === recentHistory.channel) {
+					historyArr.dateViewed = recentHistory.dateViewed;
+					dupeChannel = true;
+					break;
+				}
+			}
+			if(!dupeChannel)
+				user.viewHistory.push(recentHistory);
+
 			user.save(function(err, doc) {
 				if(err) res.send(err);
 				res.send(doc);

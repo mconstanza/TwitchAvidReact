@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class Chat extends Component {
 
   constructor(props) {
@@ -22,7 +21,6 @@ class Chat extends Component {
         </iframe>
       </div>
     )
-
   }
 }
 

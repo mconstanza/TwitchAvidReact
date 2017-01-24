@@ -60,7 +60,7 @@ var searchHelpers = {
       })
     },
 // search and list streams
-    searchStreams(stream, limit, callback) {
+    searchStreams(stream, limit='25', callback) {
       fetch('https://api.twitch.tv/kraken/search/streams?query=' + stream + '&limit=' + limit, {
           method: 'GET',
           headers: {
@@ -68,7 +68,6 @@ var searchHelpers = {
               'Client-ID': Twitch.clientID
           }
       }).then(response => response.json()).then(json => {
-          console.log(json.streams);
           callback(json.streams)
       })
     }

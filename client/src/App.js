@@ -86,7 +86,7 @@ class App extends Component {
         this.setState({searchGames: games})
       }.bind(this));
 
-      SearchHelpers.searchStreams(query, 5, function(streams){
+      SearchHelpers.searchStreams(query, 25, function(streams){
         this.setState({searchStreams: streams})
       }.bind(this));
     }

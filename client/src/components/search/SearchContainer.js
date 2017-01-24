@@ -35,10 +35,10 @@ class SearchContainer extends Component {
     render() {
       if(this.props.games || this.props.streams){
         return (
-          <div onMouseLeave={()=>this.props.setSearchFocus(false)} onMouseOver={() => this.props.setSearchFocus(true)} id="searchContainer" style={this.containerStyle}>
+          <div id="searchContainer" style={this.containerStyle}>
             <div id="searchContainerTopPanel" style={this.topPanelStyle}/>
             <StreamsList addStreamToCanvas= {this.props.addStreamToCanvas} streams={this.props.streams}/>
-            <GameList limit={8} games={this.props.games}/>
+            {/* <GameList limit={8} games={this.props.games}/> */}
           </div>
         )
       }

@@ -56,7 +56,7 @@ class Navbar extends Component {
           <div>
           <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
           <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} isActive><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>
           <MenuItem onClick={()=>this.activeNavTabHandler("history")} isActive><Link to="/history">History</Link></MenuItem>
         </div>
         )

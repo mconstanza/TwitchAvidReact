@@ -184,12 +184,13 @@ class App extends Component {
     }
 
     renderSearchContainer = () => {
-      if (this.state.searching && this.state.searchFocus) {
+      if (this.state.searching) {
         return (
           <SearchContainer streams={this.state.searchStreams}
             games={this.state.searchGames}
             addStreamToCanvas= {this.addStreamToCanvas}
-            component={this.props.children}>
+            component={this.props.children}
+            setSearchFocus={this.state.setSearchFocus}>
           </SearchContainer>
         )
       }

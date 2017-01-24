@@ -9,20 +9,39 @@ class StreamsList extends Component {
         super(props);
         this.state = {
         };
+
+        this.initialMount();
     }
 
-    componentWillMount() {
-      if (this.props.params){
-        this.props.getStreams({type: 'game', query: this.props.params.query});
+    initialMount() {
+        if(this.props.params && this.props.params.query) {
+
+            if(this.props.params.query == "following") {
+                this.props.getFollowed(this.props.token);
+            }
+            else {
+                this.props.getStreams({type: 'game', query: this.props.params.query});
+            }
+
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if(this.props.params && nextProps.params.query != this.props.params.query){
+
+        if(nextProps.params.query == "following") {
+            nextProps.getFollowed(nextProps.token);
+        }
+        else {
+            nextProps.getStreams({type: 'game', query: nextProps.params.query});
+        }
+
       }
-
     }
 
-    componentDidUpdate() {
-
-    }
 
     streamsList = () => {
+
         if (this.props.streams) {
             const streams = this.props.streams.map((stream) =>
             <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>);

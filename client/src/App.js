@@ -42,6 +42,16 @@ class App extends Component {
   }
 
   addStreamToCanvas = (stream) => {
+    if(this.state.user) { // add to history when start stream
+      let data = {
+        channel: stream.channel.name,
+        game: stream.game,
+        dateViewed: Date.now()
+      }  
+      helpers.postHistory(this.state.user.name, data, function(response) {
+        console.log(response);
+      })
+    }
     var streams = this.state.currentStreams;
     streams.push(stream);
     this.setState({currentStreams: streams})
@@ -93,6 +103,10 @@ class App extends Component {
     this.setState({searchQuery: query});
   }
 
+
+  setCurrentUser = (user) => {
+    this.setState({user: user});
+
   setSearchFocus = (boolean) => {
     this.setState({searchFocus: boolean});
   }
@@ -100,12 +114,7 @@ class App extends Component {
   toggleSearching = (boolean) => {
     this.setState({searching: boolean});
   }
-////////////////////////////////////////////////////////////////////////////
-
-
-  getCurrentUser = (username) => {
-    this.setState({user: username});
-  }
+  
 
   setSearchStreams = (streams) => {
     this.setState({searchStreams: streams});
@@ -119,7 +128,8 @@ class App extends Component {
     this.setState({currentChatChannel: channel})
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
+
     let token = localStorage.getItem("accessToken");
     console.log(token);
 
@@ -127,26 +137,43 @@ class App extends Component {
     console.log(query.code);
 
     if(query.error == "access_denied") {
-      console.log("error");
       localStorage.setItem("accessToken", "null");
       this.setState({token: ""});
     }
 
     else if(token && token !== "null") {
-      console.log("token");
       this.setState({token: token});
     }
 
     else if(query.code) {
-      console.log("code");
       helpers.getToken(query.code, function(data) {
-        console.log(data);
         localStorage.setItem("accessToken", data.access_token);
         this.setState({token: data.access_token});
       }.bind(this));
 
     }
 
+  }
+
+  getHistory = () => {
+    if(this.state.user) {
+    console.log("getHistory");
+    helpers.getHistory(this.state.user.name, function(history) {
+      history.viewHistory.sort(function(a, b) {
+        if(a.dateViewed < b.dateViewed) return 1;
+        else if(a.dateViewed > b.dateViewed) return -1;
+        else return 0;
+      })
+      this.setState({history: history.viewHistory});
+    }.bind(this));
+    }
+  }
+
+  getFollowed = (token) => {
+    helpers.getFollowed(token, function(following) {
+      console.log(following);
+      this.setState({streams: following});
+    }.bind(this));
   }
 
   getStreams = (search) => {
@@ -204,23 +231,28 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Row id="primaryRow">
-          <Column id="navCol" large={2}>
+        <div id="primaryRow">
+          <div id="navCol">
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
               setSearchGames={this.setSearchGames}
               setActivePage={this.setActivePage}
               setSearchQuery={this.setSearchQuery}
+
+              setCurrentUser={this.setCurrentUser}
+
               setSearchFocus={this.setSearchFocus}
               toggleSearching={this.toggleSearching}
+
               user={this.state.user}
               token={this.state.token}
               query={this.state.searchQuery}
             />
-          </Column>
+          </div>
 
 
-          <Column id="centerColumn" large={8}>
+
+          <div className="contentContainer">
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
                 {this.state.theBarShow &&
@@ -232,7 +264,12 @@ class App extends Component {
                   { currentStreams: this.state.currentStreams,
                     addStreamToCanvas: this.addStreamToCanvas,
                     getStreams: this.getStreams,
-                    streams: this.state.streams})}
+                    streams: this.state.streams,
+                    history: this.state.history,
+                    getFollowed: this.getFollowed,
+                    getHistory: this.getHistory,
+                    token: this.state.token,
+                    user: this.state.user})}
 
                   </div> }
               </ReactCSSTransitionGroup>
@@ -249,14 +286,14 @@ class App extends Component {
               removeStream = {this.removeStreamFromCanvas}
               selected={this.selectedStream}
               setChatChannel={this.setChatChannel}/>
-          </Column>
+          </div>
 
-            <Column id="chatColumn" large={2}>
-              <ChatContainer currentChatChannel={this.state.currentChatChannel}/>
+            <div className="chatContainer">
+          <ChatContainer currentChatChannel={this.state.currentChatChannel}/>
+            </div>
 
-            </Column>
 
-        </Row>
+        </div>
         </div>
       );
     }

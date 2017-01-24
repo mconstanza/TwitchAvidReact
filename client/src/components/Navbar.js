@@ -27,7 +27,8 @@ class Navbar extends Component {
           <div>
           <MenuItem onClick={()=>this.activeNavTabHandler("home")} isActive><Link to="/">Home</Link></MenuItem>
           <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><a>Favorites</a></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
         </div>
         )
       }
@@ -36,19 +37,31 @@ class Navbar extends Component {
           <div>
           <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
           <MenuItem onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} ><a>Favorites</a></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} ><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
         </div>
         )
       }
       else if (this.props.isActive == "favorites"){
         return (
           <div>
-          <MenuItem onClick={()=>this.activeNavTabHandler("home")} isActive><Link to="/">Home</Link></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
           <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} isActive><a>Favorites</a></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} isActive><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
         </div>
         )
       }
+      else if (this.props.isActive == "history"){
+        return (
+          <div>
+          <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem onClick={()=>this.activeNavTabHandler("history")} isActive><Link to="/history">History</Link></MenuItem>
+        </div>
+        )
+      }   
     }
 
     render() {
@@ -57,7 +70,7 @@ class Navbar extends Component {
             <ul style={this.style}>
 
               <MenuText id="navLogo">Twitch Avid</MenuText>
-              <User user={this.props.user} token= {this.props.token}/>
+              <User setCurrentUser={this.props.setCurrentUser} user={this.props.user} token= {this.props.token}/>
               <Button id="connectTwitchBtn" size={Sizes.SMALL} onClick={!this.props.token ? Helpers.authorize : Helpers.logout}>{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</Button>
 
               <Search setSearchStreams={this.props.setSearchStreams}

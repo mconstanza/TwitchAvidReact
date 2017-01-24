@@ -47,7 +47,7 @@ class App extends Component {
         channel: stream.channel.name,
         game: stream.game,
         dateViewed: Date.now()
-      }  
+      }
       helpers.postHistory(this.state.user.name, data, function(response) {
         console.log(response);
       })
@@ -106,6 +106,7 @@ class App extends Component {
 
   setCurrentUser = (user) => {
     this.setState({user: user});
+  }
 
   setSearchFocus = (boolean) => {
     this.setState({searchFocus: boolean});
@@ -114,7 +115,7 @@ class App extends Component {
   toggleSearching = (boolean) => {
     this.setState({searching: boolean});
   }
-  
+
 
   setSearchStreams = (streams) => {
     this.setState({searchStreams: streams});
@@ -293,10 +294,11 @@ class App extends Component {
             </div>
 
 
-        </div>
+          </div>
         </div>
       );
     }
   }
+
 
   export default App;

@@ -22,7 +22,7 @@ class Game extends Component {
     var link = "/streams/" + this.props.game.name;
     return (
       <Link to={link} ><div key = {this.props.key} className="game" >
-        <img src={this.props.game.box.medium}/>
+        <img className="gameImage" src={this.props.game.box.medium}/>
         <p className="gameTitle">{this.props.game.name}</p>
       </div>
     </Link>

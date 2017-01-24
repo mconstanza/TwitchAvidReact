@@ -21,8 +21,8 @@ class ChatContainer extends Component {
     return (
       <div className="chatDiv">
        <button
-        className="toggle-btn fi-align-right"
-        onClick={this.toggleBox}>
+        className="toggle-btn"
+        onClick={this.toggleBox}>Chat
       </button>
        <ReactCSSTransitionGroup
           transitionName="chat"

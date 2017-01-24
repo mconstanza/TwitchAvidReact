@@ -24,6 +24,7 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "react-addons-css-transition-group": "^15.4.2",
+    "react-addons-transition-group": "^15.4.2",
     "react-router": "^3.0.0",
     "request": "^2.79.0",
     "sql.js": "^0.3.2"

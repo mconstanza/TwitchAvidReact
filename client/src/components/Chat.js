@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class Chat extends Component {
 
   constructor(props) {
@@ -12,8 +11,8 @@ class Chat extends Component {
     let chatChannel = "http://www.twitch.tv/" + this.props.currentChatChannel + "/chat";
     return (
       <div className="chat" >
-        <iframe 
-        frameborder="0"
+        <iframe
+        frameBorder="0"
         scrolling="no"
         id="chat_embed"
         src={chatChannel}
@@ -22,7 +21,6 @@ class Chat extends Component {
         </iframe>
       </div>
     )
-
   }
 }
 

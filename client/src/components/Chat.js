@@ -10,16 +10,16 @@ class Chat extends Component {
   render() {
     let chatChannel = "http://www.twitch.tv/" + this.props.currentChatChannel + "/chat";
     return (
-        <div className="chat" >
-          <iframe 
-          frameborder="0"
-          scrolling="no"
-          id="chat_embed"
-          src={chatChannel}
-          height="200px"
-          width="200px">
-          </iframe>
-        </div>
+      <div className="chat" >
+        <iframe
+        frameBorder="0"
+        scrolling="no"
+        id="chat_embed"
+        src={chatChannel}
+        height="800px"
+        width="200px">
+        </iframe>
+      </div>
     )
   }
 }

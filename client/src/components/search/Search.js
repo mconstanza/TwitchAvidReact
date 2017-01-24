@@ -10,35 +10,22 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          searchTerm: ""
         };
       }
 
     searchHandler = (event) => {
-      this.setState({searchTerm: event.target.value});
+      var query = event.target.value;
 
-      SearchHelpers.searchGames(this.state.searchTerm, function(games){
-        console.log('Games: ', games)
-        this.props.setSearchGames(games)
-      }.bind(this));
-
-      SearchHelpers.searchChannels(this.state.searchTerm, function(channels){
-        this.props.setSearchChannels(channels)
-      }.bind(this));
-
-      SearchHelpers.searchStreams(this.state.searchTerm, 5, function(streams){
-        console.log('Streams: ', streams)
-        this.props.setSearchStreams(streams)
-      }.bind(this));
+      this.props.setSearchQuery(query);
 
     }
- // <Button size={Sizes.TINY} className="searchform" id="searchButton">Search</Button>
+
     render() {
         return (
             <div className="searchBar">
-            
-                <input onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.state.searchTerm}/>
-                
+
+                <input onFocus={()=> this.props.setSearchFocus(true)} onBlur={()=>this.props.setSearchFocus(false)} onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.props.query}/>
+
             </div>
         )
 

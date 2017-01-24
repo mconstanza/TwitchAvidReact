@@ -6,6 +6,7 @@ import ToggleButton from './ToggleButton';
 import User from './User';
 
 import Helpers from '../utils/helpers';
+import SearchHelpers from '../utils/searchHelpers';
 
 class Navbar extends Component {
 
@@ -62,7 +63,9 @@ class Navbar extends Component {
               <Search setSearchStreams={this.props.setSearchStreams}
                 setSearchGames={this.props.setSearchGames}
                 setSearchQuery={this.props.setSearchQuery}
-                query={this.props.query}/>
+                setSearchFocus={this.props.setSearchFocus}
+                query={this.props.query}
+                toggleSearching={this.props.toggleSearching}/>
 
               {this.activeNavTab()}
 

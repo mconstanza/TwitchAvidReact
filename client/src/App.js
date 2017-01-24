@@ -32,7 +32,8 @@ class App extends Component {
       token: "",
       user: null,
       currentChatChannel: "",
-      searching: false
+      searching: false,
+      searchFocus: false
     };
 
     this.onClick = this.onClick.bind(this);
@@ -91,10 +92,16 @@ class App extends Component {
     }
     this.setState({searchQuery: query});
   }
-////////////////////////////////////////////////////////////////////////////
+
+  setSearchFocus = (boolean) => {
+    this.setState({searchFocus: boolean});
+  }
+
   toggleSearching = (boolean) => {
     this.setState({searching: boolean});
   }
+////////////////////////////////////////////////////////////////////////////
+
 
   getCurrentUser = (username) => {
     this.setState({user: username});
@@ -177,7 +184,7 @@ class App extends Component {
     }
 
     renderSearchContainer = () => {
-      if (this.state.searching) {
+      if (this.state.searching && this.state.searchFocus) {
         return (
           <SearchContainer streams={this.state.searchStreams}
             games={this.state.searchGames}
@@ -203,6 +210,7 @@ class App extends Component {
               setSearchGames={this.setSearchGames}
               setActivePage={this.setActivePage}
               setSearchQuery={this.setSearchQuery}
+              setSearchFocus={this.setSearchFocus}
               toggleSearching={this.toggleSearching}
               user={this.state.user}
               token={this.state.token}

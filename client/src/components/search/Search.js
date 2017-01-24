@@ -24,7 +24,7 @@ class Search extends Component {
         return (
             <div className="searchBar">
 
-                <input onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.props.query}/>
+                <input onFocus={()=> this.props.setSearchFocus(true)} onBlur={()=>this.props.setSearchFocus(false)} onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.props.query}/>
 
             </div>
         )

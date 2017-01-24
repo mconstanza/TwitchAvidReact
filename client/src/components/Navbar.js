@@ -63,6 +63,7 @@ class Navbar extends Component {
               <Search setSearchStreams={this.props.setSearchStreams}
                 setSearchGames={this.props.setSearchGames}
                 setSearchQuery={this.props.setSearchQuery}
+                setSearchFocus={this.props.setSearchFocus}
                 query={this.props.query}
                 toggleSearching={this.props.toggleSearching}/>
 

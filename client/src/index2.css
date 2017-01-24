@@ -53,3 +53,15 @@
   height: 100%;
   padding: 0;
 }
+
+.channelLogo {
+  width: 100px;
+}
+
+.online {
+  color: green;
+}
+
+.offline {
+  color: red;
+}

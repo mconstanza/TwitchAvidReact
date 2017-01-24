@@ -38,6 +38,16 @@ class App extends Component {
   }
 
   addStreamToCanvas = (stream) => {
+    if(this.state.user) { // add to history when start stream
+      let data = {
+        channel: stream.channel.name,
+        game: stream.game,
+        dateViewed: Date.now()
+      }  
+      helpers.postHistory(this.state.user.name, data, function(response) {
+        console.log(response);
+      })
+    }
     var streams = this.state.currentStreams;
     streams.push(stream);
     this.setState({currentStreams: streams})
@@ -98,20 +108,16 @@ class App extends Component {
     console.log(query.code);
 
     if(query.error == "access_denied") {
-      console.log("error");
       localStorage.setItem("accessToken", "null");
       this.setState({token: ""});
     }
 
     else if(token && token !== "null") {
-      console.log("token");
       this.setState({token: token});
     }
 
     else if(query.code) {
-      console.log("code");
       helpers.getToken(query.code, function(data) {
-        console.log(data);
         localStorage.setItem("accessToken", data.access_token);
         this.setState({token: data.access_token});
       }.bind(this));
@@ -121,16 +127,20 @@ class App extends Component {
   }
 
   getHistory = () => {
-    if(this.state.user != null) {
-      helpers.getHistory(this.state.user.name, function(history) {
-        console.log(history);
-        this.setState({history: history});
-      }.bind(this));
+    if(this.state.user) {
+    console.log("getHistory");
+    helpers.getHistory(this.state.user.name, function(history) {
+      history.viewHistory.sort(function(a, b) {
+        if(a.dateViewed < b.dateViewed) return 1;
+        else if(a.dateViewed > b.dateViewed) return -1;
+        else return 0;
+      })
+      this.setState({history: history.viewHistory});
+    }.bind(this));
     }
   }
 
   getFollowed = (token) => {
-    console.log(token);
     helpers.getFollowed(token, function(following) {
       console.log(following);
       this.setState({streams: following});
@@ -206,7 +216,8 @@ class App extends Component {
                     history: this.state.history,
                     getFollowed: this.getFollowed,
                     getHistory: this.getHistory,
-                    token: this.state.token})}
+                    token: this.state.token,
+                    user: this.state.user})}
 
                   </div> }
               </ReactCSSTransitionGroup>

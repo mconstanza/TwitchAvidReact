@@ -9,15 +9,21 @@ class HistoryList extends Component {
         this.state = {
 
         };
-
-        this.props.getHistory();
+        
+        if(this.props.user)
+            this.props.getHistory();
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.user && !this.props.user)
+            this.props.getHistory();
+    }
 
     channelList = () => {
         if (this.props.history) {
-            const channels = this.props.history.map((channel) =>
-            <li><Channel addStreamToCanvas={this.props.addStreamToCanvas}/></li>);
+            const channels = this.props.history.map((channel) => {
+             return (<li><Channel addStreamToCanvas={this.props.addStreamToCanvas} channel={channel}/></li>);
+            })
             return (
                 <ul>{channels}</ul>
             )
@@ -39,4 +45,4 @@ class HistoryList extends Component {
     }
 }
 
-module.exports = ChannelList;
+module.exports = HistoryList;

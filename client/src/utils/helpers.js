@@ -30,8 +30,6 @@ var helpers = {
 	 }
 
   	var params = helpers.buildQuery(headers);
-
-  	console.log(params);
   	window.location = "https://api.twitch.tv/kraken/oauth2/authorize?" + params;
   },
 
@@ -61,6 +59,32 @@ var helpers = {
     })
   },
 
+  getChannel: function(channelName, callback) {
+    fetch("https://api.twitch.tv/kraken/channels/" + channelName, {
+      method: "GET",
+      headers: {
+        "Client-ID": Twitch.clientID,
+      }
+    })
+    .then(response => response.json())
+    .then((channel) => {
+      callback(channel);
+    })
+  },
+
+  getStream: function(channelName, callback) {
+    fetch("https://api.twitch.tv/kraken/streams/" + channelName, {
+      method: "GET",
+      headers: {
+        "Client-ID": Twitch.clientID,
+      }
+    })
+    .then(response => response.json())
+    .then((stream) => {
+      callback(stream);
+    })
+  },
+
   getUserTwitchAPI: function(accessToken, callback) {
     fetch("https://api.twitch.tv/kraken/user", {
       method: "GET",
@@ -76,7 +100,6 @@ var helpers = {
   },
 
   getFollowed: function(accessToken, callback) {
-	console.log(accessToken);
 	fetch("https://api.twitch.tv/kraken/streams/followed?stream_type=live", {
 		method: "GET",
 		headers: {
@@ -92,7 +115,6 @@ var helpers = {
 
   getLocalUser: function(user, callback) {
 	  var params = this.buildQuery(user);
-    console.log(params);
     fetch('/user', {
       method: "POST",
       headers: {
@@ -118,7 +140,6 @@ var helpers = {
 
   postHistory: function(username, content, callback) {
     var params = this.buildQuery(content);
-    console.log(params);
     fetch('/' + username + '/history', {
       method: "POST",
       headers: {

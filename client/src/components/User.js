@@ -22,8 +22,6 @@ class User extends Component {
     }
 
     getUserInfo(token) {
-      // var token = this.props.token;
-
       helpers.getUserTwitchAPI(token, function(user) {
         helpers.getLocalUser({name: user.name}, function(user) {
           console.log(user);

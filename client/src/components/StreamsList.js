@@ -30,11 +30,9 @@ class StreamsList extends Component {
       if(this.props.params && nextProps.params.query != this.props.params.query){
 
         if(nextProps.params.query == "following") {
-            console.log("Goto Following")
             nextProps.getFollowed(nextProps.token);
         }
         else {
-            console.log("Goto Stream")
             nextProps.getStreams({type: 'game', query: nextProps.params.query});
         }
 

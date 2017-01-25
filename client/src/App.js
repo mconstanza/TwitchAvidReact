@@ -259,8 +259,8 @@ class App extends Component {
         <div id="primaryRow">
           <ReactCSSTransitionGroup
           transitionName="toggleNav"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}>
+          transitionEnterTimeout={200}
+          transitionLeaveTimeout={200}>
            {this.state.shouldShowBox2 &&
           <div id="navCol">
             <Navbar isActive={this.state.activePage}
@@ -285,7 +285,7 @@ class App extends Component {
 
 
           {/*<div className={"contentContainer " + toggleChatBox}>*/}
-          <div className={"contentContainer " + toggleChatBox + " " + toggleSideNav}>
+          <div className={"contentContainer contentContainerTransitions " + toggleChatBox + " " + toggleSideNav}>
             
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 

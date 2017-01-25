@@ -45,6 +45,10 @@
   padding-right: 20px;
 }
 
+.contentContainerTransitions  {
+  transition: margin-left .3s, margin-right .3s;
+}
+
 .chatContainer {
   position: absolute;
   top: 0;
@@ -55,11 +59,11 @@
 }
 .showBox {
   margin-right: 320px;
-  transition: margin-right .3s;
+  /*transition: margin-right .3s;*/
 }
 .hideBox {
   margin-right: 0px;
-  transition: margin-right .3s;
+  /*transition: margin-right .3s;*/
 }
 
 .channelLogo {

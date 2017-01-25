@@ -129,14 +129,14 @@ body {
 
 .toggleNav-enter {
   transform: translateX(-100%); 
-  transition: 0.3s transform ease-in;
+  transition: 0.2s transform ease-in-out;
 }
 .toggleNav-enter-active {
   transform: translateX(0%);
 }
 .toggleNav-leave {
   transform: translateX(0%);
-  transition: 0.3s transform ease-out;
+  transition: 0.2s transform ease-in-out;
 }
 .toggleNav-leave-active {
    transform: translateX(-100%); 
@@ -144,18 +144,19 @@ body {
 
 .toggleNavBar {
   color: blue;
-  position: relative;
+  /*position: relative;*/
+  margin-right: 100%;
   /*left: -20px;
   top: 5px;*/
   font-size: 25px;
 }
 .showBox2 {
   margin-left: 215px;
-  transition: margin-left .3s;
+  /*transition: margin-left .3s;*/
 }
 .hideBox2 {
   margin-left: 0px;
-  transition: margin-left .3s;
+  /*transition: margin-left .3s;*/
 }
 
 /*IC*/

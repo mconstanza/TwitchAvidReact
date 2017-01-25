@@ -252,7 +252,7 @@ input {
   max-height: 200px;
   text-align: center;
   max-width: 100%;
-  /*overflow-y: scroll;*/
+  overflow-x: scroll;
 }
 
 #centerColumn {
@@ -272,7 +272,8 @@ input {
   height: 200px;
   text-align: center;
   max-width: 100%;
-  overflow-y: hidden;
+  /*overflow-y: hidden;*/
+  overflow: hidden; 
 }
 
 .side-nav ul {
@@ -330,10 +331,18 @@ display: block;
 }
 
 .streamListDiv{
+  position: relative;
   max-height: 200px;
   text-align: center;
   max-width: 100%;
-  overflow-y: scroll;
+  overflow: hidden;
+}
+
+.streamlist{
+  position: absolute;
+  top:17px;
+  overflow-x: scroll;
+
 }
 
 .streamList li{
@@ -341,6 +350,8 @@ display: block;
   list-style-type: none;
   margin: 5px 10px 5px 10px;
   text-align: left;
+  
+
 }
 
 .channelName {

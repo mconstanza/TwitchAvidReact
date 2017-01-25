@@ -209,6 +209,7 @@ class App extends Component {
     }
 
     toggleTheBar = () => {
+
       this.setState({theBarShow: !this.state.theBarShow})
     }
 
@@ -236,7 +237,17 @@ class App extends Component {
     }
   render() {
     let toggleChatBox = this.state.shouldShowBox ? "showBox" : "hideBox";
-    let toggleChatArrow = this.state.shouldShowBox? "fi-arrow-left" : "fi-arrow-right"
+    let toggleChatArrow = this.state.shouldShowBox? "fi-arrow-right" : "fi-arrow-left"
+
+    var barClass;
+            if(this.state.theBarShow == false){
+                barClass="slideUP";
+            }
+            else{
+                barClass="slideDown"
+            }
+
+
     return (
       <div className="App">
         <div id="primaryRow">
@@ -263,8 +274,8 @@ class App extends Component {
           <div className={"contentContainer " + toggleChatBox}>
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
-                {this.state.theBarShow &&
-                  <div id="theBar">
+             
+                  <div id="theBar" className={barClass}>
 
                   {this.props.children &&
                   React.cloneElement(this.props.children,
@@ -277,9 +288,10 @@ class App extends Component {
                     getFollowed: this.getFollowed,
                     getHistory: this.getHistory,
                     token: this.state.token,
+                    theBarShow: this.state.theBarShow,
                     user: this.state.user})}
 
-                  </div> }
+                  </div> 
               </ReactCSSTransitionGroup>
               <div id="toggleBar" onClick={this.toggleTheBar}>
                 <div className="fi-list toggleButton"/>

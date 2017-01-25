@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Button, Sizes, ButtonGroup } from 'react-foundation';
-
-
+import Link from 'react-router';
 import SearchHelpers from '../../utils/searchHelpers';
+import { browserHistory } from 'react-router';
 
 
 class Search extends Component {
@@ -15,20 +14,16 @@ class Search extends Component {
 
     searchHandler = (event) => {
       var query = event.target.value;
-
       this.props.setSearchQuery(query);
-
     }
 
     render() {
+
         return (
             <div className="searchBar">
-
-                <input onFocus={()=> this.props.setSearchFocus(true)} onBlur={()=>this.props.setSearchFocus(false)} onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.props.query}/>
-
+                <input onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.props.query}/>
             </div>
         )
-
     }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
 import './overlay.css';
 
@@ -27,6 +28,7 @@ class App extends Component {
       currentStreams: [],
       theBarShow: true,
       searchStreams: [],
+      streams:[] ,
       searchGames: [],
       activePage: 'home',
       token: "",
@@ -92,10 +94,6 @@ class App extends Component {
 
       this.setState({searching: true})
 
-      SearchHelpers.searchGames(query, function(games){
-        this.setState({searchGames: games})
-      }.bind(this));
-
       SearchHelpers.searchStreams(query, 25, function(streams){
         this.setState({searchStreams: streams})
       }.bind(this));
@@ -108,14 +106,9 @@ class App extends Component {
     this.setState({user: user});
   }
 
-  setSearchFocus = (boolean) => {
-    this.setState({searchFocus: boolean});
-  }
-
   toggleSearching = (boolean) => {
     this.setState({searching: boolean});
   }
-
 
   setSearchStreams = (streams) => {
     this.setState({searchStreams: streams});
@@ -212,13 +205,15 @@ class App extends Component {
     }
 
     renderSearchContainer = () => {
-      if (this.state.searching) {
+      if (this.state.searching && this.state.searchFocus) {
         return (
           <SearchContainer streams={this.state.searchStreams}
             games={this.state.searchGames}
             addStreamToCanvas= {this.addStreamToCanvas}
             component={this.props.children}
-            setSearchFocus={this.state.setSearchFocus}>
+            setSearchFocus={this.state.setSearchFocus}
+            removeSearchFocus={this.state.removeSearchFocus}>
+
           </SearchContainer>
         )
       }
@@ -243,6 +238,7 @@ class App extends Component {
               setCurrentUser={this.setCurrentUser}
 
               setSearchFocus={this.setSearchFocus}
+              removeSearchFocus={this.removeSearchFocus}
               toggleSearching={this.toggleSearching}
 
               user={this.state.user}
@@ -265,12 +261,14 @@ class App extends Component {
                   { currentStreams: this.state.currentStreams,
                     addStreamToCanvas: this.addStreamToCanvas,
                     getStreams: this.getStreams,
+                    searchStreams: this.state.searchStreams,
                     streams: this.state.streams,
                     history: this.state.history,
                     getFollowed: this.getFollowed,
                     getHistory: this.getHistory,
                     token: this.state.token,
-                    user: this.state.user})}
+                    user: this.state.user,
+                  searching: this.state.searching})}
 
                   </div> }
               </ReactCSSTransitionGroup>
@@ -278,10 +276,10 @@ class App extends Component {
                 <div className="fi-list toggleButton"/>
               </div>
 
-          <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
+          {/* <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
               {this.renderSearchContainer()}
-          </ReactCSSTransitionGroup>
+          </ReactCSSTransitionGroup> */}
 
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}

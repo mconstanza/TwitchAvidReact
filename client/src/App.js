@@ -33,7 +33,8 @@ class App extends Component {
       user: null,
       currentChatChannel: "",
       searching: false,
-      searchFocus: false
+      searchFocus: false,
+      shouldShowBox: true
     };
 
     this.onClick = this.onClick.bind(this);
@@ -228,8 +229,14 @@ class App extends Component {
         )
       }
     }
-
+    toggleChat = () => {
+      this.setState({
+        shouldShowBox: !this.state.shouldShowBox
+      });
+    }
   render() {
+    let toggleChatBox = this.state.shouldShowBox ? "showBox" : "hideBox";
+    let toggleChatArrow = this.state.shouldShowBox? "fi-arrow-left" : "fi-arrow-right"
     return (
       <div className="App">
         <div id="primaryRow">
@@ -253,7 +260,7 @@ class App extends Component {
 
 
 
-          <div className="contentContainer">
+          <div className={"contentContainer " + toggleChatBox}>
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
                 {this.state.theBarShow &&
@@ -283,15 +290,22 @@ class App extends Component {
               {this.renderSearchContainer()}
           </ReactCSSTransitionGroup>
 
+              <div className={"toggleChatDiv " + toggleChatArrow} onClick={this.toggleChat}/>
+
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}
               selected={this.selectedStream}
               setChatChannel={this.setChatChannel}/>
           </div>
-
-            <div className="chatContainer">
-          <ChatContainer currentChatChannel={this.state.currentChatChannel}/>
-            </div>
+          
+           <ReactCSSTransitionGroup
+          transitionName="chat"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
+           {this.state.shouldShowBox && <div className="chatContainer">
+          <ChatContainer currentChatChannel={this.state.currentChatChannel} toggleChat={this.toggleChat} shouldShowBox={this.state.shouldShowBox}/>
+            </div>}
+          </ReactCSSTransitionGroup>
 
 
           </div>

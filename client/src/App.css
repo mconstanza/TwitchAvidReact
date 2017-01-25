@@ -60,7 +60,7 @@ body {
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
-
+  color:#7b61aa;
 }
 
 .gameTitle:hover{
@@ -125,6 +125,38 @@ body {
   100% {
     transform: translateY(0%);
   }
+}
+
+.toggleNav-enter {
+  transform: translateX(-100%); 
+  transition: 0.2s transform ease-in-out;
+}
+.toggleNav-enter-active {
+  transform: translateX(0%);
+}
+.toggleNav-leave {
+  transform: translateX(0%);
+  transition: 0.2s transform ease-in-out;
+}
+.toggleNav-leave-active {
+   transform: translateX(-100%); 
+}
+
+.toggleNavBar {
+  color: blue;
+  /*position: relative;*/
+  margin-right: 100%;
+  /*left: -20px;
+  top: 5px;*/
+  font-size: 25px;
+}
+.showBox2 {
+  margin-left: 215px;
+  /*transition: margin-left .3s;*/
+}
+.hideBox2 {
+  margin-left: 0px;
+  /*transition: margin-left .3s;*/
 }
 
 /*IC*/

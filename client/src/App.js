@@ -33,7 +33,8 @@ class App extends Component {
       user: null,
       currentChatChannel: "",
       searching: false,
-      searchFocus: false
+      searchFocus: false,
+      sideBar: true
     };
 
     this.onClick = this.onClick.bind(this);
@@ -210,6 +211,9 @@ class App extends Component {
     toggleTheBar = () => {
       this.setState({theBarShow: !this.state.theBarShow})
     }
+    toggleTheSide = () => {
+      this.setState({sideBar: !this.state.sideBar})
+    }
 
     renderSearchContainer = () => {
       if (this.state.searching) {
@@ -233,6 +237,7 @@ class App extends Component {
     return (
       <div className="App">
         <div id="primaryRow">
+        <ReactCSSTransitionGroup transitionName="toggleNav" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
           <div id="navCol">
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
@@ -250,6 +255,8 @@ class App extends Component {
               query={this.state.searchQuery}
             />
           </div>
+          </ReactCSSTransitionGroup>
+          <i className="fi-list toggleNavBar" onClick={this.toggleTheSide}></i>
 
 
 

@@ -60,12 +60,12 @@ body {
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
-
-}
-
-.gameTitle:hover{
   color:#7b61aa;
 }
+
+/*.gameTitle:hover{
+  color:#7b61aa;
+}*/
 
 .user {
   color: white;
@@ -127,6 +127,28 @@ body {
   }
 }
 
+.toggleNav-enter {
+  transform: translateX(0%); 
+  transition: 0.5s transform ease-in;
+}
+.toggleNav-enter-active {
+  transform: translateX(-100%);
+}
+.toggleNav-leave {
+  transform: translateX(-100%);
+  transition: 0.5s transform ease-out;
+}
+.toggleNav-leave-active {
+   transform: translateX(0%); 
+}
+
+.toggleNavBar {
+  color: blue;
+  position: relative;
+  left: 215px;
+  top: 5px;
+  font-size: 25px;
+}
 /*IC*/
 
 /*.hidden{
@@ -402,7 +424,6 @@ display: block;
 /*#sInput{
   max-height: 30px;
 }*/
-
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

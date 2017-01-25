@@ -13,14 +13,16 @@ class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          user: null,
+          user: null
           // isToggleOn: false
         };
     }
     activeNavTabHandler = (page) => {
       this.props.setActivePage(page);
     }
-
+    toggleTheSide = () => {
+      this.setState({sideBar: !this.state.sideBar})
+    }
     activeNavTab = () => {
       if (this.props.isActive == "home"){
         return (

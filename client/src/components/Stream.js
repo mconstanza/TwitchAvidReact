@@ -11,6 +11,7 @@ class Stream extends Component {
     render() {
 
       var url = "http://player.twitch.tv/?channel=" + this.props.channel
+      var shouldMute = false;
       return (
         <div className={"streamContainer"}>
           <Overlay streamId={this.props.stream._id} stream={this.props.stream} removeStream={this.props.removeStream} selected={this.props.selected} position={this.props.position} setChatChannel={this.props.setChatChannel}/>
@@ -19,7 +20,8 @@ class Stream extends Component {
                 src={url}
                 frameBorder="0"
                 scrolling="no"
-                allowFullScreen="true">
+                allowFullScreen="true"
+                muted ={shouldMute}>
               </iframe>
           </div>
         </div>

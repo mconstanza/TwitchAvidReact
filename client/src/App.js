@@ -34,7 +34,8 @@ class App extends Component {
       currentChatChannel: "",
       searching: false,
       searchFocus: false,
-      shouldShowBox: true
+      shouldShowBox: true,
+      shouldShowBox2: true
     };
 
     this.onClick = this.onClick.bind(this);
@@ -235,10 +236,15 @@ class App extends Component {
         shouldShowBox: !this.state.shouldShowBox
       });
     }
+    toggleSideBar = () => {
+      this.setState({
+        shouldShowBox2: !this.state.shouldShowBox2
+      });
+    }
   render() {
     let toggleChatBox = this.state.shouldShowBox ? "showBox" : "hideBox";
     let toggleChatArrow = this.state.shouldShowBox? "fi-arrow-right" : "fi-arrow-left"
-
+    let toggleSideNav = this.state.shouldShowBox2 ? "showBox2" : "hideBox2";
     var barClass;
             if(this.state.theBarShow == false){
                 barClass="slideUP";
@@ -251,6 +257,11 @@ class App extends Component {
     return (
       <div className="App">
         <div id="primaryRow">
+          <ReactCSSTransitionGroup
+          transitionName="toggleNav"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
+           {this.state.shouldShowBox2 &&
           <div id="navCol">
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
@@ -266,12 +277,16 @@ class App extends Component {
               user={this.state.user}
               token={this.state.token}
               query={this.state.searchQuery}
+              toggleSideBar={this.toggleSideBar} 
+              shouldShowBox2={this.state.shouldShowBox2}
             />
-          </div>
+          </div>}
+          </ReactCSSTransitionGroup>
 
 
-
-          <div className={"contentContainer " + toggleChatBox}>
+          {/*<div className={"contentContainer " + toggleChatBox}>*/}
+          <div className={"contentContainer " + toggleChatBox + " " + toggleSideNav}>
+            
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
              
@@ -293,9 +308,11 @@ class App extends Component {
 
                   </div> 
               </ReactCSSTransitionGroup>
+        
               <div id="toggleBar" onClick={this.toggleTheBar}>
                 <div className="fi-list toggleButton"/>
               </div>
+              <i className="fi-list toggleNavBar" onClick={this.toggleSideBar}></i>
 
           <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 

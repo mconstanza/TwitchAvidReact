@@ -11,25 +11,16 @@ class ChatContainer extends Component {
     };
   }
 
-  toggleBox = () => {
-    this.setState({
-      shouldShowBox: !this.state.shouldShowBox
-    });
-  };
+  // toggleBox = () => {
+  //   this.setState({
+  //     shouldShowBox: !this.state.shouldShowBox
+  //   });
+  // };
 
   render() {
     return (
       <div className="chatDiv">
-       <button
-        className="toggle-btn"
-        onClick={this.toggleBox}>Chat
-      </button>
-       <ReactCSSTransitionGroup
-          transitionName="chat"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}>
-        {this.state.shouldShowBox && <Chat currentChatChannel={this.props.currentChatChannel}/>}
-      </ReactCSSTransitionGroup>
+        <Chat currentChatChannel={this.props.currentChatChannel}/>
       </div>
     )
 

@@ -35,7 +35,9 @@ class App extends Component {
       user: null,
       currentChatChannel: "",
       searching: false,
-      searchFocus: false
+      searchFocus: false,
+      shouldShowBox: true,
+      shouldShowBox2: true
     };
 
     this.onClick = this.onClick.bind(this);
@@ -201,6 +203,7 @@ class App extends Component {
     }
 
     toggleTheBar = () => {
+
       this.setState({theBarShow: !this.state.theBarShow})
     }
 
@@ -223,11 +226,37 @@ class App extends Component {
         )
       }
     }
-
+    toggleChat = () => {
+      this.setState({
+        shouldShowBox: !this.state.shouldShowBox
+      });
+    }
+    toggleSideBar = () => {
+      this.setState({
+        shouldShowBox2: !this.state.shouldShowBox2
+      });
+    }
   render() {
+    let toggleChatBox = this.state.shouldShowBox ? "showBox" : "hideBox";
+    let toggleChatArrow = this.state.shouldShowBox? "fi-arrow-right" : "fi-arrow-left"
+    let toggleSideNav = this.state.shouldShowBox2 ? "showBox2" : "hideBox2";
+    var barClass;
+            if(this.state.theBarShow == false){
+                barClass="slideUP";
+            }
+            else{
+                barClass="slideDown"
+            }
+
+
     return (
       <div className="App">
         <div id="primaryRow">
+          <ReactCSSTransitionGroup
+          transitionName="toggleNav"
+          transitionEnterTimeout={200}
+          transitionLeaveTimeout={200}>
+           {this.state.shouldShowBox2 &&
           <div id="navCol">
             <Navbar isActive={this.state.activePage}
               setSearchStreams={this.setSearchStreams}
@@ -244,16 +273,20 @@ class App extends Component {
               user={this.state.user}
               token={this.state.token}
               query={this.state.searchQuery}
+              toggleSideBar={this.toggleSideBar}
+              shouldShowBox2={this.state.shouldShowBox2}
             />
-          </div>
+          </div>}
+          </ReactCSSTransitionGroup>
 
 
+          {/*<div className={"contentContainer " + toggleChatBox}>*/}
+          <div className={"contentContainer contentContainerTransitions " + toggleChatBox + " " + toggleSideNav}>
 
-          <div className="contentContainer">
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
-                {this.state.theBarShow &&
-                  <div id="theBar">
+
+                  <div id="theBar" className={barClass}>
 
                   {this.props.children &&
                   React.cloneElement(this.props.children,
@@ -268,18 +301,25 @@ class App extends Component {
                     getHistory: this.getHistory,
                     token: this.state.token,
                     user: this.state.user,
-                  searching: this.state.searching})}
+                  searching: this.state.searching,
+                    theBarShow: this.state.theBarShow,
+                    user: this.state.user})}
 
-                  </div> }
+
+                  </div>
               </ReactCSSTransitionGroup>
+
               <div id="toggleBar" onClick={this.toggleTheBar}>
                 <div className="fi-list toggleButton"/>
               </div>
+              <i className="fi-list toggleNavBar" onClick={this.toggleSideBar}></i>
 
           {/* <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
               {this.renderSearchContainer()}
           </ReactCSSTransitionGroup> */}
+
+              <div className={"toggleChatDiv " + toggleChatArrow} onClick={this.toggleChat}/>
 
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}
@@ -287,9 +327,14 @@ class App extends Component {
               setChatChannel={this.setChatChannel}/>
           </div>
 
-            <div className="chatContainer">
-          <ChatContainer currentChatChannel={this.state.currentChatChannel}/>
-            </div>
+           <ReactCSSTransitionGroup
+          transitionName="chat"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
+           {this.state.shouldShowBox && <div className="chatContainer">
+          <ChatContainer currentChatChannel={this.state.currentChatChannel} toggleChat={this.toggleChat} shouldShowBox={this.state.shouldShowBox}/>
+            </div>}
+          </ReactCSSTransitionGroup>
 
 
           </div>

@@ -60,7 +60,7 @@ body {
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
-
+  color:#7b61aa;
 }
 
 .gameTitle:hover{
@@ -125,6 +125,38 @@ body {
   100% {
     transform: translateY(0%);
   }
+}
+
+.toggleNav-enter {
+  transform: translateX(-100%); 
+  transition: 0.2s transform ease-in-out;
+}
+.toggleNav-enter-active {
+  transform: translateX(0%);
+}
+.toggleNav-leave {
+  transform: translateX(0%);
+  transition: 0.2s transform ease-in-out;
+}
+.toggleNav-leave-active {
+   transform: translateX(-100%); 
+}
+
+.toggleNavBar {
+  color: blue;
+  /*position: relative;*/
+  margin-right: 100%;
+  /*left: -20px;
+  top: 5px;*/
+  font-size: 25px;
+}
+.showBox2 {
+  margin-left: 215px;
+  /*transition: margin-left .3s;*/
+}
+.hideBox2 {
+  margin-left: 0px;
+  /*transition: margin-left .3s;*/
 }
 
 /*IC*/
@@ -252,10 +284,11 @@ input {
   max-height: 200px;
   text-align: center;
   max-width: 100%;
-  /*overflow-y: scroll;*/
+  overflow-x: scroll;
 }
 
 #centerColumn {
+  margin-left: 0;
   padding-left: 0;
   padding-right: 0;
   height: 100%;
@@ -269,10 +302,11 @@ input {
 }
 
 #theBar{
-  height: 200px;
+  
   text-align: center;
   max-width: 100%;
-  overflow-y: hidden;
+  /*overflow-y: hidden;*/
+  overflow: hidden; 
 }
 
 .side-nav ul {
@@ -308,7 +342,48 @@ color: #fff;
   width: 10px;
   min-width: 10px;
   z-index: 100;
+}   
+
+
+
+.slideUP {
+    height: 0;
+    /*animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;*/
+    transition: height .30s;
 }
+
+.slideDown {
+    /*animation: slide-out 0.5s forwards;
+    -webkit-animation: slide-out 0.5s forwards;*/
+    transition:  height .3s;
+    height:200px;
+}
+    
+@keyframes slide-in {
+    100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+    100% { -webkit-transform: translateX(0%); }
+}
+    
+@keyframes slide-out {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slide-out {
+    0% { -webkit-transform: translateX(0%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+
+
+
+
+
+
+
 
 #navCol {
   border-right: solid 2px #000;
@@ -329,11 +404,19 @@ display: block;
   cursor: pointer;
 }
 
-.streamListDiv{
+#streamListDiv{
+  position: relative;
   max-height: 200px;
   text-align: center;
   max-width: 100%;
-  overflow-y: scroll;
+  overflow: hidden;
+}
+
+.streamlist{
+  position: absolute;
+  top:17px;
+  overflow-x: scroll;
+
 }
 
 .streamList li{
@@ -341,6 +424,8 @@ display: block;
   list-style-type: none;
   margin: 5px 10px 5px 10px;
   text-align: left;
+  
+
 }
 
 .channelName {
@@ -397,5 +482,7 @@ display: block;
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
+.toggleChatDiv {
+  margin-left: 100%;
+}
 @import url(index2.css);

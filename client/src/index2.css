@@ -46,7 +46,7 @@
 }
 
 .contentContainerTransitions  {
-  transition: margin-left .3s, margin-right .3s;
+  transition: margin-left .3s ease-in-out, margin-right .3s ease-in-out;
 }
 
 .chatContainer {

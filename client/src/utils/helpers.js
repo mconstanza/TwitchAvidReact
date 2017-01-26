@@ -25,7 +25,7 @@ var helpers = {
 		client_id: Twitch.clientID,
     // change redirect uri to deployment app
 		redirect_uri: "http://localhost:3000",
-		scope: "user_read channel_read",
+		scope: "user_read channel_read user_follows_edit",
 		force_verify: "true"
 	 }
 
@@ -111,6 +111,48 @@ var helpers = {
 	.then((following) => {
 	  callback(following.streams);
 	})
+  },
+
+  checkFollowStatus: function(accessToken, user, channel, callback) {
+    fetch("https://api.twitch.tv/kraken/users/" + user + "/follows/channels/" + channel, {
+      method: "GET",
+      headers: {
+        "Client-ID": Twitch.clientID,
+        "Authorization": "OAuth " + accessToken
+      }
+    })
+    .then(response => response.json())
+    .then(channel => {
+      callback(channel);
+    })
+  },
+
+  followChannel: function(accessToken, user, channel, callback) {
+    fetch("https://api.twitch.tv/kraken/users/" + user + "/follows/channels/" + channel, {
+      method: "PUT",
+      headers: {
+        "Client-ID": Twitch.clientID,
+        "Authorization": "OAuth " + accessToken
+      }
+    })
+    .then(response => response.json())
+    .then(channel => {
+      callback(channel);
+    })
+  },
+
+    unfollowChannel: function(accessToken, user, channel, callback) {
+    fetch("https://api.twitch.tv/kraken/users/" + user + "/follows/channels/" + channel, {
+      method: "DELETE",
+      headers: {
+        "Client-ID": Twitch.clientID,
+        "Authorization": "OAuth " + accessToken
+      }
+    })
+    .then(response => callback(response))
+    // .then(channel => {
+    //   callback(channel);
+    // })
   },
 
   getLocalUser: function(user, callback) {

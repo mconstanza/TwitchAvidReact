@@ -301,7 +301,7 @@ class App extends Component {
                     getHistory: this.getHistory,
                     token: this.state.token,
                     user: this.state.user,
-                  searching: this.state.searching,
+                    searching: this.state.searching,
                     theBarShow: this.state.theBarShow,
                     user: this.state.user})}
 
@@ -313,12 +313,6 @@ class App extends Component {
                 <div className="fi-list toggleButton"/>
               </div>
               <i className="fi-list toggleNavBar" onClick={this.toggleSideBar}></i>
-
-          {/* <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
-
-              {this.renderSearchContainer()}
-          </ReactCSSTransitionGroup> */}
-
               <div className={"toggleChatDiv " + toggleChatArrow} onClick={this.toggleChat}/>
 
             <StreamCanvas streams={this.state.currentStreams}

@@ -90,7 +90,7 @@ body {
   transition: opacity 700ms ease-in;
 }
 .chat-enter {
-  transform: translateX(100%); 
+  transform: translateX(100%);
   transition: 0.3s transform ease-in-out;
 }
 .chat-enter-active {
@@ -101,8 +101,8 @@ body {
   transition: 0.3s transform ease-in-out;
 }
 .chat-leave-active {
-   transform: translateX(100%); 
-} 
+   transform: translateX(100%);
+}
 .slide {
   animation: slide 0.5s ease-in forwards;
 }
@@ -128,7 +128,7 @@ body {
 }
 
 .toggleNav-enter {
-  transform: translateX(-100%); 
+  transform: translateX(-100%);
   transition: 0.2s transform ease-in-out;
 }
 .toggleNav-enter-active {
@@ -139,7 +139,7 @@ body {
   transition: 0.2s transform ease-in-out;
 }
 .toggleNav-leave-active {
-   transform: translateX(-100%); 
+   transform: translateX(-100%);
 }
 
 .toggleNavBar {
@@ -278,9 +278,51 @@ input {
 
 .streamLink {
   max-width: 200px;
+  margin-top: 25px;
+  overflow-y: hidden;
+  color: white;
+}
+
+.streamLinkImg {
+  pointer-events: none;
+}
+
+.streamLink:hover{
+  cursor: pointer;
+  color: #7b61aa;
+}
+
+.streamLinkImg {
+  width: 100%;
+}
+
+/*Small panel on stream link*/
+.streamCard {
+  background: black;
+  opacity: .7;
+  position: absolute;
+  top: 100px;
+  min-width: 200px;
+  width: 200px;
+  min-height: 41px;
+  height: 41px;
+}
+
+.streamCard:hover {
+  cursor: pointer;
+  color: #7b61aa;
+
+}
+
+.channelStatus, .channelName {
+  /*color: white;*/
+  width: 100%;
+  min-width: 100%;
+  margin-left: 5px;
 }
 
 .streamList{
+  position: relative;
   max-height: 200px;
   text-align: center;
   max-width: 100%;
@@ -302,11 +344,11 @@ input {
 }
 
 #theBar{
-  
+
   text-align: center;
   max-width: 100%;
   /*overflow-y: hidden;*/
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .side-nav ul {
@@ -330,7 +372,7 @@ color: #fff;
 #toggleBar {
   background-color:#11001c;
   text-align: center;
-  height: 24px;
+  height: 20px;
 }
 
 .toggleButton {
@@ -342,7 +384,7 @@ color: #fff;
   width: 10px;
   min-width: 10px;
   z-index: 100;
-}   
+}
 
 
 
@@ -359,7 +401,7 @@ color: #fff;
     transition:  height .3s;
     height:200px;
 }
-    
+
 @keyframes slide-in {
     100% { transform: translateX(0%); }
 }
@@ -367,7 +409,7 @@ color: #fff;
 @-webkit-keyframes slide-in {
     100% { -webkit-transform: translateX(0%); }
 }
-    
+
 @keyframes slide-out {
     0% { transform: translateX(0%); }
     100% { transform: translateX(-100%); }
@@ -424,7 +466,7 @@ display: block;
   list-style-type: none;
   margin: 5px 10px 5px 10px;
   text-align: left;
-  
+
 
 }
 

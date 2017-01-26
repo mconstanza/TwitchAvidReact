@@ -30,7 +30,7 @@ class Channel extends Component {
         <img className="channelLogo" src={this.state.channel.logo} onClick={() => this.props.addStreamToCanvas(this.props.stream)}/>
         <p className="channelName"> {this.state.channel.display_name} </p>
         <p className="channelName"> {"Played " + this.props.channel.game} </p>
-        <StreamStatus channel={this.state.channel}/>
+        <StreamStatus addStreamToCanvas={this.props.addStreamToCanvas} channel={this.state.channel}/>
       </div>
     )
 

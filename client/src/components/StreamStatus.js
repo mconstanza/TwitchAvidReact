@@ -19,15 +19,23 @@ class StreamStatus extends Component {
   }
 
   render() {
-    var status;
+    var style = {
+      marginLeft: "10px",
+      cursor: "pointer"
+    }
+
+    var status, viewable;
     if(this.state.stream == null) status = "";
     else if(this.state.stream.stream) status = "Online";
     else status = "Offline";
+    if(status == "Online") viewable =  <i onClick={() => this.props.addStreamToCanvas(this.state.stream.stream)} style={style} className="fa fa-eye" aria-hidden="true"></i>; 
 
 
     return (
-        <p className={status == "Online" ? "online" : "offline"}> 
-          <i>{status}</i>
+
+        <p> 
+          <i className={status == "Online" ? "online" : "offline"}>{status}</i>
+          {viewable}
         </p>
     )
 

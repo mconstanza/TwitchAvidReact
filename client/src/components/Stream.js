@@ -11,7 +11,7 @@ class Stream extends Component {
           isFollowing: false
         };
 
-      if(this.props.user.name && this.props.token) {
+      if(this.props.user && this.props.user.name && this.props.token) {
         helpers.checkFollowStatus(this.props.token, this.props.user.name, this.props.channel, function(response) {
           if(response.channel)
             this.setState({isFollowing: true})

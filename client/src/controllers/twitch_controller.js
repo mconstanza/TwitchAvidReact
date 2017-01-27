@@ -1,13 +1,14 @@
 import express from 'express';
 import Twitch from '../config/Twitch';
 import helpers from '../utils/helpers';
+const path = require('path');
 
 const router = express.Router();
 
 import Users from '../models/Users';
 
 router.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, './client/build', 'index.html'));
+	res.sendFile('/client/build/index.html');
 });
 
 router.post('/authorize', function(req, res) {

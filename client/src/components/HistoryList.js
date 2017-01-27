@@ -22,10 +22,10 @@ class HistoryList extends Component {
     channelList = () => {
         if (this.props.history) {
             const channels = this.props.history.map((channel) => {
-             return (<li><Channel className="channel" addStreamToCanvas={this.props.addStreamToCanvas} channel={channel}/></li>);
+             return (<li className="channelListItem"><Channel className="channel" addStreamToCanvas={this.props.addStreamToCanvas} channel={channel}/></li>);
             })
             return (
-                <ul>{channels}</ul>
+                <ul className="channelUL">{channels}</ul>
             )
         }
 

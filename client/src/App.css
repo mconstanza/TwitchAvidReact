@@ -287,7 +287,7 @@ a{
  background-color: #7b61aa;
 color: #fff;
 }
-.glow, .active{
+.glow.active{
 background-color: #7b61aa;
 color: #fff;
 }
@@ -297,6 +297,13 @@ color: #fff;
   max-width:20px;
 }
 
+.linkList {
+  text-align: center;
+}
+
+.linkList a{
+  color: white;
+}
 
 #streamCanvas {
   width: 100%;

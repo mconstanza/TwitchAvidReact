@@ -24,7 +24,7 @@ class Navbar extends Component {
     activeNavTab = () => {
       if (this.props.isActive == "home"){
         return (
-          <div>
+          <div className="linkList">
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("home")} isActive><Link to="/">Home</Link></MenuItem>
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>
@@ -34,7 +34,7 @@ class Navbar extends Component {
       }
       else if (this.props.isActive == "games"){
         return (
-          <div>
+          <div className="linkList">
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("favorites")} ><Link to="/streams/following">Following</Link></MenuItem>
@@ -44,7 +44,7 @@ class Navbar extends Component {
       }
       else if (this.props.isActive == "favorites"){
         return (
-          <div>
+          <div className="linkList">
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("favorites")} isActive><Link to="/streams/following">Following</Link></MenuItem>
@@ -54,7 +54,7 @@ class Navbar extends Component {
       }
       else if (this.props.isActive == "history"){
         return (
-          <div>
+          <div className="linkList">
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>

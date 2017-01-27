@@ -23,7 +23,7 @@ var helpers = {
     var headers = {
       response_type: "code",
       client_id: process.env.TWITCH_CLIENT || Twitch.clientID,
-      redirect_uri: "http://twitchavid.herokuapp.com",
+      redirect_uri: "https://twitchavid.herokuapp.com",
       scope: "user_read channel_read user_follows_edit",
       force_verify: "true"
     };
@@ -34,7 +34,7 @@ var helpers = {
   logout: function() {
   	localStorage.setItem("accessToken", "null");
 
-  	window.location = "http://" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+  	window.location = "https://" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
   },
 
   getToken: function(code, callback) {

@@ -20,7 +20,7 @@ class ChatContainer extends Component {
   render() {
     return (
       <div className="chatDiv">
-        <Chat currentChatChannel={this.props.currentChatChannel}/>
+        <Chat showChat={this.props.showChat} currentChatChannel={this.props.currentChatChannel}/>
       </div>
     )
 

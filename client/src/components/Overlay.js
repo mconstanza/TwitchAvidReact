@@ -19,6 +19,11 @@ class Overlay extends Component {
     this.setState({opacity_back: 0, opacity_buttons: 0})
   }
 
+  chatHandler = () => {
+    this.props.setChatChannel(this.props.stream.channel.name)
+    this.props.showChat();
+  }
+
   render() {
     let background = {
       backgroundColor: "black",
@@ -52,7 +57,7 @@ class Overlay extends Component {
         <ul className="overlayNavList">
           <li><Button className="streamDelete" style={buttons} onClick={()=>this.props.removeStream(this.props.streamId)}>Close</Button></li>
           <li><Button className="select" style={buttons} onClick={() => this.props.selected(this.props.position)}>Select</Button></li>
-          <li><Button className="chatSelect" style={buttons} onClick={() => this.props.setChatChannel(this.props.stream.channel.name)}>Chat</Button></li>
+          <li><Button className="chatSelect" style={buttons} onClick={() => this.chatHandler}>Chat</Button></li>
           <li><Button className="follow" style={buttons} onClick={() => this.props.followHandler(isFollowing, token, user.name, this.props.stream.channel.name)}>{isFollowing ? "Unfollow" : "Follow"}</Button></li>
         </ul>
       </div>

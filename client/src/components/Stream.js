@@ -43,7 +43,7 @@ class Stream extends Component {
       if (this.props.streamSize){
       return (
         <div className={"streamContainer"}>
-          <Overlay2 user={this.props.user} token={this.props.token} followHandler={this.followHandler} isFollowing={this.state.isFollowing} streamId={this.props.stream._id} stream={this.props.stream} removeStream={this.props.removeStream} selected={this.props.selected} position={this.props.position} setChatChannel={this.props.setChatChannel}/>
+          <Overlay2 showChat={this.props.showChat} user={this.props.user} token={this.props.token} followHandler={this.followHandler} isFollowing={this.state.isFollowing} streamId={this.props.stream._id} stream={this.props.stream} removeStream={this.props.removeStream} selected={this.props.selected} position={this.props.position} setChatChannel={this.props.setChatChannel}/>
             <div className="playingStream" key={this.props.stream._id} id={this.props.stream._id}>
               <iframe
                 src={url}
@@ -58,7 +58,7 @@ class Stream extends Component {
     }else{
       return(
          <div className={"streamContainer"}>
-          <Overlay user={this.props.user} token={this.props.token} followHandler={this.followHandler} isFollowing={this.state.isFollowing} streamId={this.props.stream._id} stream={this.props.stream} removeStream={this.props.removeStream} selected={this.props.selected} position={this.props.position} setChatChannel={this.props.setChatChannel}/>
+          <Overlay showChat={this.props.showChat} user={this.props.user} token={this.props.token} followHandler={this.followHandler} isFollowing={this.state.isFollowing} streamId={this.props.stream._id} stream={this.props.stream} removeStream={this.props.removeStream} selected={this.props.selected} position={this.props.position} setChatChannel={this.props.setChatChannel}/>
             <div className="playingStream" key={this.props.stream._id} id={this.props.stream._id}>
               <iframe
                 src={url}

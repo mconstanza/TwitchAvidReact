@@ -37,8 +37,8 @@ class App extends Component {
       currentChatChannel: "",
       searching: false,
       searchFocus: false,
-      shouldShowBox: false,
-      shouldShowBox2: true
+      shouldShowBox: false, // show/hide chat
+      shouldShowBox2: true // show/hide navbar
     };
 
     this.onClick = this.onClick.bind(this);
@@ -217,6 +217,14 @@ class App extends Component {
         shouldShowBox2: !this.state.shouldShowBox2
       });
     }
+
+    showChat = () => {
+      this.setState({
+        shouldShowBox: true
+      });
+    }
+
+
   render() {
     let toggleChatBox = this.state.shouldShowBox ? "showBox" : "hideBox";
     let toggleSideNav = this.state.shouldShowBox2 ? "showBox2" : "hideBox2";
@@ -336,15 +344,19 @@ class App extends Component {
               selected={this.selectedStream}
               setChatChannel={this.setChatChannel}
               user={this.state.user}
-              token={this.state.token}/>
+              token={this.state.token}
+              showChat={this.showChat}
+            />
           </div>
 
            <ReactCSSTransitionGroup
           transitionName="chat"
           transitionEnterTimeout={300}
           transitionLeaveTimeout={300}>
+
+
            {this.state.shouldShowBox && <div className="chatContainer">
-          <ChatContainer currentChatChannel={this.state.currentChatChannel} toggleChat={this.toggleChat} shouldShowBox={this.state.shouldShowBox}/>
+          <ChatContainer showChat={this.showChat} currentChatChannel={this.state.currentChatChannel} toggleChat={this.toggleChat} shouldShowBox={this.state.shouldShowBox}/>
             </div>}
           </ReactCSSTransitionGroup>
 

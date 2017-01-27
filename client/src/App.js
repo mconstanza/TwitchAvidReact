@@ -280,9 +280,18 @@ class App extends Component {
               toggleSideBar={this.toggleSideBar} 
               shouldShowBox2={this.state.shouldShowBox2}
             />
+            <div id="sideBar" onClick={this.toggleSideBar}>
+                <div className="fi-list toggleNavBar"/>
+              </div>
           </div>}
+          
+          {!this.state.shouldShowBox2 &&
+            <div className="hiddenNav" onClick={this.toggleSideBar}>
+                <div className="fi-list verticalBar"/>
+            </div>
+          }
+          
           </ReactCSSTransitionGroup>
-
 
           {/*<div className={"contentContainer " + toggleChatBox}>*/}
           <div className={"contentContainer contentContainerTransitions " + toggleChatBox + " " + toggleSideNav}>
@@ -312,14 +321,22 @@ class App extends Component {
               <div id="toggleBar" onClick={this.toggleTheBar}>
                 <div className="fi-list toggleButton"/>
               </div>
-              <i className="fi-list toggleNavBar" onClick={this.toggleSideBar}></i>
+              {/*<i className="fi-list toggleNavBar" onClick={this.toggleSideBar}></i>*/}
 
           <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
-
               {this.renderSearchContainer()}
           </ReactCSSTransitionGroup>
 
               <div className={"toggleChatDiv " + toggleChatArrow} onClick={this.toggleChat}/>
+               {/*<div className="toggleChatDiv chatToggle" onClick={this.toggleChat}>
+                                                             <div className="fi-list chatHamburger"/>
+                                                           </div>
+                                        
+                                        {!this.state.shouldShowBox &&
+                                          <div className="chatArea" onClick={this.toggleChat}>
+                                              <div className="fi-list chatHamburger"/>
+                                          </div>
+                                        }*/}
 
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}

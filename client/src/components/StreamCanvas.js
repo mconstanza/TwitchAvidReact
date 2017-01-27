@@ -13,12 +13,22 @@ class StreamCanvas extends Component {
     }
 
     displayStreams = () => {
+
         const streams = this.props.streams.map((stream, index) =>
-        // <li className="streamLi">
-          <Stream selected={this.props.selected} position={index} key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id} removeStream={this.props.removeStream} setChatChannel={this.props.setChatChannel}/>
-        // {/* </li> */}
+          {
+            let smallStream = false;
+            if (index > 0){
+              smallStream = true;
+            }
+          // <li className="streamLi">
+          return <Stream selected={this.props.selected} position={index} streamSize={smallStream} key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id} removeStream={this.props.removeStream} setChatChannel={this.props.setChatChannel}/>
+          // {/* </li> */}
+          }
         )
+
+      
     // return <ul>{streams}</ul>
+    console.log(streams);
     return streams
   }
 

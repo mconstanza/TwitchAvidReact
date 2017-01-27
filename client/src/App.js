@@ -153,7 +153,6 @@ class App extends Component {
 
   getHistory = () => {
     if(this.state.user) {
-    console.log("getHistory");
     helpers.getHistory(this.state.user.name, function(history) {
       history.viewHistory.sort(function(a, b) {
         if(a.dateViewed < b.dateViewed) return 1;
@@ -167,7 +166,6 @@ class App extends Component {
 
   getFollowed = (token) => {
     helpers.getFollowed(token, function(following) {
-      console.log(following);
       this.setState({streams: following});
     }.bind(this));
   }
@@ -254,8 +252,8 @@ class App extends Component {
         <div id="primaryRow">
           <ReactCSSTransitionGroup
           transitionName="toggleNav"
-          transitionEnterTimeout={200}
-          transitionLeaveTimeout={200}>
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
            {this.state.shouldShowBox2 &&
           <div id="navCol">
             <Navbar isActive={this.state.activePage}
@@ -336,7 +334,9 @@ class App extends Component {
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}
               selected={this.selectedStream}
-              setChatChannel={this.setChatChannel}/>
+              setChatChannel={this.setChatChannel}
+              user={this.state.user}
+              token={this.state.token}/>
           </div>
 
            <ReactCSSTransitionGroup

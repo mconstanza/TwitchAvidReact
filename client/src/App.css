@@ -128,15 +128,16 @@ body {
 }
 
 .toggleNav-enter {
-  transform: translateX(-100%);
-  transition: 0.2s transform ease-in-out;
+  transform: translateX(-100%); 
+  transition: 0.3s transform ease-in-out;
+
 }
 .toggleNav-enter-active {
   transform: translateX(0%);
 }
 .toggleNav-leave {
   transform: translateX(0%);
-  transition: 0.2s transform ease-in-out;
+  transition: 0.3s transform ease-in-out;
 }
 .toggleNav-leave-active {
    transform: translateX(-100%);

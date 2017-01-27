@@ -24,19 +24,19 @@ class Overlay extends Component {
       backgroundColor: "black",
       opacity: this.state.opacity_back,
       transition: "opacity 700ms",
-      height: "40%",
-      width: "20%",
+      height: "95px",
+      width: "95px",
       zIndex: 1,
       position: "absolute",
       top: "0px",
-      right: "15px"
+      right: "-20px"
     }
 
     let buttons = {
       opacity: this.state.opacity_buttons,
       transition: "opacity 500ms",
       backgroundColor: "transparent",
-      fontSize: "16px",
+      fontSize: "12px",
       paddingRight: "0px",
       paddingLeft: "0px"
     }
@@ -44,10 +44,10 @@ class Overlay extends Component {
     var isFollowing = this.props.isFollowing;
     var token = this.props.token;
     var user = this.props.user;
-    return (
 
+    return (
       <div className="Overlay" style={background} onMouseEnter={this.onMouseEnter.bind(this)} onMouseLeave={this.onMouseLeave.bind(this)}>
-        <ul className="overlayNavList">
+        <ul className="overlayNavList2">
           <li><Button className="streamDelete" style={buttons} onClick={()=>this.props.removeStream(this.props.streamId)}>Close</Button></li>
           <li><Button className="select" style={buttons} onClick={() => this.props.selected(this.props.position)}>Select</Button></li>
           <li><Button className="chatSelect" style={buttons} onClick={() => this.props.setChatChannel(this.props.stream.channel.name)}>Chat</Button></li>

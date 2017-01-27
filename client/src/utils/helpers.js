@@ -23,7 +23,7 @@ var helpers = {
     var headers = {
       response_type: "code",
       client_id: process.env.TWITCH_CLIENT || Twitch.clientID,
-      redirect_uri: "https://twitchavid.herokuapp.com/",
+      redirect_uri: "http://twitchavid.herokuapp.com",
       scope: "user_read channel_read user_follows_edit",
       force_verify: "true"
     };
@@ -34,14 +34,14 @@ var helpers = {
   logout: function() {
   	localStorage.setItem("accessToken", "null");
 
-  	window.location = "https://" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
+  	window.location = "http://" + window.location.hostname + (window.location.port ? ":" + window.location.port : "");
   },
 
   getToken: function(code, callback) {
     var headers = {
       client_id: process.env.TWITCH_CLIENT || Twitch.clientID,
       client_secret: process.env.TWITCH_SECRET || Twitch.secret,
-      redirect_uri: "https://twitchavid.herokuapp.com/",
+      redirect_uri: "http://twitchavid.herokuapp.com",
       grant_type: "authorization_code",
       code: code
     };

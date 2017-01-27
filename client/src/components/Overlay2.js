@@ -29,14 +29,14 @@ class Overlay extends Component {
       zIndex: 1,
       position: "absolute",
       top: "0px",
-      right: "-20px"
+      right: "10px"
     }
 
     let buttons = {
       opacity: this.state.opacity_buttons,
       transition: "opacity 500ms",
       backgroundColor: "transparent",
-      fontSize: "12px",
+      fontSize: "10px",
       paddingRight: "0px",
       paddingLeft: "0px"
     }
@@ -51,7 +51,7 @@ class Overlay extends Component {
           <li><Button className="streamDelete" style={buttons} onClick={()=>this.props.removeStream(this.props.streamId)}>Close</Button></li>
           <li><Button className="select" style={buttons} onClick={() => this.props.selected(this.props.position)}>Select</Button></li>
           <li><Button className="chatSelect" style={buttons} onClick={() => this.props.setChatChannel(this.props.stream.channel.name)}>Chat</Button></li>
-          <li><Button className="follow" style={buttons} onClick={() => this.props.followHandler(isFollowing, token, user.name, this.props.stream.channel.name)}>{isFollowing ? "Unfollow" : "Follow"}</Button></li> 
+          <li><Button className="follow" style={buttons} onClick={() => this.props.followHandler(isFollowing, token, user.name, this.props.stream.channel.name)}>{isFollowing ? "Unfollow" : "Follow"}</Button></li>
         </ul>
       </div>
     )

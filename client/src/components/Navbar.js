@@ -4,7 +4,7 @@ import {Menu, MenuItem, MenuText, Button, Sizes} from 'react-foundation';
 import Search from './search/Search';
 import ToggleButton from './ToggleButton';
 import User from './User';
- 
+
 import Helpers from '../utils/helpers';
 import SearchHelpers from '../utils/searchHelpers';
 
@@ -65,12 +65,12 @@ class Navbar extends Component {
     }
 
     render() {
-        var TAVreal = './public/favicon.ico';
+        var TAVreal = '/TAVreal.png';
         return (
           <div className="side-nav">
             <ul style={this.style}>
 
-              <MenuText id="navLogo">Twitch Avid <img src={TAVreal}/> </MenuText>
+              <MenuText id="navLogo">Twitch Avid <img id="navLogoImg" src={TAVreal}/> </MenuText>
               <User setCurrentUser={this.props.setCurrentUser} user={this.props.user} token= {this.props.token}/>
               <Button id="connectTwitchBtn" size={Sizes.SMALL} onClick={!this.props.token ? Helpers.authorize : Helpers.logout}>{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</Button>
 

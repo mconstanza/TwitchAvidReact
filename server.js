@@ -77,14 +77,6 @@ app.use(logger(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 // ===================================================================
 
 
-// app.get('/', function(req, res) {
-// 	res.sendFile('index.html');
-// });
-
-app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname, './client/build', 'index.html'));
-});
-
 app.use('/', twitch_controller);
 
 

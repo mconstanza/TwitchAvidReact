@@ -1,16 +1,36 @@
+.Overlay{
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0, auto;
+  z-index: 2;
+  position: absolute;
+  text-align: center;
+}
+
 ul.overlayNavList {
   text-align: center;
   list-style: none;
   padding: 0;
   height: 100%;
   width: 70%;
+  margin: 0;
 }
 
 ul.overlayNavList li {
   display: block;
   padding: 0;
-  height: 30%;
+  height: 15%;
   width: 100%;
+  margin-top: 5px;
 }
 
 ul.overlayNavList li button {
@@ -28,6 +48,7 @@ ul.overlayNavList2 {
   padding: 0;
   height: 100%;
   width: 100%;
+    margin: 0;
 }
 
 ul.overlayNavList2 li {

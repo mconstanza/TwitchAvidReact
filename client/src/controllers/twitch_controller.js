@@ -6,6 +6,10 @@ const router = express.Router();
 
 import Users from '../models/Users';
 
+router.get('/', function(req, res) {
+	res.sendFile(path.join(__dirname, './client/build', 'index.html'));
+});
+
 router.post('/authorize', function(req, res) {
 	var headers = {
 		response_type: "code",
@@ -46,9 +50,9 @@ router.post('/user', function(req, res) {
 // Return user's favorites
 router.get('/:username/favorites', function(req, res) {
 	Users.findOne({name: req.params.username}, 'favorites', function(err, user) {
-		if(err) 
+		if(err)
 			res.send(err);
-		else 
+		else
 			res.send(user);
 	})
 });
@@ -71,12 +75,12 @@ router.post('/:username/favorites', function(req, res) {
 });
 
 
-// Returns view history 
+// Returns view history
 router.get('/:username/history', function(req, res) {
 	Users.findOne({name: req.params.username}, 'viewHistory', function(err, user) {
-		if(err) 
+		if(err)
 			res.send(err);
-		else 
+		else
 			res.send(user);
 	})
 });

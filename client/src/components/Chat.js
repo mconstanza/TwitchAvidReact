@@ -8,7 +8,7 @@ class Chat extends Component {
   }
 
   render() {
-    let chatChannel = "http://www.twitch.tv/" + this.props.currentChatChannel + "/chat";
+    let chatChannel = "https://www.twitch.tv/" + this.props.currentChatChannel + "/chat";
     return (
       <div className="chat" >
         <iframe

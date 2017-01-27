@@ -11,10 +11,12 @@ class Stream extends Component {
           isFollowing: false
         };
 
+      if(this.props.user.name && this.props.token) {
         helpers.checkFollowStatus(this.props.token, this.props.user.name, this.props.channel, function(response) {
           if(response.channel)
             this.setState({isFollowing: true})
         }.bind(this))
+      }
     }
 
     followHandler = (isFollowing, token, user, channel) => {
@@ -35,7 +37,7 @@ class Stream extends Component {
 
     render() {
 
-      var url = "http://player.twitch.tv/?channel=" + this.props.channel
+      var url = "https://player.twitch.tv/?channel=" + this.props.channel
       var shouldMute = false;
       console.log(this.props.streamsize);
       if (this.props.streamSize){

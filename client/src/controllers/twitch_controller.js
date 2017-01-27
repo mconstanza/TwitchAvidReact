@@ -8,7 +8,7 @@ const router = express.Router();
 import Users from '../models/Users';
 
 router.get('/', function(req, res) {
-	res.sendFile('/app/client/build/index.html');
+	res.sendFile('/client/build/index.html');
 });
 
 router.post('/authorize', function(req, res) {

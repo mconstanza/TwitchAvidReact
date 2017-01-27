@@ -7,24 +7,6 @@ const router = express.Router();
 
 import Users from '../models/Users';
 
-router.get('/', function(req, res) {
-	res.sendFile('/client/build/index.html');
-});
-
-router.post('/authorize', function(req, res) {
-	var headers = {
-		response_type: "code",
-		client_id: Twitch.clientID,
-		redirect_uri: "http://localhost:3000",
-		scope: "user_read channel_read",
-		force_verify: "true"
-	};
-
-	var params = helpers.buildQuery(headers);
-
-	console.log(params);
-	res.redirect("https://api.twitch.tv/kraken/oauth2/authorize?" + params);
-});
 
 // Return all users in DB
 router.get('/all', function(req, res) {

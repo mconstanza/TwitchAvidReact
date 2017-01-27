@@ -21,12 +21,12 @@ var helpers = {
 
   authorize: function(){
     var headers = {
-		response_type: "code",
-		client_id: Twitch.clientID,
-    // change redirect uri to deployment app
-		redirect_uri: "http://localhost:3000",
-		scope: "user_read channel_read user_follows_edit",
-		force_verify: "true"
+      response_type: "code",
+      client_id: TWITCH_CLIENT || Twitch.clientID,
+      redirect_uri: "http://twitchavid.herokuapp.com",
+      scope: "user_read channel_read user_follows_edit",
+      force_verify: "true"
+    };
 	 }
 
   	var params = helpers.buildQuery(headers);
@@ -41,9 +41,9 @@ var helpers = {
 
   getToken: function(code, callback) {
     var headers = {
-      client_id: Twitch.clientID,
-      client_secret: Twitch.secret,
-      redirect_uri: "http://localhost:3000",
+      client_id: TWITCH_CLIENT || Twitch.clientID,
+      client_secret: TWITCH_SECRET || Twitch.secret,
+      redirect_uri: "http://twitchavid.herokuapp.com",
       grant_type: "authorization_code",
       code: code
     };
@@ -63,7 +63,7 @@ var helpers = {
     fetch("https://api.twitch.tv/kraken/channels/" + channelName, {
       method: "GET",
       headers: {
-        "Client-ID": Twitch.clientID,
+        "Client-ID": TWITCH_CLIENT || Twitch.clientID,
       }
     })
     .then(response => response.json())
@@ -76,7 +76,7 @@ var helpers = {
     fetch("https://api.twitch.tv/kraken/streams/" + channelName, {
       method: "GET",
       headers: {
-        "Client-ID": Twitch.clientID,
+        "Client-ID": TWITCH_CLIENT || Twitch.clientID,
       }
     })
     .then(response => response.json())
@@ -89,7 +89,7 @@ var helpers = {
     fetch("https://api.twitch.tv/kraken/user", {
       method: "GET",
       headers: {
-        "Client-ID": Twitch.clientID,
+        "Client-ID": TWITCH_CLIENT || Twitch.clientID,
         "Authorization": "OAuth " + accessToken
       }
     })
@@ -103,7 +103,7 @@ var helpers = {
 	fetch("https://api.twitch.tv/kraken/streams/followed?stream_type=live", {
 		method: "GET",
 		headers: {
-		  "Client-ID": Twitch.clientID,
+		  "Client-ID": TWITCH_CLIENT || Twitch.clientID,
 		  "Authorization": "OAuth " + accessToken
 		}
 	})
@@ -117,7 +117,7 @@ var helpers = {
     fetch("https://api.twitch.tv/kraken/users/" + user + "/follows/channels/" + channel, {
       method: "GET",
       headers: {
-        "Client-ID": Twitch.clientID,
+        "Client-ID": TWITCH_CLIENT || Twitch.clientID,
         "Authorization": "OAuth " + accessToken
       }
     })
@@ -131,7 +131,7 @@ var helpers = {
     fetch("https://api.twitch.tv/kraken/users/" + user + "/follows/channels/" + channel, {
       method: "PUT",
       headers: {
-        "Client-ID": Twitch.clientID,
+        "Client-ID": TWITCH_CLIENT ||Twitch.clientID,
         "Authorization": "OAuth " + accessToken
       }
     })
@@ -145,7 +145,7 @@ var helpers = {
     fetch("https://api.twitch.tv/kraken/users/" + user + "/follows/channels/" + channel, {
       method: "DELETE",
       headers: {
-        "Client-ID": Twitch.clientID,
+        "Client-ID": TWITCH_CLIENT ||Twitch.clientID,
         "Authorization": "OAuth " + accessToken
       }
     })

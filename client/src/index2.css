@@ -48,6 +48,10 @@
   margin-top: 10px;
 }
 
+.channelList ul {
+  list-style: none;
+}
+
 .historyChannelLogo {
   width: 100px;
   color: black;

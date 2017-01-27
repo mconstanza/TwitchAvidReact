@@ -29,6 +29,19 @@ var searchHelpers = {
           callback(json.streams)
       })
   },
+  getFeaturedStreams(callback) {
+
+      fetch('https://api.twitch.tv/kraken/streams/featured', {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/vnd.twitchtv.v5+json',
+              'Client-ID': Twitch.clientID
+          }
+      }).then(response => response.json()).then(json => {
+        console.log('featured streams:', json.featured)
+          callback(json.featured)
+      })
+  },
 // search and list streams by game
 
     searchGames(game, callback){

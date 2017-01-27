@@ -119,3 +119,7 @@ ul.overlayNavList2 li button:hover:before {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+.gameTitle {
+  margin-top: 5px;
+}

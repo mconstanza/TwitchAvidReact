@@ -38,7 +38,6 @@ class SearchContainer extends Component {
           <div id="searchContainer" style={this.containerStyle}>
             <div id="searchContainerTopPanel" style={this.topPanelStyle}/>
             <StreamsList addStreamToCanvas= {this.props.addStreamToCanvas} streams={this.props.streams}/>
-            {/* <GameList limit={8} games={this.props.games}/> */}
           </div>
         )
       }

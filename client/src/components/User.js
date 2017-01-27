@@ -11,7 +11,7 @@ class User extends Component {
           user: null
         };
 
-        if(!this.props.user && this.props.token)
+        if(!this.props.user && this.props.token) 
           this.getUserInfo(this.props.token);
 
     }

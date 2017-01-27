@@ -4,7 +4,7 @@ import {Menu, MenuItem, MenuText, Button, Sizes} from 'react-foundation';
 import Search from './search/Search';
 import ToggleButton from './ToggleButton';
 import User from './User';
-
+ 
 import Helpers from '../utils/helpers';
 import SearchHelpers from '../utils/searchHelpers';
 
@@ -25,51 +25,52 @@ class Navbar extends Component {
       if (this.props.isActive == "home"){
         return (
           <div>
-          <MenuItem onClick={()=>this.activeNavTabHandler("home")} isActive><Link to="/">Home</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("home")} isActive><Link to="/">Home</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
         </div>
         )
       }
       else if (this.props.isActive == "games"){
         return (
           <div>
-          <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} ><Link to="/streams/following">Following</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("games")} isActive><Link to="/games">Games</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("favorites")} ><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
         </div>
         )
       }
       else if (this.props.isActive == "favorites"){
         return (
           <div>
-          <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")} isActive><Link to="/streams/following">Following</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("favorites")} isActive><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("history")}><Link to="/history">History</Link></MenuItem>
         </div>
         )
       }
       else if (this.props.isActive == "history"){
         return (
           <div>
-          <MenuItem onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>
-          <MenuItem onClick={()=>this.activeNavTabHandler("history")} isActive><Link to="/history">History</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("home")}><Link to="/">Home</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("games")}><Link to="/games">Games</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("favorites")}><Link to="/streams/following">Following</Link></MenuItem>
+          <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("history")} isActive><Link to="/history">History</Link></MenuItem>
         </div>
         )
       }
     }
 
     render() {
+        var TAVreal = './public/favicon.ico';
         return (
           <div className="side-nav">
             <ul style={this.style}>
 
-              <MenuText id="navLogo">Twitch Avid</MenuText>
+              <MenuText id="navLogo">Twitch Avid <img src={TAVreal}/> </MenuText>
               <User setCurrentUser={this.props.setCurrentUser} user={this.props.user} token= {this.props.token}/>
               <Button id="connectTwitchBtn" size={Sizes.SMALL} onClick={!this.props.token ? Helpers.authorize : Helpers.logout}>{this.props.token ? 'Sign Out' : 'Connect with Twitch'}</Button>
 

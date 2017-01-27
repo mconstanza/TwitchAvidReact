@@ -40,6 +40,12 @@
   /*transition: margin-right .3s;*/
 }
 
+.channelLink {
+  width: 150px;
+  height: 175px;
+  text-align: left;
+}
+
 .historyChannelLogo {
   width: 100px;
   color: black;
@@ -49,11 +55,13 @@
   font-size: 12px;
   color: black;
   text-overflow: ellipsis;
+  margin-bottom: 0;
 }
 
 .historyGameName {
   font-size: 12px;
   text-overflow: ellipsis;
+  margin-bottom: 0;
 }
 
 .online {

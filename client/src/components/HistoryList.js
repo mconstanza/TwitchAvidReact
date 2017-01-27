@@ -37,7 +37,7 @@ class HistoryList extends Component {
 
             <div id="historyListDiv">
                 <div className="streamList">
-                    {this.channelList()}
+                    {this.props.user ? this.channelList() : <p>You must be connected with Twitch to manage your history</p>}
                 </div>
             </div>
         )

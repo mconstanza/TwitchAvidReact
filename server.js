@@ -16,7 +16,7 @@ var twitch_controller = require("./client/src/controllers/twitch_controller");
 
 // PRODUCTION SETTINGS
 // if (process.env.NODE_ENV === 'production') {
-app.use(express.static('./client/build'));
+app.use(express.static('/static'));
 // }
 
 // Middleware

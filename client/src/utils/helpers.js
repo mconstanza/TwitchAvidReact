@@ -41,7 +41,7 @@ var helpers = {
     var headers = {
       client_id: process.env.TWITCH_CLIENT || Twitch.clientID,
       client_secret: process.env.TWITCH_SECRET || Twitch.secret,
-      redirect_uri: "http://twitchavid.herokuapp.com",
+      redirect_uri: "https://twitchavid.herokuapp.com",
       grant_type: "authorization_code",
       code: code
     };

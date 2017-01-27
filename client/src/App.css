@@ -144,19 +144,54 @@ body {
 }
 
 .toggleNavBar {
-  color: blue;
-  /*position: relative;*/
   margin-right: 100%;
-  /*left: -20px;
-  top: 5px;*/
-  font-size: 25px;
+  color: white;
+  height: 18px;
+  min-height: 18px;
+  width: 10px;
+  min-width: 10px;
+  margin-left: 200px;
 }
+.chatHamburger {
+  color: white;
+  height: 18px;
+  min-height: 18px;
+  width: 10px;
+  min-width: 10px;
+  margin-left: 7px;
+  margin-bottom: 5px;
+}
+.verticalBar {
+  color: white;
+  height: 18px;
+  min-height: 18px;
+  width: 10px;
+  min-width: 10px;
+  position: absolute;
+  top: 350px;
+}
+#sideBar {
+  width: 15px;
+}
+.chatToggle {
+  width: 25px;
+  height: 22px;
+  background-color: #800080;
+  border-radius: 25px 0px 0px 25px;
+}
+.hiddenNav {
+  background-color: black;
+  float: left;
+  height: 100%;
+  width: 20px;
+}
+
 .showBox2 {
   margin-left: 215px;
   /*transition: margin-left .3s;*/
 }
 .hideBox2 {
-  margin-left: 0px;
+  margin-left: 25px;
   /*transition: margin-left .3s;*/
 }
 
@@ -264,12 +299,12 @@ input {
 
 .mainStream {
   float: left;
-  width: 75%;
+  width: 70%;
 }
 
 .otherStreams {
   display: inline-table;
-  width: 25%;
+  width: 22%;
 }
 
 

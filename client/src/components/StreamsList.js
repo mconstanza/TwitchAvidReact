@@ -19,9 +19,10 @@ class StreamsList extends Component {
         if(this.props.params && this.props.params.query) {
           console.log('this has params')
 
-            if(this.props.params.query == "following") {
+            if(this.props.params.query == "following" && this.props.user) {
                 this.props.getFollowed(this.props.token);
             }
+
             else {
                 this.props.getStreams({type: 'game', query: this.props.params.query});
                 console.log('getting streams')

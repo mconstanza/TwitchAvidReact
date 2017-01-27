@@ -9,7 +9,7 @@ class HistoryList extends Component {
         this.state = {
 
         };
-        
+
         if(this.props.user)
             this.props.getHistory();
     }
@@ -22,10 +22,10 @@ class HistoryList extends Component {
     channelList = () => {
         if (this.props.history) {
             const channels = this.props.history.map((channel) => {
-             return (<li><Channel addStreamToCanvas={this.props.addStreamToCanvas} channel={channel}/></li>);
+             return (<li className="channelListItem"><Channel className="channel" addStreamToCanvas={this.props.addStreamToCanvas} channel={channel}/></li>);
             })
             return (
-                <ul>{channels}</ul>
+                <ul className="channelUL">{channels}</ul>
             )
         }
 
@@ -36,7 +36,7 @@ class HistoryList extends Component {
         return (
 
             <div id="historyListDiv">
-                <div className="streamList">
+                <div className="channelList">
                     {this.props.user ? this.channelList() : <p>You must be connected with Twitch to manage your history</p>}
                 </div>
             </div>

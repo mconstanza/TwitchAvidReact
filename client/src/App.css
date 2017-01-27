@@ -28,6 +28,8 @@ body {
  font-family: 'Cabin', sans-serif;
 }
 
+.
+
 #connectTwitchBtn{
   margin-top: 15px;
   font-size: 10px;
@@ -295,6 +297,13 @@ color: #fff;
   max-width:20px;
 }
 
+.linkList {
+  text-align: center;
+}
+
+.linkList a{
+  color: white;
+}
 
 #streamCanvas {
   width: 100%;
@@ -353,7 +362,7 @@ color: #fff;
 .streamLink {
   max-width: 200px;
   margin-top: 25px;
-  overflow-y: hidden;
+  overflow: hidden;
   color: white;
 }
 
@@ -538,6 +547,7 @@ display: block;
   margin-top: 0;
   font-size: 12px;
 }
+
 
 .example-enter {
   opacity: 0.01;

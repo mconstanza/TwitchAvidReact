@@ -4,7 +4,6 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 
 import App from './App';
 import Login from './components/Login';
-import ChannelList from './components/ChannelList';
 import GameList from './components/GameList';
 import StreamsList from './components/StreamsList';
 import HistoryList from './components/HistoryList';

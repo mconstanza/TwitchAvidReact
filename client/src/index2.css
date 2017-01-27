@@ -40,8 +40,46 @@
   /*transition: margin-right .3s;*/
 }
 
-.channelLogo {
+.channelLink {
+  width: 150px;
+  height: 175px;
+  text-align: left;
+  list-style: none;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.channelList{
+  display: inline-block;
+}
+
+.channelUL {
+  list-style: none;
+  text-align: center;
+  display:inline-block;
+}
+
+.channelListItem{
+  display:inline-block;
+}
+
+.historyChannelLogo {
   width: 100px;
+  color: black;
+  border: 1px black solid;
+}
+
+.historyChannelName {
+  font-size: 12px;
+  color: black;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
+}
+
+.historyGameName {
+  font-size: 12px;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
 }
 
 .online {

@@ -166,6 +166,9 @@ var helpers = {
     .then((user) => {
 	  	callback(user);
 	  })
+    .catch(error) => {
+      console.log(error)
+    }
   },
 
   getHistory: function(username, callback) {

@@ -327,16 +327,16 @@ class App extends Component {
               {this.renderSearchContainer()}
           </ReactCSSTransitionGroup>
 
-              <div className={"toggleChatDiv " + toggleChatArrow} onClick={this.toggleChat}/>
-               {/*<div className="toggleChatDiv chatToggle" onClick={this.toggleChat}>
+              {/*<div className={"toggleChatDiv " + toggleChatArrow} onClick={this.toggleChat}/>*/}
+               <div className="toggleChatDiv chatToggle" onClick={this.toggleChat}>
                                                              <div className="fi-list chatHamburger"/>
                                                            </div>
                                         
-                                        {!this.state.shouldShowBox &&
-                                          <div className="chatArea" onClick={this.toggleChat}>
-                                              <div className="fi-list chatHamburger"/>
-                                          </div>
-                                        }*/}
+                                       {/*{!this.state.shouldShowBox &&
+                                                                                 <div className="chatArea" onClick={this.toggleChat}>
+                                                                                     <div className="fi-list chatHamburger"/>
+                                                                                 </div>
+                                                                               }*/}
 
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}

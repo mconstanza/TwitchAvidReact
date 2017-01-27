@@ -1,6 +1,7 @@
 import express from 'express';
 import Twitch from '../config/Twitch';
 import helpers from '../utils/helpers';
+const path = require('path');
 
 const router = express.Router();
 

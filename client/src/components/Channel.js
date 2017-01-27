@@ -26,10 +26,10 @@ class Channel extends Component {
   render() {
 
     return (
-      <div className="streamLink">
-        <img className="channelLogo" src={this.state.channel.logo} onClick={() => this.props.addStreamToCanvas(this.props.stream)}/>
-        <p className="channelName"> {this.state.channel.display_name} </p>
-        <p className="channelName"> {"Played " + this.props.channel.game} </p>
+      <div className="channelLink">
+        <img className="historyChannelLogo" src={this.state.channel.logo} onClick={() => this.props.addStreamToCanvas(this.props.stream)}/>
+        <p className="historyChannelName"> {this.state.channel.display_name} </p>
+        <p className="historyGameName"> {"Played " + this.props.channel.game} </p>
         <StreamStatus addStreamToCanvas={this.props.addStreamToCanvas} channel={this.state.channel}/>
       </div>
     )

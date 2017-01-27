@@ -24,7 +24,7 @@ class Overlay extends Component {
       backgroundColor: "black",
       opacity: this.state.opacity_back,
       transition: "opacity 700ms",
-      height: "95px",
+      height: "105px",
       width: "95px",
       zIndex: 1,
       position: "absolute",

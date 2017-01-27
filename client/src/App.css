@@ -353,7 +353,7 @@ color: #fff;
 .streamLink {
   max-width: 200px;
   margin-top: 25px;
-  overflow-y: hidden;
+  overflow: hidden;
   color: white;
 }
 

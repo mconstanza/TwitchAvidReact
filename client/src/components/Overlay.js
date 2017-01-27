@@ -21,7 +21,7 @@ class Overlay extends Component {
 
   chatHandler = (channel) => {
     this.props.showChat();
-    this.props.setChatChannel(channel) 
+    this.props.setChatChannel(channel)
 
   }
 
@@ -30,8 +30,8 @@ class Overlay extends Component {
       backgroundColor: "black",
       opacity: this.state.opacity_back,
       transition: "opacity 700ms",
-      height: "30%",
-      width: "15%",
+      height: "156px",
+      width: "138px",
       zIndex: 1,
       top: "0px",
       right: "15px",

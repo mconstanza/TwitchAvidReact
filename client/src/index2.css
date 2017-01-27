@@ -40,9 +40,20 @@
   /*transition: margin-right .3s;*/
 }
 
-.channelLogo {
+.historyChannelLogo {
   width: 100px;
-  
+  color: black;
+}
+
+.historyChannelName {
+  font-size: 12px;
+  color: black;
+  text-overflow: ellipsis;
+}
+
+.historyGameName {
+  font-size: 12px;
+  text-overflow: ellipsis;
 }
 
 .online {

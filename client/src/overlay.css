@@ -2,14 +2,12 @@ ul.overlayNavList {
   text-align: center;
   list-style: none;
   padding: 0;
-  margin: 0 auto;
   height: 100%;
   width: 70%;
 }
 
 ul.overlayNavList li {
   display: block;
-  margin: 0;
   padding: 0;
   height: 30%;
   width: 100%;
@@ -28,14 +26,12 @@ ul.overlayNavList2 {
   text-align: center;
   list-style: none;
   padding: 0;
-  margin: 0 auto;
   height: 100%;
   width: 100%;
 }
 
 ul.overlayNavList2 li {
   display: block;
-  margin: 0;
   padding: 0;
   height: 30%;
   width: 100%;

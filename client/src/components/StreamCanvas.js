@@ -22,7 +22,7 @@ class StreamCanvas extends Component {
               smallStream = true;
             }
           // <li className="streamLi">
-          return <Stream user={this.props.user} token={this.props.token} selected={this.props.selected} position={index} key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id} removeStream={this.props.removeStream} setChatChannel={this.props.setChatChannel}/>
+          return <Stream streamSize={smallStream} user={this.props.user} token={this.props.token} selected={this.props.selected} position={index} key={stream._id} stream={stream} channel={stream.channel.name} video={stream._id} removeStream={this.props.removeStream} setChatChannel={this.props.setChatChannel}/>
           // {/* </li> */}
           }
         )

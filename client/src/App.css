@@ -271,6 +271,26 @@ input {
   width: 25%;
 }
 
+
+#searchDiv {
+  display: inline-block;
+}
+
+#searchBar {
+  display: inline-block;
+}
+
+#searchClearButton {
+  background-color: #7b61aa;
+  color: white;
+  height: 30px;
+  width: 40px;
+  font-size: 10px;
+  font-family: 'Cabin', sans-serif;
+  margin-left: 5px;
+
+}
+
 .streamDelete {
   height: 100%;
   width: 100%;

@@ -3,6 +3,8 @@ import Link from 'react-router';
 import SearchHelpers from '../../utils/searchHelpers';
 import { browserHistory } from 'react-router';
 
+import {Button} from 'react-foundation';
+
 
 class Search extends Component {
 
@@ -17,12 +19,18 @@ class Search extends Component {
       this.props.setSearchQuery(query);
     }
 
+    clickHandler = () => {
+      this.props.setSearchQuery("")
+    }
+
     render() {
 
         return (
-            <div className="searchBar">
-                <input onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.props.query}/>
+            <div id="searchDiv">
+                <input id="searchBar" onChange={this.searchHandler} id="sInput" placeholder="Find me streams!" value={this.props.query}/>
+                <button id="searchClearButton" onClick={this.clickHandler}>Clear</button>
             </div>
+
         )
     }
 }

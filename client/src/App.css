@@ -144,6 +144,10 @@ body {
 }
 
 .toggleNavBar {
+
+  color: white;
+  background-color: black;
+  /*position: relative;*/
   margin-right: 100%;
   color: white;
   height: 18px;
@@ -277,6 +281,23 @@ input {
 
 }
 
+a{
+  color: #fff;
+  width: 100%;
+}
+.glow:hover{
+ background-color: #7b61aa;
+color: #fff;
+}
+.glow.active{
+background-color: #7b61aa;
+color: #fff;
+}
+
+#logo{
+  max-height: 20px;
+  max-width:20px;
+}
 
 
 #streamCanvas {
@@ -414,11 +435,6 @@ input {
 
 }
 
-.side-nav li :focus{
-background-color: #7b61aa;
-color: #fff;
-/*display: block;*/
-}
 
 /*.side-nav a > .hover{
 background-color: #7b61aa;
@@ -494,8 +510,20 @@ color: #fff;
 background-color: #7b61aa;
 color: #fff;
 display: block;
+outline:0;
+margin:0;
+padding:0;
 }
 
+
+#navCol li > .hover{
+background-color: #7b61aa;
+color: #fff;
+display: block;
+/*outline:0;
+margin:0;
+padding:0;*/
+}
 
 
 .streamLinkImg {

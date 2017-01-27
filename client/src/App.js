@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import './overlay.css';
 
+
 import Twitch from './config/Twitch';
 import helpers from './utils/helpers';
 import SearchHelpers from './utils/searchHelpers';

@@ -288,7 +288,7 @@ class App extends Component {
 
                   <div id="theBar" className={barClass}>
 
-                  {this.props.children &&
+                  {this.props.children && !this.state.searching &&
                   React.cloneElement(this.props.children,
 
                   { currentStreams: this.state.currentStreams,
@@ -304,6 +304,24 @@ class App extends Component {
                     searching: this.state.searching,
                     theBarShow: this.state.theBarShow,
                     user: this.state.user})}
+
+                    {this.state.searching &&
+                      <StreamsList
+                          currentStreams = {this.state.currentStreams}
+                          addStreamToCanvas = {this.addStreamToCanvas}
+                          getStreams= {this.getStreams}
+                          searchStreams= {this.state.searchStreams}
+                          streams= {this.state.streams}
+                          history= {this.state.history}
+                          getFollowed= {this.getFollowed}
+                          getHistory= {this.getHistory}
+                          token= {this.state.token}
+                          user= {this.state.user}
+                          searching= {this.state.searching}
+                          theBarShow= {this.state.theBarShow}
+                          user= {this.state.user}
+                        />
+                    }
 
 
                   </div>

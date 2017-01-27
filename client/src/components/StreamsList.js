@@ -49,6 +49,7 @@ class StreamsList extends Component {
 
 
     streamsList = () => {
+      // if the user is searching
         if (this.props.searchStreams.length > 0 && this.props.searching){
           const streams = this.props.searchStreams.map((stream) =>
           <li><StreamLink addStreamToCanvas={this.props.addStreamToCanvas} stream={stream}/></li>);
@@ -76,7 +77,6 @@ class StreamsList extends Component {
     }
 
     render() {
-
 
         return (
 

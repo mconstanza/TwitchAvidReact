@@ -61,7 +61,7 @@ class Navbar extends Component {
           <MenuItem className= "glow" onClick={()=>this.activeNavTabHandler("history")} isActive><Link to="/history">History</Link></MenuItem>
         </div>
         )
-      }   
+      }
     }
 
     render() {
@@ -78,6 +78,7 @@ class Navbar extends Component {
                 setSearchGames={this.props.setSearchGames}
                 setSearchQuery={this.props.setSearchQuery}
                 setSearchFocus={this.props.setSearchFocus}
+                removeSearchFocus={this.props.removeSearchFocus}
                 query={this.props.query}
                 toggleSearching={this.props.toggleSearching}/>
 

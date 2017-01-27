@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
 import './overlay.css';
 
@@ -28,6 +29,7 @@ class App extends Component {
       currentStreams: [],
       theBarShow: true,
       searchStreams: [],
+      streams:[] ,
       searchGames: [],
       activePage: 'home',
       token: "",
@@ -95,10 +97,6 @@ class App extends Component {
 
       this.setState({searching: true})
 
-      SearchHelpers.searchGames(query, function(games){
-        this.setState({searchGames: games})
-      }.bind(this));
-
       SearchHelpers.searchStreams(query, 25, function(streams){
         this.setState({searchStreams: streams})
       }.bind(this));
@@ -111,14 +109,9 @@ class App extends Component {
     this.setState({user: user});
   }
 
-  setSearchFocus = (boolean) => {
-    this.setState({searchFocus: boolean});
-  }
-
   toggleSearching = (boolean) => {
     this.setState({searching: boolean});
   }
-
 
   setSearchStreams = (streams) => {
     this.setState({searchStreams: streams});
@@ -161,7 +154,6 @@ class App extends Component {
 
   getHistory = () => {
     if(this.state.user) {
-    console.log("getHistory");
     helpers.getHistory(this.state.user.name, function(history) {
       history.viewHistory.sort(function(a, b) {
         if(a.dateViewed < b.dateViewed) return 1;
@@ -175,7 +167,6 @@ class App extends Component {
 
   getFollowed = (token) => {
     helpers.getFollowed(token, function(following) {
-      console.log(following);
       this.setState({streams: following});
     }.bind(this));
   }
@@ -216,13 +207,15 @@ class App extends Component {
     }
 
     renderSearchContainer = () => {
-      if (this.state.searching) {
+      if (this.state.searching && this.state.searchFocus) {
         return (
           <SearchContainer streams={this.state.searchStreams}
             games={this.state.searchGames}
             addStreamToCanvas= {this.addStreamToCanvas}
             component={this.props.children}
-            setSearchFocus={this.state.setSearchFocus}>
+            setSearchFocus={this.state.setSearchFocus}
+            removeSearchFocus={this.state.removeSearchFocus}>
+
           </SearchContainer>
         )
       }
@@ -260,8 +253,8 @@ class App extends Component {
         <div id="primaryRow">
           <ReactCSSTransitionGroup
           transitionName="toggleNav"
-          transitionEnterTimeout={200}
-          transitionLeaveTimeout={200}>
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}>
            {this.state.shouldShowBox2 &&
           <div id="navCol">
             <Navbar isActive={this.state.activePage}
@@ -273,61 +266,98 @@ class App extends Component {
               setCurrentUser={this.setCurrentUser}
 
               setSearchFocus={this.setSearchFocus}
+              removeSearchFocus={this.removeSearchFocus}
               toggleSearching={this.toggleSearching}
 
               user={this.state.user}
               token={this.state.token}
               query={this.state.searchQuery}
-              toggleSideBar={this.toggleSideBar} 
+              toggleSideBar={this.toggleSideBar}
               shouldShowBox2={this.state.shouldShowBox2}
             />
+            <div id="sideBar" onClick={this.toggleSideBar}>
+                <div className="fi-list toggleNavBar"/>
+              </div>
           </div>}
+          
+          {!this.state.shouldShowBox2 &&
+            <div className="hiddenNav" onClick={this.toggleSideBar}>
+                <div className="fi-list verticalBar"/>
+            </div>
+          }
+          
           </ReactCSSTransitionGroup>
-
 
           {/*<div className={"contentContainer " + toggleChatBox}>*/}
           <div className={"contentContainer contentContainerTransitions " + toggleChatBox + " " + toggleSideNav}>
-            
+
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
 
-             
+
                   <div id="theBar" className={barClass}>
 
-                  {this.props.children &&
+                  {this.props.children && !this.state.searching &&
                   React.cloneElement(this.props.children,
 
                   { currentStreams: this.state.currentStreams,
                     addStreamToCanvas: this.addStreamToCanvas,
                     getStreams: this.getStreams,
+                    searchStreams: this.state.searchStreams,
                     streams: this.state.streams,
                     history: this.state.history,
                     getFollowed: this.getFollowed,
                     getHistory: this.getHistory,
                     token: this.state.token,
+                    user: this.state.user,
+                    searching: this.state.searching,
                     theBarShow: this.state.theBarShow,
                     user: this.state.user})}
 
-                  </div> 
+                    {this.state.searching &&
+                      <StreamsList
+                          currentStreams = {this.state.currentStreams}
+                          addStreamToCanvas = {this.addStreamToCanvas}
+                          getStreams= {this.getStreams}
+                          searchStreams= {this.state.searchStreams}
+                          streams= {this.state.streams}
+                          history= {this.state.history}
+                          getFollowed= {this.getFollowed}
+                          getHistory= {this.getHistory}
+                          token= {this.state.token}
+                          user= {this.state.user}
+                          searching= {this.state.searching}
+                          theBarShow= {this.state.theBarShow}
+                          user= {this.state.user}
+                        />
+                    }
+
+
+                  </div>
               </ReactCSSTransitionGroup>
-        
+
               <div id="toggleBar" onClick={this.toggleTheBar}>
                 <div className="fi-list toggleButton"/>
               </div>
-              <i className="fi-list toggleNavBar" onClick={this.toggleSideBar}></i>
 
           <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
-
               {this.renderSearchContainer()}
           </ReactCSSTransitionGroup>
-
+               <div className="toggleChatDiv chatToggle" onClick={this.toggleChat}>
+                                                             <div className="fi-list chatHamburger"/>
+                                                           </div>
+                                        
+              <i className="fi-list toggleNavBar" onClick={this.toggleSideBar}></i>
               <div className={"toggleChatDiv " + toggleChatArrow} onClick={this.toggleChat}/>
+
 
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}
               selected={this.selectedStream}
-              setChatChannel={this.setChatChannel}/>
+              setChatChannel={this.setChatChannel}
+              user={this.state.user}
+              token={this.state.token}/>
           </div>
-          
+
            <ReactCSSTransitionGroup
           transitionName="chat"
           transitionEnterTimeout={300}

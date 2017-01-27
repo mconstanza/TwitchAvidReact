@@ -22,8 +22,13 @@ router.post('/user', function(req, res) {
 		if(err) res.send(err)
 		if(!foundUser) {
 			Users.create(req.body, function(err, createdUser) {
-				if(err) throw(err);
-				res.send(createdUser);
+				if(err) {
+					return(err);
+				}
+				else {
+					res.send(createdUser);
+				}
+
 			})
 		}
 		res.send(foundUser);

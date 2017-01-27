@@ -37,7 +37,7 @@ class App extends Component {
       currentChatChannel: "",
       searching: false,
       searchFocus: false,
-      shouldShowBox: true,
+      shouldShowBox: false,
       shouldShowBox2: true
     };
 
@@ -206,25 +206,7 @@ class App extends Component {
       this.setState({theBarShow: !this.state.theBarShow})
     }
 
-    renderSearchContainer = () => {
-      if (this.state.searching && this.state.searchFocus) {
-        return (
-          <SearchContainer streams={this.state.searchStreams}
-            games={this.state.searchGames}
-            addStreamToCanvas= {this.addStreamToCanvas}
-            component={this.props.children}
-            setSearchFocus={this.state.setSearchFocus}
-            removeSearchFocus={this.state.removeSearchFocus}>
 
-          </SearchContainer>
-        )
-      }
-      else {
-        return (
-          <div/>
-        )
-      }
-    }
     toggleChat = () => {
       this.setState({
         shouldShowBox: !this.state.shouldShowBox
@@ -237,7 +219,6 @@ class App extends Component {
     }
   render() {
     let toggleChatBox = this.state.shouldShowBox ? "showBox" : "hideBox";
-    let toggleChatArrow = this.state.shouldShowBox? "fi-arrow-right" : "fi-arrow-left"
     let toggleSideNav = this.state.shouldShowBox2 ? "showBox2" : "hideBox2";
     var barClass;
             if(this.state.theBarShow == false){
@@ -279,16 +260,15 @@ class App extends Component {
                 <div className="fi-list toggleNavBar"/>
               </div>
           </div>}
-          
+
           {!this.state.shouldShowBox2 &&
             <div className="hiddenNav" onClick={this.toggleSideBar}>
                 <div className="fi-list verticalBar"/>
             </div>
           }
-          
+
           </ReactCSSTransitionGroup>
 
-          {/*<div className={"contentContainer " + toggleChatBox}>*/}
           <div className={"contentContainer contentContainerTransitions " + toggleChatBox + " " + toggleSideNav}>
 
             <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
@@ -339,16 +319,17 @@ class App extends Component {
                 <div className="fi-list toggleButton"/>
               </div>
 
-          <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={200} transitionLeaveTimeout={200}>
-              {this.renderSearchContainer()}
-          </ReactCSSTransitionGroup>
-               <div className="toggleChatDiv chatToggle" onClick={this.toggleChat}>
-                                                             <div className="fi-list chatHamburger"/>
-                                                           </div>
-                                        
-              <i className="fi-list toggleNavBar" onClick={this.toggleSideBar}></i>
-              <div className={"toggleChatDiv " + toggleChatArrow} onClick={this.toggleChat}/>
+              {this.state.shouldShowBox &&
+                <div className="toggleChatDivClose chatToggleClose" onClick={this.toggleChat}>
+                  <div className="fi-list chatHamburger"/>
+                </div>
+            }
 
+              {!this.state.shouldShowBox &&
+               <div className="toggleChatDiv chatToggle" onClick={this.toggleChat}>
+                 <div className="fi-list chatHamburger"/>
+               </div>
+             }
 
             <StreamCanvas streams={this.state.currentStreams}
               removeStream = {this.removeStreamFromCanvas}

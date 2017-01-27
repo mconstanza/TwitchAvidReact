@@ -1,25 +1,6 @@
 .oneStream {
-  width: 100%
+  width: 70%
 }
-
-#primaryRow {
-  /*display: flex;*/
-  /*justify-content: space-between;*/
-}
-
-/*#navCol {
-  max-width: 215px;
-}
-
-.contentContainer {
-  padding: 0;
-}
-
-.chatContainer {
-  max-width: 340px;
-  width: 340px;
-  padding: 0;
-}*/
 
 .chat {
   position: absolute;
@@ -31,18 +12,11 @@
   border: 0;
 }
 
-
 #navCol {
   position: absolute;
   left: 0;
   width: 215px;
   height: 100%;
-}
-
-.contentContainer {
-  margin-left: 215px;
-  margin-right: 320px;
-  padding-right: 20px;
 }
 
 .contentContainerTransitions  {

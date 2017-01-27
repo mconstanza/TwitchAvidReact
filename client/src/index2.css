@@ -49,9 +49,17 @@
   display: inline-block;
 }
 
+.channelList{
+  display: inline-block;
+}
+
 .channelList ul {
   list-style: none;
   text-align: center;
+  display:inline-block;
+}
+
+.channelList ul li{
   display:inline-block;
 }
 

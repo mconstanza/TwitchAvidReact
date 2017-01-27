@@ -7,7 +7,7 @@ const router = express.Router();
 import Users from '../models/Users';
 
 router.get('/', function(req, res) {
-	res.sendFile('index.html');
+	res.sendFile('/static/index.html');
 });
 
 router.post('/authorize', function(req, res) {

@@ -57,7 +57,6 @@ TwitchAvid uses a number of open source projects to work properly:
 * [React CSS Transition Group](https://facebook.github.io/react/docs/animation.html) - add-on component for easily implementing basic CSS animations and transitions
 * [MongoDB](https://www.mongodb.com/) - noSQL database
 * [Babel](https://babeljs.io/) - JSX compiler
-* [Electron](http://electron.atom.io/) - open-source framework allows for the development of desktop GUI applications using the Node.js runtime and the Chromium web browser
 
 
 # Installation
